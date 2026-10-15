@@ -179,6 +179,138 @@ const serviceBadgeColors: Record<string, string> = {
   "air-quality-testing": "#4f46e5"
 };
 
+const detailedStandards = [
+  {
+    name: "BIS / IS Standards",
+    badge: "National Standards",
+    emblem: "IS 10500 · IS 14543 · IS 5402",
+    desc: "Bureau of Indian Standards specifications for drinking water potability, packaged natural mineral water, food products, and microbiological criteria.",
+    tags: ["Potability (IS 10500)", "Toxic Heavy Metals", "Coliform Limits", "Physical Turbidity"],
+    color: "#00A8B5",
+    bg: "rgba(0, 168, 181, 0.1)",
+    border: "rgba(0, 168, 181, 0.3)",
+    gradient: "linear-gradient(90deg, #00A8B5, #38bdf8)",
+    shadow: "rgba(0, 168, 181, 0.16)"
+  },
+  {
+    name: "FSSAI Methods",
+    badge: "Food Safety & Regulations",
+    emblem: "FSSAI Statutory Manuals",
+    desc: "Statutory analytical testing protocols for food safety compliance, nutritional labeling, proximate parameters, food additives, and contaminant limits.",
+    tags: ["Fat & Protein Content", "Pesticide Residues", "Aflatoxins", "Shelf Life Studies"],
+    color: "#6EA236",
+    bg: "rgba(110, 162, 54, 0.1)",
+    border: "rgba(110, 162, 54, 0.3)",
+    gradient: "linear-gradient(90deg, #6EA236, #22c55e)",
+    shadow: "rgba(110, 162, 54, 0.16)"
+  },
+  {
+    name: "APHA / AWWA / WEF",
+    badge: "Water & Wastewater Protocols",
+    emblem: "23rd Edition Standard Methods",
+    desc: "The definitive global reference manual for the physical, chemical, biological, and microbiological examination of drinking water and industrial effluents.",
+    tags: ["BOD & COD Analysis", "Total Dissolved Solids", "Trace Metals (AAS)", "Pathogen Screening"],
+    color: "#0284c7",
+    bg: "rgba(2, 132, 199, 0.1)",
+    border: "rgba(2, 132, 199, 0.3)",
+    gradient: "linear-gradient(90deg, #0284c7, #00A8B5)",
+    shadow: "rgba(2, 132, 199, 0.16)"
+  },
+  {
+    name: "ISO / IEC Standards",
+    badge: "Global Quality Protocols",
+    emblem: "ISO/IEC 17025:2017 & ISO 6579",
+    desc: "International management and technical standards governing laboratory competence, equipment calibration traceability, and test validity.",
+    tags: ["ISO 17025:2017", "Measurement Uncertainty", "Method Validation", "Traceability"],
+    color: "#4f46e5",
+    bg: "rgba(79, 70, 229, 0.1)",
+    border: "rgba(79, 70, 229, 0.3)",
+    gradient: "linear-gradient(90deg, #4f46e5, #00A8B5)",
+    shadow: "rgba(79, 70, 229, 0.16)"
+  },
+  {
+    name: "AOAC International",
+    badge: "Validated Analytical Chemistry",
+    emblem: "Official Methods of Analysis",
+    desc: "Globally validated chemical and microbiological methods for food composition, dietary fibre, vitamins, amino acids, and authenticity verification.",
+    tags: ["Proximate Assays", "Vitamin Profiling", "Fatty Acid Profiles", "Mineral Assays"],
+    color: "#f59e0b",
+    bg: "rgba(245, 158, 11, 0.1)",
+    border: "rgba(245, 158, 11, 0.3)",
+    gradient: "linear-gradient(90deg, #f59e0b, #ef4444)",
+    shadow: "rgba(245, 158, 11, 0.16)"
+  },
+  {
+    name: "CPCB & MoEFCC",
+    badge: "Environmental Pollution Control",
+    emblem: "National Ambient & Stack Guidelines",
+    desc: "National statutory regulations and sampling protocols for ambient air quality monitoring, stack emissions, industrial effluents, and noise levels.",
+    tags: ["PM2.5 & PM10", "SOx & NOx Stack", "Noise Level Survey", "ETP Compliance"],
+    color: "#0d9488",
+    bg: "rgba(13, 148, 136, 0.1)",
+    border: "rgba(13, 148, 136, 0.3)",
+    gradient: "linear-gradient(90deg, #0d9488, #6EA236)",
+    shadow: "rgba(13, 148, 136, 0.16)"
+  }
+];
+
+const luxuryStudentProgrammes = [
+  {
+    slug: "short-term-internships",
+    path: "/programmes/short-term-internships" as const,
+    title: "Short-Term Internships",
+    durationBadge: "15–30 Days · Hands-On Bench",
+    icon: FlaskConical,
+    accent: "#00A8B5",
+    gradient: "linear-gradient(135deg, rgba(0, 168, 181, 0.14) 0%, rgba(19, 53, 82, 0.05) 100%)",
+    glow: "rgba(0, 168, 181, 0.22)",
+    subtitle: "Your structured bridge from academic classroom theory to professional testing laboratory bench.",
+    outcomes: [
+      "Hands-on sample preparation, aseptic pipetting & wet bench assays",
+      "Practical exposure across Food, Water & Microbiological testing",
+      "Standard Operating Procedures (SOPs) & calibrated tool handling",
+      "Official Certificate of Laboratory Training upon course completion"
+    ],
+    applyLink: "/programmes-apply"
+  },
+  {
+    slug: "long-term-internships",
+    path: "/programmes/long-term-internships" as const,
+    title: "Long-Term Internships",
+    durationBadge: "1–6 Months · Comprehensive",
+    icon: Microscope,
+    accent: "#0284c7",
+    gradient: "linear-gradient(135deg, rgba(2, 132, 199, 0.14) 0%, rgba(19, 53, 82, 0.05) 100%)",
+    glow: "rgba(2, 132, 199, 0.22)",
+    subtitle: "In-depth analytical immersion, advanced instrumentation training, and industrial quality control.",
+    outcomes: [
+      "Operation of UV-Vis spectrophotometers, incubators & titration setups",
+      "Routine commercial batch processing, calibration & quality control",
+      "Dedicated 1-on-1 mentorship adhering to ISO/IEC 17025 workflows",
+      "Industry-recognized Internship Training Credential for career placement"
+    ],
+    applyLink: "/programmes-apply"
+  },
+  {
+    slug: "academic-projects",
+    path: "/programmes/academic-projects" as const,
+    title: "BSc / MSc Academic Projects",
+    durationBadge: "Dissertation & Thesis Support",
+    icon: GraduationCap,
+    accent: "#6EA236",
+    gradient: "linear-gradient(135deg, rgba(110, 162, 54, 0.14) 0%, rgba(19, 53, 82, 0.05) 100%)",
+    glow: "rgba(110, 162, 54, 0.22)",
+    subtitle: "Complete testing infrastructure, verified data generation, and scientific guidance for university thesis.",
+    outcomes: [
+      "Access to certified laboratory testing instrumentation & analytical reagents",
+      "Authentic, traceable experimental data generation for academic thesis",
+      "Expert consultation on research methodology, protocols & parameter design",
+      "Official Laboratory Project Completion Letter & signed validation certificate"
+    ],
+    applyLink: "/programmes-apply"
+  }
+];
+
 function Home() {
   return (
     <>
@@ -247,20 +379,20 @@ function Home() {
         </div>
       </section>
 
-      {/* 3. SECTION 1: ABOUT CERTIGO LABORATORIES (EDITORIAL SPLIT: LEFT CONTENT, RIGHT IMAGE) */}
+      {/* 3. SECTION 1: A PARTNER IN SCIENCE. A PLACE TO GROW. (EDITORIAL SPLIT) */}
       <section className="section gradient-section-mesh">
         <div className="site-container editorial-split">
           <div>
-            <span className="eyebrow">1. ABOUT CERTIGO LABORATORIES</span>
+            <span className="eyebrow">A PARTNER IN SCIENCE. A PLACE TO GROW.</span>
             <h2 className="text-3xl sm:text-4xl font-serif text-primary mb-4 leading-tight">
-              “Reliable Testing. Accurate Results.<br />
-              <span className="text-teal font-normal">Trusted Quality.”</span>
+              Better questions.<br />
+              <span className="text-teal font-normal">Clearer possibilities.</span>
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4">
               Certigo Laboratories Private Limited is a professional laboratory providing reliable and quality-focused Food, Water, Microbiological, Chemical, Environmental and Air Quality Testing Services.
             </p>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-              We serve food industries, manufacturing units, hotels, institutions, water treatment facilities, residential communities and other organizations requiring dependable laboratory testing and quality monitoring services. Our objective is to provide accurate, reliable and timely test results using appropriate standard methods and established laboratory quality practices.
+              From the quality of everyday essentials to the curiosity of tomorrow’s scientists, Certigo brings dependable testing enquiries and practical learning together under one roof. We serve industries, manufacturing units, commercial facilities, and universities with precision, integrity, and trust.
             </p>
 
             {/* 3 Pillars Highlight matching logo colors */}
@@ -407,47 +539,114 @@ function Home() {
           <SectionHeading 
             eyebrow="7. QUALITY & TECHNICAL COMPETENCE"
             title="NABL Accreditation & Validated Standards"
-            description="Certigo Laboratories is committed to maintaining a strong quality management system and technically competent laboratory operations."
+            description="Certigo Laboratories is committed to maintaining a strong quality management system, calibrated analytical instrumentation, and technically sound laboratory operations."
           />
 
-          {/* Premium NABL Accreditation Banner with Logo Gradient */}
-          <div className="nabl-accreditation-banner">
-            <div>
-              <div className="nabl-badge-pill" style={{ background: "rgba(110,162,54,0.25)", borderColor: "#6EA236" }}>
-                <ShieldCheck size={16} className="text-white" /> NABL ACCREDITED LABORATORY
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">
-                NABL Accreditation No.: <span className="nabl-reg-code">{contact.nablNumber}</span>
-              </h3>
-              <p className="text-white/85 text-sm max-w-2xl leading-relaxed mb-0">
-                Certigo Laboratories Private Limited is committed to maintaining the applicable requirements of its NABL accreditation and providing technically competent testing services within its approved scope.
-              </p>
+          {/* Luxury NABL Accreditation Banner with Glowing Badges & Glassmorphism */}
+          <div className="luxury-nabl-banner">
+            <div className="luxury-nabl-header-strip">
+              <span className="nabl-glow-badge">
+                <span className="nabl-pulse-dot" /> NABL ACCREDITED TESTING LABORATORY
+              </span>
+              <span className="nabl-iso-tag">
+                ISO/IEC 17025:2017 CERTIFIED COMPLIANCE
+              </span>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild variant="secondary" size="lg" className="shadow-md">
-                <Link to="/contact">
-                  Confirm Scope of Accreditation <ArrowUpRight />
-                </Link>
-              </Button>
-            </div>
-          </div>
 
-          {/* Standards & Test Methods Grid */}
-          <div className="mb-6">
-            <h3 className="text-center text-xl font-bold text-primary mb-2">8. Standards &amp; Recognized Test Methods</h3>
-            <p className="text-center text-muted-foreground text-sm max-w-xl mx-auto mb-8">
-              Depending on the sample, parameter and applicable requirement, testing is carried out with reference to recognized national and international methods:
-            </p>
-          </div>
+            <div className="luxury-nabl-body">
+              <div>
+                <h3 className="luxury-nabl-title">
+                  National Accreditation Board for Testing and Calibration Laboratories
+                </h3>
 
-          <div className="standards-grid">
-            {standardsList.map((std, idx) => (
-              <div className="standard-card" key={std.name}>
-                <div className="flex items-center gap-2 mb-2">
-                  <FileText size={18} style={{ color: idx % 2 === 0 ? "#00A8B5" : "#6EA236" }} />
-                  <h4>{std.name}</h4>
+                <div className="nabl-cert-card">
+                  <span className="text-[11px] text-cyan-200 uppercase tracking-widest font-semibold mb-1">
+                    Accreditation Certificate Number
+                  </span>
+                  <span className="nabl-cert-code">
+                    {contact.nablNumber}
+                  </span>
                 </div>
-                <p>{std.desc}</p>
+
+                <p className="luxury-nabl-desc">
+                  Certigo Laboratories Private Limited is formally accredited in accordance with the international standard ISO/IEC 17025:2017 for technical competence in the field of testing. Our validated test methods, calibrated equipment, and traceable certified standards guarantee reliable and legally accepted test reports across India.
+                </p>
+
+                <div className="luxury-nabl-pills-grid">
+                  <div className="luxury-nabl-pill-item">
+                    <ShieldCheck size={16} />
+                    <span>ISO/IEC 17025:2017 Standard Compliance</span>
+                  </div>
+                  <div className="luxury-nabl-pill-item">
+                    <Award size={16} />
+                    <span>Traceable Certified Reference Standards</span>
+                  </div>
+                  <div className="luxury-nabl-pill-item">
+                    <FlaskConical size={16} />
+                    <span>Calibrated Analytical Instrumentation</span>
+                  </div>
+                  <div className="luxury-nabl-pill-item">
+                    <Lock size={16} />
+                    <span>Impartial, Confidential &amp; Audit-Ready Reports</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="luxury-nabl-actions">
+                <Button asChild size="lg" className="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold shadow-lg">
+                  <Link to="/contact">
+                    Confirm Scope of Accreditation <ArrowUpRight size={17} />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="w-full border-cyan-400/40 text-cyan-200 hover:bg-cyan-950/60 font-semibold">
+                  <a 
+                    href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20verify%20the%20NABL%20scope%20of%20accreditation%20for%20testing." 
+                    target="_blank" 
+                    rel="noreferrer"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 mr-2" /> WhatsApp Consultation
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Standards & Recognized Test Methods Luxury Grid */}
+          <div className="mb-6 mt-16">
+            <SectionHeading 
+              eyebrow="RECOGNIZED NATIONAL & INTERNATIONAL METHODS"
+              title="8. Standards & Recognized Test Methods"
+              description="Depending on the sample matrix, parameter specifications, and statutory guidelines, testing is executed with reference to recognized national and international protocols:"
+            />
+          </div>
+
+          <div className="luxury-standards-grid">
+            {detailedStandards.map((std) => (
+              <div 
+                className="luxury-standard-card" 
+                key={std.name}
+                style={{
+                  "--std-color": std.color,
+                  "--std-bg": std.bg,
+                  "--std-border": std.border,
+                  "--std-gradient": std.gradient,
+                  "--std-shadow": std.shadow
+                } as React.CSSProperties}
+              >
+                <div className="luxury-standard-top">
+                  <div className="luxury-standard-icon-box">
+                    <FileText size={20} />
+                  </div>
+                  <span className="luxury-standard-badge">{std.badge}</span>
+                </div>
+                <h4 className="luxury-standard-title">{std.name}</h4>
+                <div className="luxury-standard-emblem">{std.emblem}</div>
+                <p className="luxury-standard-desc">{std.desc}</p>
+                <div className="luxury-standard-tags">
+                  {std.tags.map((t) => (
+                    <span className="luxury-standard-tag" key={t}>{t}</span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -552,37 +751,76 @@ function Home() {
         </div>
       </section>
 
-      {/* 9. SECTION 7: STUDENT PROGRAMMES & PRACTICAL LEARNING */}
+      {/* 9. SECTION 7: STUDENT PROGRAMMES & PRACTICAL LEARNING (LUXURY GRADIENT CARDS WITHOUT COUNTERS) */}
       <section className="section gradient-section-mesh">
         <div className="site-container">
           <SectionHeading 
-            eyebrow="STUDENT PROGRAMMES"
+            eyebrow="STUDENT PROGRAMMES & INTERNSHIPS"
             title="Where Curiosity Meets Practical Science"
-            description="Take your learning beyond textbooks. Explore laboratory internships and academic project opportunities at Certigo Laboratories in Visakhapatnam."
+            description="Take your learning beyond textbooks. Explore professional laboratory internships and academic dissertation support at Certigo Laboratories in Visakhapatnam."
           />
 
-          <div className="programme-grid">
-            {programmes.map((p, i) => (
-              <article className="programme-card" key={p.slug}>
-                <div className="programme-top">
-                  <span className="programme-icon">
-                    <p.icon size={24} />
-                  </span>
-                  <span className="programme-index">0{i + 1}</span>
+          <div className="luxury-programmes-grid">
+            {luxuryStudentProgrammes.map((p) => (
+              <div 
+                className="luxury-programme-card" 
+                key={p.slug}
+                style={{
+                  "--prog-accent": p.accent,
+                  "--prog-grad": p.gradient,
+                  "--prog-glow": p.glow
+                } as React.CSSProperties}
+              >
+                <div className="luxury-programme-header">
+                  <div className="luxury-programme-pill">
+                    {p.durationBadge}
+                  </div>
+                  <div className="luxury-programme-icon-wrap">
+                    <p.icon size={26} />
+                  </div>
+                  <h3 className="luxury-programme-title">{p.title}</h3>
+                  <p className="luxury-programme-subtitle">{p.subtitle}</p>
                 </div>
-                <span className="eyebrow">{p.tag}</span>
-                <h3>{p.title}</h3>
-                <p>{p.description}</p>
-                <Link className="text-link" to={p.path}>
-                  Discover the programme <ArrowUpRight size={16} />
-                </Link>
-              </article>
+
+                <div className="luxury-programme-body">
+                  <span className="text-[11.5px] font-bold uppercase tracking-wider text-muted-foreground mb-3 block">
+                    Core Learning &amp; Deliverables
+                  </span>
+                  <ul className="luxury-programme-outcomes">
+                    {p.outcomes.map((item, idx) => (
+                      <li key={idx}>
+                        <CheckCircle2 size={16} />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="luxury-programme-footer">
+                    <Button 
+                      asChild 
+                      className="w-full font-bold shadow-md text-white transition-transform hover:-translate-y-0.5"
+                      style={{ background: p.accent }}
+                    >
+                      <Link to={p.applyLink}>
+                        Apply for Programme <ArrowRight size={16} className="ml-1" />
+                      </Link>
+                    </Button>
+                    <Link 
+                      to={p.path} 
+                      className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary py-1 transition-colors"
+                    >
+                      <span>View Full Curriculum &amp; Guidelines</span>
+                      <ChevronRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 10. SECTION 8: FULL-WIDTH IMAGE CTA BANNER (MATCHING USER REFERENCE IMAGE 1) */}
+      {/* 10. SECTION 8: FULL-WIDTH IMAGE CTA BANNER */}
       <section className="image-cta-section">
         <img 
           src={labImage} 
@@ -621,55 +859,6 @@ function Home() {
           </div>
         </div>
         <div className="image-cta-border-bottom" />
-      </section>
-
-      {/* 11. SECTION 9: OFFICIAL CONTACT DETAILS & ADDRESS */}
-      <section className="section gradient-section-mesh border-t border-border mt-16">
-        <div className="site-container">
-          <SectionHeading 
-            eyebrow="13. CONTACT US"
-            title="Certigo Laboratories Private Limited"
-            description="“Reliable Testing. Accurate Results. Trusted Quality.”"
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="bg-background border border-border rounded-xl p-6 text-center shadow-xs hover:border-teal transition-colors">
-              <div className="w-12 h-12 rounded-full bg-teal/15 text-teal flex items-center justify-center mx-auto mb-4">
-                <MapPin size={22} />
-              </div>
-              <h4 className="font-bold text-primary mb-2">Laboratory Address</h4>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                {contact.address}
-              </p>
-            </div>
-
-            <div className="bg-background border border-border rounded-xl p-6 text-center shadow-xs hover:border-teal transition-colors">
-              <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
-                <Phone size={22} />
-              </div>
-              <h4 className="font-bold text-primary mb-2">Direct Contact</h4>
-              <p className="text-sm font-semibold text-primary mb-1">
-                <a href={contact.phoneHref}>{contact.phone}</a>
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Landline: <a href="tel:08914568391">{contact.landline}</a>
-              </p>
-            </div>
-
-            <div className="bg-background border border-border rounded-xl p-6 text-center shadow-xs hover:border-teal transition-colors">
-              <div className="w-12 h-12 rounded-full bg-brand-green/15 text-brand-green flex items-center justify-center mx-auto mb-4">
-                <Mail size={22} />
-              </div>
-              <h4 className="font-bold text-primary mb-2">Email &amp; Accreditation</h4>
-              <p className="text-sm font-semibold text-primary mb-1">
-                <a href={`mailto:${contact.email}`}>{contact.email}</a>
-              </p>
-              <p className="text-xs text-muted-foreground">
-                NABL No.: <span className="font-mono font-bold text-foreground">{contact.nablNumber}</span>
-              </p>
-            </div>
-          </div>
-        </div>
       </section>
     </>
   );

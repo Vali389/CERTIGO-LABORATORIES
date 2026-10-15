@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { 
   Eye, Compass, CheckCircle2, ShieldCheck, Target, Award, 
-  FlaskConical, ArrowUpRight, ArrowRight, Building2, MapPin, Phone, Mail 
+  FlaskConical, ArrowUpRight, ArrowRight, Building2, MapPin, Phone, Mail, Lock 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PageHero, EnquiryBand, SectionHeading } from "@/components/site";
+import { PageHero, EnquiryBand, SectionHeading, WhatsAppIcon } from "@/components/site";
 import { labImage, pageHead, contact, researchImage } from "@/lib/site-data";
 
 export const Route = createFileRoute("/about")({
@@ -195,25 +195,72 @@ function About() {
             description="Our laboratory practices adhere to recognized national and international testing standards to ensure dependable, technically sound data." 
           />
 
-          {/* NABL Banner */}
-          <div className="nabl-accreditation-banner">
-            <div>
-              <div className="nabl-badge-pill">
-                <ShieldCheck size={16} /> NABL ACCREDITED LABORATORY
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">
-                NABL Accreditation No.: <span className="nabl-reg-code">{contact.nablNumber}</span>
-              </h3>
-              <p className="text-white/85 text-sm max-w-2xl leading-relaxed mb-0">
-                Certigo Laboratories Private Limited is committed to maintaining the applicable requirements of its NABL accreditation and providing technically competent testing services within its approved scope.
-              </p>
+          {/* Luxury NABL Accreditation Banner with Glowing Badges & Glassmorphism */}
+          <div className="luxury-nabl-banner">
+            <div className="luxury-nabl-header-strip">
+              <span className="nabl-glow-badge">
+                <span className="nabl-pulse-dot" /> NABL ACCREDITED TESTING LABORATORY
+              </span>
+              <span className="nabl-iso-tag">
+                ISO/IEC 17025:2017 CERTIFIED COMPLIANCE
+              </span>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild variant="secondary" size="lg">
-                <Link to="/contact">
-                  Confirm Scope of Accreditation <ArrowUpRight />
-                </Link>
-              </Button>
+
+            <div className="luxury-nabl-body">
+              <div>
+                <h3 className="luxury-nabl-title">
+                  National Accreditation Board for Testing and Calibration Laboratories
+                </h3>
+
+                <div className="nabl-cert-card">
+                  <span className="text-[11px] text-cyan-200 uppercase tracking-widest font-semibold mb-1">
+                    Accreditation Certificate Number
+                  </span>
+                  <span className="nabl-cert-code">
+                    {contact.nablNumber}
+                  </span>
+                </div>
+
+                <p className="luxury-nabl-desc">
+                  Certigo Laboratories Private Limited is formally accredited in accordance with the international standard ISO/IEC 17025:2017 for technical competence in the field of testing. Our validated test methods, calibrated equipment, and traceable certified standards guarantee reliable and legally accepted test reports across India.
+                </p>
+
+                <div className="luxury-nabl-pills-grid">
+                  <div className="luxury-nabl-pill-item">
+                    <ShieldCheck size={16} />
+                    <span>ISO/IEC 17025:2017 Standard Compliance</span>
+                  </div>
+                  <div className="luxury-nabl-pill-item">
+                    <Award size={16} />
+                    <span>Traceable Certified Reference Standards</span>
+                  </div>
+                  <div className="luxury-nabl-pill-item">
+                    <FlaskConical size={16} />
+                    <span>Calibrated Analytical Instrumentation</span>
+                  </div>
+                  <div className="luxury-nabl-pill-item">
+                    <Lock size={16} />
+                    <span>Impartial, Confidential &amp; Audit-Ready Reports</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="luxury-nabl-actions">
+                <Button asChild size="lg" className="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold shadow-lg">
+                  <Link to="/contact">
+                    Confirm Scope of Accreditation <ArrowUpRight size={17} />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="w-full border-cyan-400/40 text-cyan-200 hover:bg-cyan-950/60 font-semibold">
+                  <a 
+                    href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20verify%20the%20NABL%20scope%20of%20accreditation%20for%20testing." 
+                    target="_blank" 
+                    rel="noreferrer"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 mr-2" /> WhatsApp Consultation
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
 
