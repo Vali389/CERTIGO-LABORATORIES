@@ -6,7 +6,7 @@ import {
   CheckCircle2, FileText, ChevronRight 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/site";
+import { SectionHeading, WhatsAppIcon } from "@/components/site";
 import { 
   services, programmes, labImage, pageHead, contact, 
   standardsList, researchImage 
@@ -528,30 +528,45 @@ function Home() {
         </div>
       </section>
 
-      {/* 10. SECTION 8: DUAL CTA WITH LOGO GRADIENT BANNER */}
-      <section className="section py-0">
-        <div className="site-container dual-cta shadow-xl rounded-2xl overflow-hidden">
-          <div style={{ background: "linear-gradient(135deg, #133552 0%, #0d4661 100%)" }}>
-            <span className="eyebrow text-teal-light">FOR BUSINESSES & ORGANISATIONS</span>
-            <h2 className="text-white">Let's talk about your testing needs.</h2>
-            <p className="text-white/80">Share your sample details and request a tailored quotation under applicable BIS, FSSAI, or environmental standards.</p>
-            <Button asChild variant="secondary" className="shadow-md">
-              <Link to="/quote">
-                Request a Quote <ArrowRight />
-              </Link>
-            </Button>
+      {/* 10. SECTION 8: FULL-WIDTH IMAGE CTA BANNER (MATCHING USER REFERENCE IMAGE 1) */}
+      <section className="image-cta-section">
+        <img 
+          src={labImage} 
+          alt="Modern testing laboratory at Certigo Laboratories" 
+          className="image-cta-bg" 
+          width={1920} 
+          height={800} 
+          loading="lazy" 
+        />
+        <div className="image-cta-wash" />
+        <div className="site-container image-cta-content">
+          <div className="image-cta-pill">
+            <span>YOUR NEXT CHAPTER STARTS HERE</span>
           </div>
-          <div style={{ background: "linear-gradient(135deg, #094757 0%, #0a5f75 50%, #4a8220 100%)" }}>
-            <span className="eyebrow text-white/90">FOR THE SCIENTISTS OF TOMORROW</span>
-            <h2 className="text-white">Your next scientific chapter starts here.</h2>
-            <p className="text-white/85">Explore practical internships and BSc/MSc dissertation support that fit your academic journey.</p>
-            <Button asChild className="bg-white text-primary hover:bg-white/90 shadow-md">
-              <Link to="/apply">
-                Apply for a Programme <ArrowRight />
+          <h2 className="image-cta-title">
+            Big ideas deserve the right partner.
+          </h2>
+          <p className="image-cta-desc">
+            Let's bring your vision to life with the right combination of people, process, and technology.
+          </p>
+          <div className="image-cta-buttons">
+            <Button asChild size="lg" className="image-cta-btn-primary">
+              <Link to="/quote">
+                Let's Start a Conversation <ArrowUpRight size={17} />
               </Link>
             </Button>
+            <a 
+              href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20chat%20about%20a%20testing%20enquiry." 
+              target="_blank" 
+              rel="noreferrer" 
+              className="image-cta-btn-whatsapp"
+            >
+              <WhatsAppIcon className="w-5 h-5 text-white" />
+              <span>Quick WhatsApp Chat</span>
+            </a>
           </div>
         </div>
+        <div className="image-cta-border-bottom" />
       </section>
 
       {/* 11. SECTION 9: OFFICIAL CONTACT DETAILS & ADDRESS */}

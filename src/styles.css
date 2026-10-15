@@ -842,4 +842,200 @@ body { font-size:15px; }
   margin: 0; 
 }
 
+/* ==========================================================================
+   Full-Width Image CTA Section (Matching User Reference Image 1)
+   ========================================================================== */
+.image-cta-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 85px 0 95px;
+  color: #ffffff;
+  text-align: center;
+}
+.image-cta-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+.image-cta-wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13, 37, 58, 0.88) 0%, rgba(19, 53, 82, 0.95) 100%);
+  z-index: 2;
+}
+.image-cta-content {
+  position: relative;
+  z-index: 3;
+  max-width: 860px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: rgba(0, 168, 181, 0.16);
+  border: 1px solid rgba(0, 168, 181, 0.45);
+  backdrop-filter: blur(8px);
+  color: #26e6f7;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.image-cta-title {
+  color: #ffffff !important;
+  font-family: var(--font-sans);
+  font-size: clamp(30px, 4.2vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+.image-cta-desc {
+  font-size: clamp(14px, 1.8vw, 16.5px);
+  color: rgba(255, 255, 255, 0.84);
+  line-height: 1.7;
+  max-width: 660px;
+  margin: 0 auto 32px;
+}
+.image-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.image-cta-btn-primary {
+  height: 48px;
+  padding-inline: 26px;
+  background: #0099ff;
+  background: linear-gradient(135deg, #00A8B5 0%, #0088cc 100%);
+  color: #ffffff !important;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(0, 168, 181, 0.4);
+  transition: transform .2s ease, box-shadow .2s ease;
+  border: none;
+}
+.image-cta-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 168, 181, 0.6);
+}
+.image-cta-btn-whatsapp {
+  height: 48px;
+  padding-inline: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(10px);
+  color: #ffffff !important;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.image-cta-btn-whatsapp:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+.image-cta-border-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00A8B5 0%, #6EA236 50%, #00A8B5 100%);
+  z-index: 4;
+}
+
+/* ==========================================================================
+   Floating Action Buttons: Scroll to Top & WhatsApp (Matching Image 2)
+   ========================================================================== */
+.floating-actions-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 999;
+}
+
+.scroll-to-top-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #0099ff;
+  background: linear-gradient(135deg, #00A8B5 0%, #0088cc 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 18px rgba(0, 168, 181, 0.5);
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease;
+  animation: appearScale .3s ease-out;
+}
+.scroll-to-top-btn:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 8px 24px rgba(0, 168, 181, 0.7);
+}
+
+.floating-whatsapp-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 6px rgba(37, 211, 102, 0.22), 0 8px 24px rgba(37, 211, 102, 0.45);
+  transition: transform .25s ease, box-shadow .25s ease;
+  animation: whatsappPulse 3s infinite;
+  text-decoration: none;
+}
+.floating-whatsapp-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 10px rgba(37, 211, 102, 0.3), 0 12px 30px rgba(37, 211, 102, 0.6);
+}
+
+@keyframes whatsappPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 6px rgba(37, 211, 102, 0.22), 0 8px 24px rgba(37, 211, 102, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0.12), 0 12px 32px rgba(37, 211, 102, 0.55);
+  }
+}
+
+@keyframes appearScale {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 
