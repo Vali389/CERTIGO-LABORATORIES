@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/site";
 import { 
   services, programmes, labImage, pageHead, contact, 
-  standardsList 
+  standardsList, researchImage 
 } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({ 
@@ -58,21 +58,24 @@ const whyPillars = [
   }
 ];
 
-const industries = [
-  { name: "Food Processing Industries", icon: Apple },
-  { name: "Dairy & Milk Processing Plants", icon: FlaskConical },
-  { name: "Beverage & Juice Bottling Plants", icon: Droplets },
-  { name: "Packaged Drinking Water Plants", icon: Droplets },
-  { name: "RO Water Suppliers & Facilities", icon: Droplets },
-  { name: "Hotels, Resorts & Restaurants", icon: Building2 },
-  { name: "Commercial Catering & Canteens", icon: Building2 },
-  { name: "Manufacturing & Industrial Units", icon: Building2 },
-  { name: "Pharmaceutical & Allied Units", icon: FlaskConical },
-  { name: "Hospitals & Healthcare Facilities", icon: ShieldCheck },
-  { name: "Educational & Research Institutions", icon: GraduationCap },
-  { name: "Apartments & Residential Communities", icon: Building2 },
-  { name: "Construction & Infrastructure Projects", icon: Building2 },
-  { name: "Government & Private Organizations", icon: Award }
+const industriesRow1 = [
+  { name: "Food Processing Industries", sub: "Quality & FSSAI Standards", icon: Apple, green: false },
+  { name: "Dairy & Milk Processing Plants", sub: "Microbiological & Purity", icon: FlaskConical, green: true },
+  { name: "Beverage & Juice Bottling Plants", sub: "Water & Quality Testing", icon: Droplets, green: false },
+  { name: "Meat Processing Industries", sub: "Pathogen Screening", icon: ShieldCheck, green: true },
+  { name: "Packaged Drinking Water Plants", sub: "IS 10500 Compliance", icon: Droplets, green: false },
+  { name: "RO Water Suppliers & Facilities", sub: "Physical & Chemical Analysis", icon: Droplets, green: true },
+  { name: "Hotels, Resorts & Restaurants", sub: "Food Safety & Hygiene", icon: Building2, green: false }
+];
+
+const industriesRow2 = [
+  { name: "Commercial Catering & Canteens", sub: "Hygiene & Safety Monitoring", icon: Building2, green: true },
+  { name: "Manufacturing & Industrial Units", sub: "Effluent & Emission Testing", icon: Building2, green: false },
+  { name: "Pharmaceutical & Allied Units", sub: "Chemical Assays & Water", icon: FlaskConical, green: true },
+  { name: "Hospitals & Healthcare Facilities", sub: "Air Quality & Water Safety", icon: ShieldCheck, green: false },
+  { name: "Educational & Research Units", sub: "Testing & Academic Projects", icon: GraduationCap, green: true },
+  { name: "Apartments & Residential Communities", sub: "Drinking Water Quality", icon: Building2, green: false },
+  { name: "Construction & Infrastructure Projects", sub: "Environmental Monitoring", icon: Building2, green: true }
 ];
 
 const sampleSupportSteps = [
@@ -98,29 +101,20 @@ const sampleSupportSteps = [
   }
 ];
 
-const missionPoints = [
-  "To provide accurate and reliable laboratory testing services.",
-  "To maintain high standards of quality and technical competence.",
-  "To provide timely and professional test reports.",
-  "To support customers in meeting applicable regulatory and quality requirements.",
-  "To continuously improve laboratory methods and quality systems.",
-  "To develop long-term relationships with customers through trust and dependable service."
-];
-
-// Badge colors matching the reference UI style
+// Badge colors matching the Certigo Logo Palette (Navy #133552, Cyan #00A8B5, Green #6EA236)
 const serviceBadgeColors: Record<string, string> = {
-  "food-testing": "#00A3C4",
-  "water-testing": "#023160",
-  "microbiological-testing": "#059669",
-  "chemical-testing": "#2563eb",
+  "food-testing": "#00A8B5",
+  "water-testing": "#133552",
+  "microbiological-testing": "#6EA236",
+  "chemical-testing": "#0284c7",
   "environmental-testing": "#0d9488",
-  "air-quality-testing": "#6366f1"
+  "air-quality-testing": "#4f46e5"
 };
 
 function Home() {
   return (
     <>
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION WITH RICH GRADIENT WASH OVERLAY */}
       <section className="home-hero">
         <img 
           className="hero-photo" 
@@ -132,37 +126,37 @@ function Home() {
         />
         <div className="hero-wash" />
         <div className="site-container hero-content">
-          <div className="inline-flex items-center gap-2 bg-teal/20 border border-teal text-teal-light px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase mb-3">
-            <ShieldCheck size={14} /> NABL ACCREDITATION NO.: NABLT0626AD18278
+          <div className="inline-flex items-center gap-2 bg-teal/20 backdrop-blur-sm border border-teal text-white px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-3 shadow-sm">
+            <ShieldCheck size={15} className="text-brand-green" /> NABL ACCREDITATION NO.: {contact.nablNumber}
           </div>
           <h1>Certigo Laboratories</h1>
           <div className="hero-statement">
             “Reliable Testing. Accurate Results.<br />
-            <em>Trusted Quality.”</em>
+            <em className="text-teal font-normal">Trusted Quality.”</em>
           </div>
           <p>
             Professional laboratory testing services for Food, Water, Microbiological, Chemical, Environmental and Air Quality monitoring — supporting industries, institutions, and communities.
           </p>
           <div className="hero-buttons">
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="bg-teal hover:bg-teal/90 text-white shadow-md">
               <Link to="/services">
                 Explore Testing Services <ArrowUpRight />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild variant="outline" size="lg" className="border-white/50 text-white hover:bg-white hover:text-primary">
               <Link to="/quote">
                 Request a Testing Quote <ArrowRight />
               </Link>
             </Button>
           </div>
           <div className="hero-signoff">
-            <ShieldCheck size={15} />
-            <span>NABL Accredited (NABLT0626AD18278) <span className="mx-2">|</span> Visakhapatnam, Andhra Pradesh</span>
+            <ShieldCheck size={15} className="text-brand-green" />
+            <span>NABL Accredited ({contact.nablNumber}) <span className="mx-2">|</span> Visakhapatnam, Andhra Pradesh</span>
           </div>
         </div>
       </section>
 
-      {/* 2. TRUST STRIP */}
+      {/* 2. TRUST STRIP WITH REFINED GRADIENT TINT */}
       <section className="trust-strip">
         <div className="site-container trust-grid">
           <div className="trust-intro">
@@ -170,12 +164,12 @@ function Home() {
             <strong className="text-primary font-medium">Accurate. Reliable. Trusted.</strong>
           </div>
           {[
-            { icon: ShieldCheck, title: "NABL Accreditation", text: "No.: NABLT0626AD18278" },
-            { icon: FlaskConical, title: "6 Core Disciplines", text: "Food · Water · Micro · Chem · Env · Air" },
-            { icon: Award, title: "Standard Methods", text: "BIS · FSSAI · APHA · ISO · AOAC" }
+            { icon: ShieldCheck, title: "NABL Accreditation", text: `No.: ${contact.nablNumber}`, color: "text-brand-green" },
+            { icon: FlaskConical, title: "6 Core Disciplines", text: "Food · Water · Micro · Chem · Env · Air", color: "text-teal" },
+            { icon: Award, title: "Standard Methods", text: "BIS · FSSAI · APHA · ISO · AOAC", color: "text-primary" }
           ].map((item) => (
             <div className="trust-item" key={item.title}>
-              <item.icon />
+              <item.icon className={item.color} />
               <div>
                 <strong>{item.title}</strong>
                 <small>{item.text}</small>
@@ -185,64 +179,98 @@ function Home() {
         </div>
       </section>
 
-      {/* 3. SECTION: ABOUT CERTIGO LABORATORIES & VISION / MISSION */}
-      <section className="section bg-background">
-        <div className="site-container">
-          <SectionHeading 
-            eyebrow="1. ABOUT CERTIGO LABORATORIES"
-            title="Dependable Laboratory Testing & Quality Monitoring"
-            description="Certigo Laboratories Private Limited is a professional laboratory providing reliable and quality-focused Food, Water, Microbiological, Chemical, Environmental and Air Quality Testing Services. We serve food industries, manufacturing units, hotels, institutions, water treatment facilities, residential communities and organizations requiring dependable laboratory testing."
-          />
+      {/* 3. SECTION 1: ABOUT CERTIGO LABORATORIES (EDITORIAL SPLIT: LEFT CONTENT, RIGHT IMAGE) */}
+      <section className="section gradient-section-mesh">
+        <div className="site-container editorial-split">
+          <div>
+            <span className="eyebrow">1. ABOUT CERTIGO LABORATORIES</span>
+            <h2 className="text-3xl sm:text-4xl font-serif text-primary mb-4 leading-tight">
+              “Reliable Testing. Accurate Results.<br />
+              <span className="text-teal font-normal">Trusted Quality.”</span>
+            </h2>
+            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4">
+              Certigo Laboratories Private Limited is a professional laboratory providing reliable and quality-focused Food, Water, Microbiological, Chemical, Environmental and Air Quality Testing Services.
+            </p>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              We serve food industries, manufacturing units, hotels, institutions, water treatment facilities, residential communities and other organizations requiring dependable laboratory testing and quality monitoring services. Our objective is to provide accurate, reliable and timely test results using appropriate standard methods and established laboratory quality practices.
+            </p>
 
-          <div className="about-mission-grid mt-10">
-            {/* Vision Card */}
-            <div className="mission-card">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-teal/15 text-teal flex items-center justify-center">
-                  <Eye size={22} />
+            {/* 3 Pillars Highlight matching logo colors */}
+            <div className="intro-pillars mb-8">
+              <div className="intro-pillar-item">
+                <div className="intro-pillar-icon" style={{ background: "rgba(0,168,181,0.12)", color: "#00A8B5" }}>
+                  <FlaskConical size={20} />
                 </div>
-                <h3 className="mb-0">2. Our Vision</h3>
+                <div className="intro-pillar-content">
+                  <strong>Testing with Purpose</strong>
+                  <small>Food, Water, Microbiological, Chemical &amp; Environmental testing</small>
+                </div>
               </div>
-              <p className="text-base text-foreground font-medium italic">
-                “To become a trusted and preferred laboratory testing partner by delivering technical excellence, accurate results, customer satisfaction and continuous improvement.”
-              </p>
-              <p>
-                Our objective is to provide accurate, reliable and timely test results using appropriate standard methods and established laboratory quality practices, supporting customers in maintaining food safety, water quality, environmental compliance and product quality.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                <span className="service-grid-card-tag">Technical Excellence</span>
-                <span className="service-grid-card-tag">Accurate Results</span>
-                <span className="service-grid-card-tag">Customer Satisfaction</span>
-                <span className="service-grid-card-tag">Continuous Improvement</span>
+              <div className="intro-pillar-item">
+                <div className="intro-pillar-icon" style={{ background: "rgba(110,162,54,0.14)", color: "#6EA236" }}>
+                  <ShieldCheck size={20} />
+                </div>
+                <div className="intro-pillar-content">
+                  <strong>Technical Competence &amp; Quality</strong>
+                  <small>NABL Accreditation No. {contact.nablNumber} &amp; calibrated instrumentation</small>
+                </div>
+              </div>
+              <div className="intro-pillar-item">
+                <div className="intro-pillar-icon" style={{ background: "rgba(19,53,82,0.1)", color: "#133552" }}>
+                  <GraduationCap size={20} />
+                </div>
+                <div className="intro-pillar-content">
+                  <strong>Learning with Curiosity</strong>
+                  <small>Student laboratory internships and BSc / MSc academic project support</small>
+                </div>
               </div>
             </div>
 
-            {/* Mission Card */}
-            <div className="mission-card">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-                  <Compass size={22} />
-                </div>
-                <h3 className="mb-0">3. Our Mission</h3>
-              </div>
-              <p>
-                Certigo Laboratories is committed to technical excellence and dependable service across every parameter:
-              </p>
-              <ul className="mission-list">
-                {missionPoints.map((point) => (
-                  <li key={point}>
-                    <CheckCircle2 size={16} />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="flex flex-wrap items-center gap-4">
+              <Button asChild size="lg" className="bg-teal hover:bg-teal/90 text-white shadow-sm">
+                <Link to="/about">
+                  Discover Certigo &amp; Our Vision <ArrowUpRight />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link to="/quote">
+                  Request a Quote <ArrowRight />
+                </Link>
+              </Button>
             </div>
           </div>
+
+          {/* Right side: High quality laboratory photograph with floating badge & caption */}
+          <figure className="editorial-photo shadow-lg">
+            <img 
+              src={researchImage} 
+              width={1200} 
+              height={900} 
+              loading="lazy" 
+              alt="Advanced analytical laboratory at Certigo Laboratories" 
+            />
+            <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-2 bg-primary/85 backdrop-blur-sm border border-teal/40 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-md">
+              <ShieldCheck size={14} className="text-brand-green" /> NABL ACCREDITED FACILITY
+            </div>
+            <figcaption>
+              <div>
+                <span>SCIENCE IN EVERY DETAIL</span>
+                <strong>A thoughtful starting point.</strong>
+              </div>
+              <Link 
+                to="/about" 
+                className="ml-auto w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors" 
+                aria-label="Learn more about Certigo Laboratories"
+              >
+                <ArrowUpRight size={20} />
+              </Link>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      {/* 4. SECTION: OUR TESTING SERVICES (CARD UI MATCHING USER REFERENCE IMAGE 2) */}
-      <section className="section bg-secondary/35" id="services">
+      {/* 4. SECTION 2: OUR TESTING SERVICES (CARD UI MATCHING USER REFERENCE IMAGE 2) */}
+      <section className="section gradient-section-teal" id="services">
         <div className="site-container">
           <SectionHeading 
             eyebrow="4. OUR TESTING SERVICES"
@@ -265,7 +293,7 @@ function Home() {
                   />
                   <div 
                     className="service-grid-card-icon" 
-                    style={{ backgroundColor: serviceBadgeColors[s.slug] || "#023160" }} 
+                    style={{ backgroundColor: serviceBadgeColors[s.slug] || "#133552" }} 
                     aria-hidden="true"
                   >
                     <s.icon size={20} />
@@ -296,7 +324,7 @@ function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white shadow-sm">
               <Link to="/services">
                 View Detailed Testing Capabilities <ArrowUpRight />
               </Link>
@@ -305,7 +333,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 5. SECTION: QUALITY & TECHNICAL COMPETENCE + NABL ACCREDITATION */}
+      {/* 5. SECTION 3: QUALITY & TECHNICAL COMPETENCE + NABL ACCREDITATION */}
       <section className="section bg-background">
         <div className="site-container">
           <SectionHeading 
@@ -314,11 +342,11 @@ function Home() {
             description="Certigo Laboratories is committed to maintaining a strong quality management system and technically competent laboratory operations."
           />
 
-          {/* Premium NABL Accreditation Banner */}
+          {/* Premium NABL Accreditation Banner with Logo Gradient */}
           <div className="nabl-accreditation-banner">
             <div>
-              <div className="nabl-badge-pill">
-                <ShieldCheck size={16} /> NABL ACCREDITED LABORATORY
+              <div className="nabl-badge-pill" style={{ background: "rgba(110,162,54,0.25)", borderColor: "#6EA236" }}>
+                <ShieldCheck size={16} className="text-white" /> NABL ACCREDITED LABORATORY
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">
                 NABL Accreditation No.: <span className="nabl-reg-code">{contact.nablNumber}</span>
@@ -328,7 +356,7 @@ function Home() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild variant="secondary" size="lg">
+              <Button asChild variant="secondary" size="lg" className="shadow-md">
                 <Link to="/contact">
                   Confirm Scope of Accreditation <ArrowUpRight />
                 </Link>
@@ -338,17 +366,17 @@ function Home() {
 
           {/* Standards & Test Methods Grid */}
           <div className="mb-6">
-            <h3 className="text-center text-xl font-bold text-primary mb-2">8. Standards & Recognized Test Methods</h3>
+            <h3 className="text-center text-xl font-bold text-primary mb-2">8. Standards &amp; Recognized Test Methods</h3>
             <p className="text-center text-muted-foreground text-sm max-w-xl mx-auto mb-8">
               Depending on the sample, parameter and applicable requirement, testing is carried out with reference to recognized national and international methods:
             </p>
           </div>
 
           <div className="standards-grid">
-            {standardsList.map((std) => (
+            {standardsList.map((std, idx) => (
               <div className="standard-card" key={std.name}>
                 <div className="flex items-center gap-2 mb-2">
-                  <FileText size={18} className="text-teal" />
+                  <FileText size={18} style={{ color: idx % 2 === 0 ? "#00A8B5" : "#6EA236" }} />
                   <h4>{std.name}</h4>
                 </div>
                 <p>{std.desc}</p>
@@ -358,34 +386,58 @@ function Home() {
         </div>
       </section>
 
-      {/* 6. SECTION: INDUSTRIES & SECTORS WE SERVE */}
-      <section className="section bg-secondary/35">
+      {/* 6. SECTION 4: INDUSTRIES & SECTORS WE SERVE (AUTO-SCROLL MARQUEE WITH SMALL CARDS) */}
+      <section className="section gradient-section-mesh overflow-hidden">
         <div className="site-container">
           <SectionHeading 
             eyebrow="9. INDUSTRIES & SECTORS WE SERVE"
             title="Trusted Testing Partner Across Diverse Sectors"
-            description="Our specialized laboratory testing and quality monitoring services support businesses, institutions, and communities in meeting regulatory compliance and product quality standards."
+            description="Supporting private and government enterprises, manufacturing units, commercial facilities, and public health organizations with dependable quality monitoring."
           />
+        </div>
 
-          <div className="industries-grid">
-            {industries.map((ind) => (
-              <div className="industry-pill" key={ind.name}>
-                <ind.icon size={16} />
-                <span>{ind.name}</span>
+        {/* Auto-Scroll Small Cards Marquee (Infinite smooth continuous loop with pause on hover) */}
+        <div className="marquee-container mt-6">
+          {/* Row 1: Scrolling Left */}
+          <div className="marquee-track">
+            {[...industriesRow1, ...industriesRow1].map((ind, index) => (
+              <div className="industry-small-card" key={`${ind.name}-r1-${index}`}>
+                <div className={`industry-small-card-icon ${ind.green ? "green-variant" : ""}`}>
+                  <ind.icon size={18} />
+                </div>
+                <div className="industry-small-card-text">
+                  <span className="industry-small-card-title">{ind.name}</span>
+                  <span className="industry-small-card-sub">{ind.sub}</span>
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-10">
-            <p className="text-xs text-muted-foreground max-w-xl mx-auto">
-              Whether you need routine quality checks, regulatory compliance testing, or periodic monitoring programs, Certigo Laboratories delivers dependable testing support.
-            </p>
+          {/* Row 2: Scrolling Right */}
+          <div className="marquee-track-reverse">
+            {[...industriesRow2, ...industriesRow2].map((ind, index) => (
+              <div className="industry-small-card" key={`${ind.name}-r2-${index}`}>
+                <div className={`industry-small-card-icon ${ind.green ? "green-variant" : ""}`}>
+                  <ind.icon size={18} />
+                </div>
+                <div className="industry-small-card-text">
+                  <span className="industry-small-card-title">{ind.name}</span>
+                  <span className="industry-small-card-sub">{ind.sub}</span>
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
+
+        <div className="site-container text-center mt-10">
+          <p className="text-xs text-muted-foreground max-w-xl mx-auto">
+            Hover over any sector card to pause. Whether you need routine quality checks, regulatory compliance testing, or periodic monitoring programs, Certigo Laboratories delivers dependable testing support.
+          </p>
         </div>
       </section>
 
-      {/* 7. SECTION: WHY CHOOSE CERTIGO LABORATORIES? (7 PILLARS) */}
-      <section className="section bg-background">
+      {/* 7. SECTION 5: WHY CHOOSE CERTIGO LABORATORIES? (7 PILLARS) */}
+      <section className="section gradient-section-teal">
         <div className="site-container">
           <SectionHeading 
             eyebrow="10. WHY CHOOSE CERTIGO LABORATORIES?"
@@ -394,9 +446,12 @@ function Home() {
           />
 
           <div className="why-pillars-grid">
-            {whyPillars.map((p) => (
+            {whyPillars.map((p, idx) => (
               <div className="why-pillar-card" key={p.title}>
-                <div className="why-pillar-icon-box">
+                <div 
+                  className="why-pillar-icon-box"
+                  style={{ color: idx % 2 === 0 ? "#00A8B5" : "#6EA236" }}
+                >
                   <p.icon size={22} />
                 </div>
                 <div className="why-pillar-text">
@@ -409,8 +464,8 @@ function Home() {
         </div>
       </section>
 
-      {/* 8. SECTION: SAMPLE COLLECTION & TESTING SUPPORT WORKFLOW */}
-      <section className="section bg-secondary/35">
+      {/* 8. SECTION 6: SAMPLE COLLECTION & TESTING SUPPORT WORKFLOW */}
+      <section className="section bg-background">
         <div className="site-container">
           <SectionHeading 
             eyebrow="11. SAMPLE COLLECTION & TESTING SUPPORT"
@@ -419,9 +474,14 @@ function Home() {
           />
 
           <div className="steps-grid">
-            {sampleSupportSteps.map((s) => (
+            {sampleSupportSteps.map((s, idx) => (
               <div className="step" key={s.step}>
-                <span className="step-number">{s.step}</span>
+                <span 
+                  className="step-number"
+                  style={{ borderColor: idx % 2 === 0 ? "#00A8B5" : "#6EA236", color: idx % 2 === 0 ? "#00A8B5" : "#6EA236" }}
+                >
+                  {s.step}
+                </span>
                 <ArrowRight className="step-arrow" size={20} />
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
@@ -429,7 +489,7 @@ function Home() {
             ))}
           </div>
 
-          <div className="mt-12 p-6 rounded-xl bg-background border border-border text-center max-w-3xl mx-auto">
+          <div className="mt-12 p-7 rounded-xl bg-secondary/50 border border-border text-center max-w-3xl mx-auto shadow-xs">
             <h4 className="text-base font-bold text-primary mb-2">12. Our Commitment</h4>
             <p className="text-sm text-muted-foreground leading-relaxed mb-0">
               “At Certigo Laboratories Private Limited, we believe that reliable laboratory testing plays an important role in protecting food safety, public health, water quality and the environment. We are committed to continuously improving our laboratory systems, technical competence and customer service to provide dependable testing support to our customers.”
@@ -438,8 +498,8 @@ function Home() {
         </div>
       </section>
 
-      {/* 9. SECTION: STUDENT PROGRAMMES & PRACTICAL LEARNING */}
-      <section className="section bg-background">
+      {/* 9. SECTION 7: STUDENT PROGRAMMES & PRACTICAL LEARNING */}
+      <section className="section gradient-section-mesh">
         <div className="site-container">
           <SectionHeading 
             eyebrow="STUDENT PROGRAMMES"
@@ -468,24 +528,24 @@ function Home() {
         </div>
       </section>
 
-      {/* 10. SECTION: DUAL CTA */}
+      {/* 10. SECTION 8: DUAL CTA WITH LOGO GRADIENT BANNER */}
       <section className="section py-0">
-        <div className="site-container dual-cta">
-          <div>
-            <span className="eyebrow">FOR BUSINESSES & ORGANISATIONS</span>
-            <h2>Let's talk about your testing needs.</h2>
-            <p>Share your sample details and request a tailored quotation under applicable BIS, FSSAI, or environmental standards.</p>
-            <Button asChild variant="secondary">
+        <div className="site-container dual-cta shadow-xl rounded-2xl overflow-hidden">
+          <div style={{ background: "linear-gradient(135deg, #133552 0%, #0d4661 100%)" }}>
+            <span className="eyebrow text-teal-light">FOR BUSINESSES & ORGANISATIONS</span>
+            <h2 className="text-white">Let's talk about your testing needs.</h2>
+            <p className="text-white/80">Share your sample details and request a tailored quotation under applicable BIS, FSSAI, or environmental standards.</p>
+            <Button asChild variant="secondary" className="shadow-md">
               <Link to="/quote">
                 Request a Quote <ArrowRight />
               </Link>
             </Button>
           </div>
-          <div>
-            <span className="eyebrow">FOR THE SCIENTISTS OF TOMORROW</span>
-            <h2>Your next scientific chapter starts here.</h2>
-            <p>Explore practical internships and BSc/MSc dissertation support that fit your academic journey.</p>
-            <Button asChild>
+          <div style={{ background: "linear-gradient(135deg, #094757 0%, #0a5f75 50%, #4a8220 100%)" }}>
+            <span className="eyebrow text-white/90">FOR THE SCIENTISTS OF TOMORROW</span>
+            <h2 className="text-white">Your next scientific chapter starts here.</h2>
+            <p className="text-white/85">Explore practical internships and BSc/MSc dissertation support that fit your academic journey.</p>
+            <Button asChild className="bg-white text-primary hover:bg-white/90 shadow-md">
               <Link to="/apply">
                 Apply for a Programme <ArrowRight />
               </Link>
@@ -494,8 +554,8 @@ function Home() {
         </div>
       </section>
 
-      {/* 11. SECTION: OFFICIAL CONTACT DETAILS & ADDRESS */}
-      <section className="section bg-secondary/50 border-t border-border">
+      {/* 11. SECTION 9: OFFICIAL CONTACT DETAILS & ADDRESS */}
+      <section className="section gradient-section-mesh border-t border-border mt-16">
         <div className="site-container">
           <SectionHeading 
             eyebrow="13. CONTACT US"
@@ -504,7 +564,7 @@ function Home() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="bg-background border border-border rounded-xl p-6 text-center shadow-sm">
+            <div className="bg-background border border-border rounded-xl p-6 text-center shadow-xs hover:border-teal transition-colors">
               <div className="w-12 h-12 rounded-full bg-teal/15 text-teal flex items-center justify-center mx-auto mb-4">
                 <MapPin size={22} />
               </div>
@@ -514,7 +574,7 @@ function Home() {
               </p>
             </div>
 
-            <div className="bg-background border border-border rounded-xl p-6 text-center shadow-sm">
+            <div className="bg-background border border-border rounded-xl p-6 text-center shadow-xs hover:border-teal transition-colors">
               <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
                 <Phone size={22} />
               </div>
@@ -527,11 +587,11 @@ function Home() {
               </p>
             </div>
 
-            <div className="bg-background border border-border rounded-xl p-6 text-center shadow-sm">
+            <div className="bg-background border border-border rounded-xl p-6 text-center shadow-xs hover:border-teal transition-colors">
               <div className="w-12 h-12 rounded-full bg-brand-green/15 text-brand-green flex items-center justify-center mx-auto mb-4">
                 <Mail size={22} />
               </div>
-              <h4 className="font-bold text-primary mb-2">Email & Accreditation</h4>
+              <h4 className="font-bold text-primary mb-2">Email &amp; Accreditation</h4>
               <p className="text-sm font-semibold text-primary mb-1">
                 <a href={`mailto:${contact.email}`}>{contact.email}</a>
               </p>
