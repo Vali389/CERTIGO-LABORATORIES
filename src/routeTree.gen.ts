@@ -22,6 +22,9 @@ import { Route as ProgrammesAcademicProjectsRouteImport } from './routes/program
 import { Route as ProgrammesLongTermInternshipsRouteImport } from './routes/programmes.long-term-internships'
 import { Route as ProgrammesShortTermInternshipsRouteImport } from './routes/programmes.short-term-internships'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesAirQualityTestingRouteImport } from './routes/services.air-quality-testing'
+import { Route as ServicesChemicalTestingRouteImport } from './routes/services.chemical-testing'
+import { Route as ServicesEnvironmentalTestingRouteImport } from './routes/services.environmental-testing'
 import { Route as ServicesFoodTestingRouteImport } from './routes/services.food-testing'
 import { Route as ServicesMicrobiologicalTestingRouteImport } from './routes/services.microbiological-testing'
 import { Route as ServicesWaterTestingRouteImport } from './routes/services.water-testing'
@@ -94,6 +97,23 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesAirQualityTestingRoute =
+  ServicesAirQualityTestingRouteImport.update({
+    id: '/air-quality-testing',
+    path: '/air-quality-testing',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesChemicalTestingRoute = ServicesChemicalTestingRouteImport.update({
+  id: '/chemical-testing',
+  path: '/chemical-testing',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesEnvironmentalTestingRoute =
+  ServicesEnvironmentalTestingRouteImport.update({
+    id: '/environmental-testing',
+    path: '/environmental-testing',
+    getParentRoute: () => ServicesRoute,
+  } as any)
 const ServicesFoodTestingRoute = ServicesFoodTestingRouteImport.update({
   id: '/food-testing',
   path: '/food-testing',
@@ -123,6 +143,9 @@ export interface FileRoutesByFullPath {
   '/programmes/academic-projects': typeof ProgrammesAcademicProjectsRoute
   '/programmes/long-term-internships': typeof ProgrammesLongTermInternshipsRoute
   '/programmes/short-term-internships': typeof ProgrammesShortTermInternshipsRoute
+  '/services/air-quality-testing': typeof ServicesAirQualityTestingRoute
+  '/services/chemical-testing': typeof ServicesChemicalTestingRoute
+  '/services/environmental-testing': typeof ServicesEnvironmentalTestingRoute
   '/services/food-testing': typeof ServicesFoodTestingRoute
   '/services/microbiological-testing': typeof ServicesMicrobiologicalTestingRoute
   '/services/water-testing': typeof ServicesWaterTestingRoute
@@ -139,6 +162,9 @@ export interface FileRoutesByTo {
   '/programmes/academic-projects': typeof ProgrammesAcademicProjectsRoute
   '/programmes/long-term-internships': typeof ProgrammesLongTermInternshipsRoute
   '/programmes/short-term-internships': typeof ProgrammesShortTermInternshipsRoute
+  '/services/air-quality-testing': typeof ServicesAirQualityTestingRoute
+  '/services/chemical-testing': typeof ServicesChemicalTestingRoute
+  '/services/environmental-testing': typeof ServicesEnvironmentalTestingRoute
   '/services/food-testing': typeof ServicesFoodTestingRoute
   '/services/microbiological-testing': typeof ServicesMicrobiologicalTestingRoute
   '/services/water-testing': typeof ServicesWaterTestingRoute
@@ -158,6 +184,9 @@ export interface FileRoutesById {
   '/programmes/academic-projects': typeof ProgrammesAcademicProjectsRoute
   '/programmes/long-term-internships': typeof ProgrammesLongTermInternshipsRoute
   '/programmes/short-term-internships': typeof ProgrammesShortTermInternshipsRoute
+  '/services/air-quality-testing': typeof ServicesAirQualityTestingRoute
+  '/services/chemical-testing': typeof ServicesChemicalTestingRoute
+  '/services/environmental-testing': typeof ServicesEnvironmentalTestingRoute
   '/services/food-testing': typeof ServicesFoodTestingRoute
   '/services/microbiological-testing': typeof ServicesMicrobiologicalTestingRoute
   '/services/water-testing': typeof ServicesWaterTestingRoute
@@ -178,6 +207,9 @@ export interface FileRouteTypes {
     | '/programmes/academic-projects'
     | '/programmes/long-term-internships'
     | '/programmes/short-term-internships'
+    | '/services/air-quality-testing'
+    | '/services/chemical-testing'
+    | '/services/environmental-testing'
     | '/services/food-testing'
     | '/services/microbiological-testing'
     | '/services/water-testing'
@@ -194,6 +226,9 @@ export interface FileRouteTypes {
     | '/programmes/academic-projects'
     | '/programmes/long-term-internships'
     | '/programmes/short-term-internships'
+    | '/services/air-quality-testing'
+    | '/services/chemical-testing'
+    | '/services/environmental-testing'
     | '/services/food-testing'
     | '/services/microbiological-testing'
     | '/services/water-testing'
@@ -212,6 +247,9 @@ export interface FileRouteTypes {
     | '/programmes/academic-projects'
     | '/programmes/long-term-internships'
     | '/programmes/short-term-internships'
+    | '/services/air-quality-testing'
+    | '/services/chemical-testing'
+    | '/services/environmental-testing'
     | '/services/food-testing'
     | '/services/microbiological-testing'
     | '/services/water-testing'
@@ -323,6 +361,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/air-quality-testing': {
+      id: '/services/air-quality-testing'
+      path: '/air-quality-testing'
+      fullPath: '/services/air-quality-testing'
+      preLoaderRoute: typeof ServicesAirQualityTestingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/chemical-testing': {
+      id: '/services/chemical-testing'
+      path: '/chemical-testing'
+      fullPath: '/services/chemical-testing'
+      preLoaderRoute: typeof ServicesChemicalTestingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/environmental-testing': {
+      id: '/services/environmental-testing'
+      path: '/environmental-testing'
+      fullPath: '/services/environmental-testing'
+      preLoaderRoute: typeof ServicesEnvironmentalTestingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/food-testing': {
       id: '/services/food-testing'
       path: '/food-testing'
@@ -366,6 +425,9 @@ const ProgrammesRouteWithChildren = ProgrammesRoute._addFileChildren(
 )
 
 interface ServicesRouteChildren {
+  ServicesAirQualityTestingRoute: typeof ServicesAirQualityTestingRoute
+  ServicesChemicalTestingRoute: typeof ServicesChemicalTestingRoute
+  ServicesEnvironmentalTestingRoute: typeof ServicesEnvironmentalTestingRoute
   ServicesFoodTestingRoute: typeof ServicesFoodTestingRoute
   ServicesMicrobiologicalTestingRoute: typeof ServicesMicrobiologicalTestingRoute
   ServicesWaterTestingRoute: typeof ServicesWaterTestingRoute
@@ -373,6 +435,9 @@ interface ServicesRouteChildren {
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesAirQualityTestingRoute: ServicesAirQualityTestingRoute,
+  ServicesChemicalTestingRoute: ServicesChemicalTestingRoute,
+  ServicesEnvironmentalTestingRoute: ServicesEnvironmentalTestingRoute,
   ServicesFoodTestingRoute: ServicesFoodTestingRoute,
   ServicesMicrobiologicalTestingRoute: ServicesMicrobiologicalTestingRoute,
   ServicesWaterTestingRoute: ServicesWaterTestingRoute,

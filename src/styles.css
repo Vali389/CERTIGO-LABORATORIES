@@ -71,11 +71,12 @@
 .trust-item strong { font-size:12px; display:block; font-weight:600; }
 .trust-item small { color:var(--muted-foreground); font-size:10px; }
 .section { padding-block:80px; }
-.section-heading { margin-bottom:35px; }
-.section-heading h2 { font-size:38px; margin:0 0 15px; }
-.section-heading p { color:var(--muted-foreground); max-width:550px; font-size:13px; }
-.section-heading-row { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; }
-.section-heading-row > a { display:flex; align-items:center; gap:10px; color:var(--teal); font-size:12px; margin-bottom:39px; }
+.section-heading { text-align: center; max-width: 820px; margin-inline: auto; margin-bottom: 46px; }
+.section-heading .eyebrow { display: inline-block; margin-bottom: 12px; text-align: center; }
+.section-heading h2 { font-size: 38px; line-height: 1.25; margin: 0 0 15px; text-align: center; color: var(--primary); }
+.section-heading p { color: var(--muted-foreground); max-width: 680px; margin-inline: auto; font-size: 15px; line-height: 1.7; text-align: center; }
+.section-heading-row { display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; margin-bottom:32px; }
+.section-heading-row > a { display:inline-flex; align-items:center; gap:10px; color:var(--teal); font-size:13px; font-weight:600; margin-bottom:10px; }
 .service-tabs-list { display:flex; width:100%; height:auto; justify-content:start; gap:0; border-bottom:1px solid var(--border); background:transparent; padding:0; border-radius:0; }
 .service-tabs-list > button { border-radius:0; background:transparent; padding:17px 28px; gap:10px; flex:1; max-width:270px; color:var(--muted-foreground); font-size:13px; }
 .service-tabs-list > button[data-state=active] { background:transparent; color:var(--teal); box-shadow:none; border-bottom:2px solid var(--teal); }
@@ -246,8 +247,8 @@ body { font-size:15px; }
 .page-hero[data-page="/services/microbiological-testing"] .hero-photo { object-position:center 40%; }
 .page-hero[data-page="/apply"] .hero-photo,.page-hero[data-page="/about"] .hero-photo { object-position:center 37%; }
 .section { padding-block:88px; }
-.section-heading h2,.editorial-split h2 { font-size:43px; }
-.section-heading p { font-size:14px; }
+.section-heading h2 { font-size:40px; text-align:center; color:var(--primary); }
+.section-heading p { font-size:15px; text-align:center; max-width:700px; margin-inline:auto; }
 .editorial-split { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:64px; align-items:center; }
 .editorial-split > div { min-width:0; }
 .editorial-split h2 { margin:0 0 18px; font-size:38px; line-height:1.22; }
@@ -382,8 +383,359 @@ body { font-size:15px; }
  .step h3 { margin-top:0; }
  .step p { font-size:12px; padding-right:7px; }
  .step-arrow { display:none; }
- .detail-sidebar { position:static; }
- .detail-main h2 { font-size:31px; }
- .enquiry-band .site-container { display:grid; grid-template-columns:minmax(0,1fr); }
+  .detail-sidebar { position:static; }
+  .detail-main h2 { font-size:31px; }
+  .enquiry-band .site-container { display:grid; grid-template-columns:minmax(0,1fr); }
 }
-@media(prefers-reduced-motion:reduce) { .reveal-section { opacity:1; transform:none; } }
+
+/* ==========================================================================
+   New Core Services Card Grid & Company Profile Sections (Top-Level)
+   ========================================================================== */
+.service-cards-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 28px; 
+}
+@media (max-width: 1024px) { 
+  .service-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; } 
+}
+@media (max-width: 640px) { 
+  .service-cards-grid { grid-template-columns: 1fr; gap: 20px; } 
+}
+
+.service-grid-card { 
+  background: var(--card); 
+  border: 1px solid var(--border); 
+  border-radius: 12px; 
+  overflow: hidden; 
+  box-shadow: 0 4px 20px oklch(.3 .06 250 / .06); 
+  display: flex; 
+  flex-direction: column; 
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; 
+  text-decoration: none; 
+  color: inherit; 
+}
+.service-grid-card:hover { 
+  transform: translateY(-6px); 
+  box-shadow: 0 16px 36px oklch(.3 .06 250 / .14); 
+  border-color: var(--teal); 
+}
+.service-grid-card-media { 
+  position: relative; 
+  height: 220px; 
+  width: 100%;
+  overflow: hidden; 
+}
+.service-grid-card-media img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  display: block;
+  transition: transform .6s ease; 
+}
+.service-grid-card:hover .service-grid-card-media img { 
+  transform: scale(1.06); 
+}
+.service-grid-card-icon { 
+  position: absolute; 
+  top: 14px; 
+  left: 14px; 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 8px; 
+  background: var(--primary); 
+  color: #ffffff; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  box-shadow: 0 4px 12px rgba(0,0,0,.3); 
+  z-index: 3; 
+}
+.service-grid-card-icon svg {
+  color: #ffffff !important;
+}
+.service-grid-card-gradient { 
+  position: absolute; 
+  inset: 0; 
+  background: linear-gradient(180deg, rgba(2,49,96,.04) 25%, rgba(2,49,96,.65) 65%, rgba(2,49,96,.95) 100%); 
+  z-index: 2; 
+  pointer-events: none;
+}
+.service-grid-card-title { 
+  position: absolute; 
+  bottom: 14px; 
+  left: 16px; 
+  right: 16px; 
+  color: #ffffff !important; 
+  font-family: var(--font-sans); 
+  font-size: 21px; 
+  font-weight: 700; 
+  z-index: 3; 
+  margin: 0; 
+  text-shadow: 0 2px 5px rgba(0,0,0,.6); 
+}
+.service-grid-card-body { 
+  padding: 22px 20px 24px; 
+  display: flex; 
+  flex-direction: column; 
+  flex: 1; 
+  background: var(--card);
+}
+.service-grid-card-eyebrow { 
+  font-size: 11px; 
+  font-weight: 700; 
+  letter-spacing: .6px; 
+  color: var(--teal); 
+  text-transform: uppercase; 
+  margin-bottom: 8px; 
+  display: block; 
+}
+.service-grid-card-desc { 
+  font-size: 13.5px; 
+  line-height: 1.6; 
+  color: var(--muted-foreground); 
+  margin-bottom: 16px; 
+  flex: 1; 
+}
+.service-grid-card-tags { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 6px; 
+  margin-bottom: 18px; 
+}
+.service-grid-card-tag { 
+  font-size: 11px; 
+  padding: 4px 10px; 
+  border-radius: 4px; 
+  background: var(--secondary); 
+  color: var(--primary); 
+  font-weight: 500; 
+}
+.service-grid-card-link { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 6px; 
+  font-size: 13px; 
+  font-weight: 600; 
+  color: var(--primary); 
+  transition: color .2s ease, gap .2s ease; 
+  margin-top: auto; 
+}
+.service-grid-card:hover .service-grid-card-link { 
+  color: var(--teal); 
+  gap: 9px; 
+}
+
+/* NABL Banner */
+.nabl-accreditation-banner { 
+  background: linear-gradient(135deg, var(--primary) 0%, oklch(.28 .06 245) 100%); 
+  color: #fff; 
+  border-radius: 14px; 
+  padding: 36px 40px; 
+  margin-bottom: 48px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 32px; 
+  box-shadow: 0 12px 32px oklch(.3 .06 250 / .14); 
+}
+@media (max-width: 840px) { 
+  .nabl-accreditation-banner { flex-direction: column; text-align: center; } 
+}
+.nabl-badge-pill { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+  background: rgba(0,163,196,0.22); 
+  border: 1px solid var(--teal); 
+  color: #fff; 
+  padding: 6px 14px; 
+  border-radius: 999px; 
+  font-size: 12px; 
+  font-weight: 600; 
+  letter-spacing: 0.5px; 
+  margin-bottom: 10px; 
+}
+.nabl-reg-code { 
+  font-family: monospace; 
+  font-size: 15px; 
+  font-weight: 700; 
+  background: rgba(255,255,255,0.18); 
+  padding: 5px 12px; 
+  border-radius: 6px; 
+  letter-spacing: 1px; 
+  color: #fff; 
+}
+
+/* About Vision Mission */
+.about-mission-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 28px; 
+}
+@media (max-width: 768px) { 
+  .about-mission-grid { grid-template-columns: 1fr; } 
+}
+.mission-card { 
+  background: var(--card); 
+  border: 1px solid var(--border); 
+  border-radius: 12px; 
+  padding: 32px; 
+  box-shadow: var(--shadow-soft); 
+  position: relative; 
+  border-top: 4px solid var(--teal); 
+}
+.mission-card:nth-child(2) { 
+  border-top-color: var(--primary); 
+}
+.mission-card h3 { 
+  font-size: 24px; 
+  margin: 0 0 14px; 
+  color: var(--primary); 
+}
+.mission-card p { 
+  font-size: 14px; 
+  color: var(--muted-foreground); 
+  line-height: 1.7; 
+  margin-bottom: 16px; 
+}
+.mission-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+  margin-top: 14px; 
+}
+.mission-list li { 
+  display: flex; 
+  align-items: flex-start; 
+  gap: 10px; 
+  font-size: 13.5px; 
+  color: var(--foreground); 
+}
+.mission-list svg { 
+  color: var(--teal); 
+  flex-shrink: 0; 
+  margin-top: 3px; 
+}
+
+/* Standards Grid */
+.standards-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+}
+@media (max-width: 900px) { 
+  .standards-grid { grid-template-columns: repeat(2, 1fr); } 
+}
+@media (max-width: 600px) { 
+  .standards-grid { grid-template-columns: 1fr; } 
+}
+.standard-card { 
+  background: var(--card); 
+  border: 1px solid var(--border); 
+  border-radius: 10px; 
+  padding: 22px 20px; 
+  transition: transform .2s, border-color .2s; 
+}
+.standard-card:hover { 
+  transform: translateY(-3px); 
+  border-color: var(--teal); 
+}
+.standard-card h4 { 
+  font-size: 16px; 
+  font-weight: 700; 
+  color: var(--primary); 
+  margin: 0 0 6px; 
+}
+.standard-card p { 
+  font-size: 13px; 
+  color: var(--muted-foreground); 
+  line-height: 1.5; 
+  margin: 0; 
+}
+
+/* Industries Grid */
+.industries-grid { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 12px; 
+  max-width: 1050px; 
+  margin-inline: auto; 
+}
+.industry-pill { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 9px; 
+  padding: 10px 18px; 
+  border-radius: 999px; 
+  background: var(--card); 
+  border: 1px solid var(--border); 
+  font-size: 13.5px; 
+  font-weight: 500; 
+  color: var(--foreground); 
+  box-shadow: 0 2px 6px rgba(0,0,0,.03);
+  transition: all .2s ease; 
+}
+.industry-pill:hover { 
+  background: var(--primary); 
+  color: #fff; 
+  border-color: var(--primary); 
+  transform: translateY(-2px); 
+}
+.industry-pill svg { 
+  color: var(--teal); 
+}
+.industry-pill:hover svg { 
+  color: #fff; 
+}
+
+/* Why Choose 7 Pillars Grid */
+.why-pillars-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 24px; 
+}
+.why-pillar-card { 
+  background: var(--card); 
+  border: 1px solid var(--border); 
+  border-radius: 10px; 
+  padding: 26px 22px; 
+  transition: all .25s ease; 
+  display: flex; 
+  gap: 16px; 
+}
+.why-pillar-card:hover { 
+  transform: translateY(-4px); 
+  box-shadow: var(--shadow-soft); 
+  border-color: var(--teal); 
+}
+.why-pillar-icon-box { 
+  width: 44px; 
+  height: 44px; 
+  border-radius: 10px; 
+  background: var(--secondary); 
+  color: var(--teal); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-shrink: 0; 
+}
+.why-pillar-card:hover .why-pillar-icon-box { 
+  background: var(--primary); 
+  color: #fff; 
+}
+.why-pillar-text h3 { 
+  font-size: 16px; 
+  font-weight: 700; 
+  margin: 0 0 6px; 
+  color: var(--primary); 
+}
+.why-pillar-text p { 
+  font-size: 13px; 
+  color: var(--muted-foreground); 
+  line-height: 1.6; 
+  margin: 0; 
+}
+
+
