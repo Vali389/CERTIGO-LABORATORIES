@@ -95,62 +95,92 @@ function About() {
       </section>
 
       {/* 2. OUR VISION & 3. OUR MISSION */}
+      {/* 2. OUR VISION, 3. OUR MISSION & QUALITY POLICY (OFFICIAL FROM CERTIGO DOCUMENTS) */}
       <section className="section gradient-section-teal">
         <div className="site-container">
           <SectionHeading 
-            eyebrow="FOUNDATION & PURPOSE" 
-            title="Our Vision &amp; Mission" 
-            description="Guiding our laboratory operations, technical competence, and customer relationships through defined standards of excellence." 
+            eyebrow="FOUNDATION, PURPOSE & QUALITY POLICY" 
+            title="Our Vision, Mission &amp; Quality Commitment" 
+            description="Guiding our laboratory operations, technical competence, and customer relationships through defined international standards of analytical excellence." 
           />
 
-          <div className="about-mission-grid mt-10">
-            {/* 2. Our Vision Card */}
-            <div className="mission-card">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-teal/15 text-teal flex items-center justify-center flex-shrink-0">
-                  <Eye size={24} />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
+            {/* 1. Official Vision Card (Image 4) */}
+            <div className="bg-card border border-border rounded-xl p-6 sm:p-7 shadow-xs flex flex-col justify-between border-t-4 border-t-teal hover:border-teal transition-all">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-teal/15 text-teal flex items-center justify-center flex-shrink-0">
+                    <Eye size={24} />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-teal">OFFICIAL PURPOSE</span>
+                    <h3 className="text-xl text-primary font-bold mb-0">VISION</h3>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-teal">CORE PURPOSE</span>
-                  <h3 className="text-2xl text-primary font-bold mb-0">2. Our Vision</h3>
-                </div>
+                <blockquote className="text-sm sm:text-base text-foreground font-medium italic border-l-3 border-teal pl-3.5 py-1 my-3 bg-teal/5 rounded-r leading-relaxed">
+                  “To be a globally recognized leader in food and water testing, ensuring safety, quality and compliance through cutting-edge technology, expert analysis, and unwavering commitment to excellence.”
+                </blockquote>
+                <p className="text-xs text-muted-foreground leading-relaxed mt-4">
+                  Pioneering dependable analytical standards across Andhra Pradesh and India by integrating state-of-the-art instrumentation and verified methodology.
+                </p>
               </div>
-              <p className="text-base text-foreground font-medium italic border-l-4 border-teal pl-4 py-1 my-4 bg-teal/5 rounded-r">
-                “To become a trusted and preferred laboratory testing partner by delivering technical excellence, accurate results, customer satisfaction and continuous improvement.”
-              </p>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                At Certigo Laboratories, we envision being the foremost analytical benchmark for industries and public health across Andhra Pradesh and India by integrating modern instrumentation, rigorous quality systems, and transparent client reporting.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                <span className="service-grid-card-tag">Technical Excellence</span>
-                <span className="service-grid-card-tag">Accurate Results</span>
-                <span className="service-grid-card-tag">Customer Satisfaction</span>
-                <span className="service-grid-card-tag">Continuous Improvement</span>
+              <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-border/60">
+                <span className="text-[11px] bg-secondary text-primary font-medium px-2 py-0.5 rounded">Cutting-Edge Tech</span>
+                <span className="text-[11px] bg-secondary text-primary font-medium px-2 py-0.5 rounded">Expert Analysis</span>
+                <span className="text-[11px] bg-secondary text-primary font-medium px-2 py-0.5 rounded">Excellence</span>
               </div>
             </div>
 
-            {/* 3. Our Mission Card */}
-            <div className="mission-card">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-brand-green/15 text-brand-green flex items-center justify-center flex-shrink-0">
-                  <Compass size={24} />
+            {/* 2. Official Mission Card (Image 2) */}
+            <div className="bg-card border border-border rounded-xl p-6 sm:p-7 shadow-xs flex flex-col justify-between border-t-4 border-t-brand-green hover:border-brand-green transition-all">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-brand-green/15 text-brand-green flex items-center justify-center flex-shrink-0">
+                    <Compass size={24} />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-brand-green">COMMITMENT</span>
+                    <h3 className="text-xl text-primary font-bold mb-0">MISSION</h3>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-brand-green">COMMITMENTS</span>
-                  <h3 className="text-2xl text-primary font-bold mb-0">3. Our Mission</h3>
-                </div>
+                <blockquote className="text-sm sm:text-base text-foreground font-medium italic border-l-3 border-brand-green pl-3.5 py-1 my-3 bg-brand-green/5 rounded-r leading-relaxed">
+                  “Delivering trusted, accurate, and timely testing services for food and water safety, fostering health and confidence in every sample analyzed with 'excellence'.”
+                </blockquote>
+                <p className="text-xs text-muted-foreground leading-relaxed mt-4">
+                  Dedicated to consumer protection, public health, and industrial compliance through validated national and international testing standards.
+                </p>
               </div>
-              <p className="text-muted-foreground text-sm mb-4">
-                Certigo Laboratories Private Limited is committed to executing technically sound testing services through these strategic objectives:
-              </p>
-              <ul className="mission-list">
-                {missionPoints.map((point) => (
-                  <li key={point}>
-                    <CheckCircle2 size={16} className="text-brand-green flex-shrink-0 mt-0.5" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-border/60">
+                <span className="text-[11px] bg-secondary text-primary font-medium px-2 py-0.5 rounded">Food &amp; Water Safety</span>
+                <span className="text-[11px] bg-secondary text-primary font-medium px-2 py-0.5 rounded">Timely Reports</span>
+                <span className="text-[11px] bg-secondary text-primary font-medium px-2 py-0.5 rounded">Fostering Health</span>
+              </div>
+            </div>
+
+            {/* 3. Official Quality Policy Card (Image 3) */}
+            <div className="bg-card border border-border rounded-xl p-6 sm:p-7 shadow-xs flex flex-col justify-between border-t-4 border-t-primary hover:border-primary transition-all">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                    <ShieldCheck size={24} />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-primary">ISO/IEC 17025:2017</span>
+                    <h3 className="text-xl text-primary font-bold mb-0">QUALITY POLICY</h3>
+                  </div>
+                </div>
+                <blockquote className="text-xs sm:text-sm text-foreground font-medium italic border-l-3 border-primary pl-3.5 py-1 my-3 bg-primary/5 rounded-r leading-relaxed">
+                  “Certigo Laboratories Pvt Ltd. is committed to provide best laboratory services by adopting procedures, professional practices and international standards complying with the requirements of ISO/IEC 17025:2017 to the satisfaction of all concerned while ensuring integrity, confidentiality and impartiality.”
+                </blockquote>
+                <p className="text-xs text-muted-foreground leading-relaxed mt-4">
+                  Adhering strictly to accredited standard operating procedures, calibrated instrumentation, and comprehensive data traceability.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-border/60">
+                <span className="text-[11px] bg-teal/10 text-teal font-semibold px-2 py-0.5 rounded">Integrity</span>
+                <span className="text-[11px] bg-teal/10 text-teal font-semibold px-2 py-0.5 rounded">Confidentiality</span>
+                <span className="text-[11px] bg-teal/10 text-teal font-semibold px-2 py-0.5 rounded">Impartiality</span>
+              </div>
             </div>
           </div>
         </div>

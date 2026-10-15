@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading, WhatsAppIcon } from "@/components/site";
 import { 
   services, programmes, labImage, pageHead, contact, 
-  standardsList, researchImage 
+  standardsList, researchImage, foodImage, waterImage, 
+  microImage, chemImage, envImage, airImage, cellsImage, learningImage 
 } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({ 
@@ -58,24 +59,91 @@ const whyPillars = [
   }
 ];
 
-const industriesRow1 = [
-  { name: "Food Processing Industries", sub: "Quality & FSSAI Standards", icon: Apple, green: false },
-  { name: "Dairy & Milk Processing Plants", sub: "Microbiological & Purity", icon: FlaskConical, green: true },
-  { name: "Beverage & Juice Bottling Plants", sub: "Water & Quality Testing", icon: Droplets, green: false },
-  { name: "Meat Processing Industries", sub: "Pathogen Screening", icon: ShieldCheck, green: true },
-  { name: "Packaged Drinking Water Plants", sub: "IS 10500 Compliance", icon: Droplets, green: false },
-  { name: "RO Water Suppliers & Facilities", sub: "Physical & Chemical Analysis", icon: Droplets, green: true },
-  { name: "Hotels, Resorts & Restaurants", sub: "Food Safety & Hygiene", icon: Building2, green: false }
-];
-
-const industriesRow2 = [
-  { name: "Commercial Catering & Canteens", sub: "Hygiene & Safety Monitoring", icon: Building2, green: true },
-  { name: "Manufacturing & Industrial Units", sub: "Effluent & Emission Testing", icon: Building2, green: false },
-  { name: "Pharmaceutical & Allied Units", sub: "Chemical Assays & Water", icon: FlaskConical, green: true },
-  { name: "Hospitals & Healthcare Facilities", sub: "Air Quality & Water Safety", icon: ShieldCheck, green: false },
-  { name: "Educational & Research Units", sub: "Testing & Academic Projects", icon: GraduationCap, green: true },
-  { name: "Apartments & Residential Communities", sub: "Drinking Water Quality", icon: Building2, green: false },
-  { name: "Construction & Infrastructure Projects", sub: "Environmental Monitoring", icon: Building2, green: true }
+const singleRowIndustries = [
+  {
+    name: "Fruits, Veg & Groceries",
+    sub: "FSSAI & Pesticide Residues",
+    image: foodImage,
+    tag: "FSSAI Standards"
+  },
+  {
+    name: "Packaged Drinking Water",
+    sub: "IS 10500 Potability & Minerals",
+    image: waterImage,
+    tag: "IS 10500 Potability"
+  },
+  {
+    name: "Dairy & Milk Products",
+    sub: "Purity, Fat & Microbial Counts",
+    image: microImage,
+    tag: "Microbiology & Fat"
+  },
+  {
+    name: "Pharmaceutical & Herbal",
+    sub: "Chemical Assays & Sterile Water",
+    image: chemImage,
+    tag: "Assay & Chemistry"
+  },
+  {
+    name: "Beverages & Cold Drinks",
+    sub: "Sugar, Acidity & Preservatives",
+    image: foodImage,
+    tag: "Quality Control"
+  },
+  {
+    name: "Hotels, Resorts & Catering",
+    sub: "Food Safety & Kitchen Hygiene",
+    image: researchImage,
+    tag: "Hygiene Auditing"
+  },
+  {
+    name: "Manufacturing & Heavy Units",
+    sub: "Effluent, ETP & PCB Compliance",
+    image: envImage,
+    tag: "Environmental PCB"
+  },
+  {
+    name: "Seafood & Marine Exports",
+    sub: "Pathogen Screening & Residues",
+    image: microImage,
+    tag: "Export Compliance"
+  },
+  {
+    name: "Poultry, Meat & Feeds",
+    sub: "Salmonella, E. coli & Protein Analysis",
+    image: cellsImage,
+    tag: "Pathogen Screen"
+  },
+  {
+    name: "Agricultural & Spices",
+    sub: "Heavy Metals, Moisture & Toxins",
+    image: chemImage,
+    tag: "Residue Analysis"
+  },
+  {
+    name: "Water Treatment & RO Plants",
+    sub: "TDS, Hardness & Filtration Checks",
+    image: waterImage,
+    tag: "TDS & Mineral Quality"
+  },
+  {
+    name: "Ambient Air & Stack Units",
+    sub: "PM2.5, PM10, SOx, NOx Monitoring",
+    image: airImage,
+    tag: "Air Quality Control"
+  },
+  {
+    name: "Residential Communities",
+    sub: "Sump & Borewell Potability",
+    image: waterImage,
+    tag: "Potability Test"
+  },
+  {
+    name: "Educational & Research Units",
+    sub: "BSc / MSc Project Support & Testing",
+    image: learningImage,
+    tag: "Academic Support"
+  }
 ];
 
 const sampleSupportSteps = [
@@ -386,52 +454,38 @@ function Home() {
         </div>
       </section>
 
-      {/* 6. SECTION 4: INDUSTRIES & SECTORS WE SERVE (AUTO-SCROLL MARQUEE WITH SMALL CARDS) */}
+      {/* 6. SECTION 4: INDUSTRIES & SECTORS WE SERVE (SINGLE-ROW AUTO-SCROLL WITH CIRCULAR PHOTO CARDS MATCHING REFERENCE UI) */}
       <section className="section gradient-section-mesh overflow-hidden">
         <div className="site-container">
           <SectionHeading 
             eyebrow="9. INDUSTRIES & SECTORS WE SERVE"
             title="Trusted Testing Partner Across Diverse Sectors"
-            description="Supporting private and government enterprises, manufacturing units, commercial facilities, and public health organizations with dependable quality monitoring."
+            description="Supporting private and government enterprises, food manufacturers, packaged water plants, commercial facilities, and residential units with certified analytical testing."
           />
         </div>
 
-        {/* Auto-Scroll Small Cards Marquee (Infinite smooth continuous loop with pause on hover) */}
-        <div className="marquee-container mt-6">
-          {/* Row 1: Scrolling Left */}
-          <div className="marquee-track">
-            {[...industriesRow1, ...industriesRow1].map((ind, index) => (
-              <div className="industry-small-card" key={`${ind.name}-r1-${index}`}>
-                <div className={`industry-small-card-icon ${ind.green ? "green-variant" : ""}`}>
-                  <ind.icon size={18} />
+        {/* ONLY ONE ROW Auto-Scroll Single Track */}
+        <div className="marquee-container mt-8">
+          <div className="marquee-track-single">
+            {[...singleRowIndustries, ...singleRowIndustries].map((ind, index) => (
+              <div 
+                className={`industry-circle-card ${index === 1 ? "is-active" : ""}`} 
+                key={`${ind.name}-${index}`}
+              >
+                <div className="industry-circle-img-wrap">
+                  <img src={ind.image} alt={ind.name} loading="lazy" width={86} height={86} />
                 </div>
-                <div className="industry-small-card-text">
-                  <span className="industry-small-card-title">{ind.name}</span>
-                  <span className="industry-small-card-sub">{ind.sub}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Row 2: Scrolling Right */}
-          <div className="marquee-track-reverse">
-            {[...industriesRow2, ...industriesRow2].map((ind, index) => (
-              <div className="industry-small-card" key={`${ind.name}-r2-${index}`}>
-                <div className={`industry-small-card-icon ${ind.green ? "green-variant" : ""}`}>
-                  <ind.icon size={18} />
-                </div>
-                <div className="industry-small-card-text">
-                  <span className="industry-small-card-title">{ind.name}</span>
-                  <span className="industry-small-card-sub">{ind.sub}</span>
-                </div>
+                <h4 className="industry-circle-title">{ind.name}</h4>
+                <p className="industry-circle-sub">{ind.sub}</p>
+                <span className="industry-circle-tag">{ind.tag}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="site-container text-center mt-10">
+        <div className="site-container text-center mt-8">
           <p className="text-xs text-muted-foreground max-w-xl mx-auto">
-            Hover over any sector card to pause. Whether you need routine quality checks, regulatory compliance testing, or periodic monitoring programs, Certigo Laboratories delivers dependable testing support.
+            Hover over any sector card to pause. Whether you need routine batch release tests, regulatory compliance certificates, or periodic monitoring, Certigo Laboratories delivers dependable testing support.
           </p>
         </div>
       </section>

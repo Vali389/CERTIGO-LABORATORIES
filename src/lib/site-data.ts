@@ -30,11 +30,17 @@ export const contact = {
   companyName: "Certigo Laboratories Private Limited",
   tagline: "Reliable Testing. Accurate Results. Trusted Quality.",
   nablNumber: "NABLT0626AD18278",
+  gstin: "37AAMCC7866K1ZU",
+  cin: "U86905AP2025PTC119663",
+  isoStandard: "ISO/IEC 17025:2017",
   phone: "+91 82474 42084",
   phoneHref: "tel:+918247442084",
   landline: "0891-4568391",
   email: "certigolabs@gmail.com",
-  address: "49-55-19/A, Saligramapuram, Vidyut Nagar, Beside Port Stadium, Visakhapatnam – 530024, Andhra Pradesh, India",
+  address: "D.No.49-55-19/A, Saligramapuram, Vidyut Nagar, Beside Port Stadium, Visakhapatnam - 530024, Andhra Pradesh, India",
+  officialVision: "To be a globally recognized leader in food and water testing, ensuring safety, quality and compliance through cutting-edge technology, expert analysis, and unwavering commitment to excellence.",
+  officialMission: "Delivering trusted, accurate, and timely testing services for food and water safety, fostering health and confidence in every sample analyzed with 'excellence'.",
+  qualityPolicy: "Certigo Laboratories Pvt Ltd. is committed to provide best laboratory services by adopting procedures, professional practices and international standards complying with the requirements of ISO/IEC 17025:2017 to the satisfaction of all concerned while ensuring integrity, confidentiality and impartiality."
 };
 
 export const services = [
