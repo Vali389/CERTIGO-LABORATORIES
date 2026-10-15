@@ -3,7 +3,7 @@ import {
   ArrowUpRight, ArrowRight, Check, ShieldCheck, FlaskConical, GraduationCap, 
   Leaf, MessagesSquare, Target, Clock, Award, Lock, Layers, Eye, Compass, 
   Building2, Droplets, Apple, Microscope, Wind, Phone, Mail, MapPin, 
-  CheckCircle2, FileText, ChevronRight 
+  CheckCircle2, FileText, ChevronRight, Users, ClipboardCheck, Handshake 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHeading, WhatsAppIcon } from "@/components/site";
@@ -149,23 +149,43 @@ const singleRowIndustries = [
 const sampleSupportSteps = [
   {
     step: "01",
-    title: "Parameter Selection & Guidance",
-    desc: "Consult our technical team on sample submission guidance, regulatory testing requirements (BIS, FSSAI, CPCB), and selecting the right testing parameters."
+    shortTitle: "Understand",
+    title: "Consultation & Scope",
+    desc: "We understand your testing goals, statutory standards (BIS, FSSAI, CPCB), sample matrix, turnaround requirements, and regulatory compliance targets.",
+    icon: Users,
+    color: "#00A8B5",
+    halo: "rgba(0, 168, 181, 0.08)",
+    glow: "rgba(0, 168, 181, 0.22)"
   },
   {
     step: "02",
-    title: "Collection & Preservation",
-    desc: "Follow standardized protocols for sample collection, appropriate container selection, temperature preservation, and chain of custody documentation."
+    shortTitle: "Plan & Collect",
+    title: "Sampling & Preservation",
+    desc: "Standardized protocols for sample collection, appropriate container selection, cold-chain temperature preservation, and strict chain of custody documentation.",
+    icon: ClipboardCheck,
+    color: "#133552",
+    halo: "rgba(19, 53, 82, 0.08)",
+    glow: "rgba(19, 53, 82, 0.22)"
   },
   {
     step: "03",
-    title: "Validated Laboratory Testing",
-    desc: "Analysis conducted using validated test methods (BIS/IS, FSSAI, APHA, ISO, AOAC), calibrated equipment, and standard operating procedures (SOPs)."
+    shortTitle: "Analyze",
+    title: "Validated Lab Testing",
+    desc: "Testing conducted using validated test methods (BIS/IS, FSSAI, APHA, ISO, AOAC) with calibrated analytical instrumentation and certified reference materials.",
+    icon: FlaskConical,
+    color: "#d97706",
+    halo: "rgba(217, 119, 6, 0.08)",
+    glow: "rgba(217, 119, 6, 0.22)"
   },
   {
     step: "04",
-    title: "Timely Reporting & Interpretation",
-    desc: "Receive prompt, official test reports complete with measurement traceability, quality checks, and technical report interpretation support."
+    shortTitle: "Deliver",
+    title: "Certified Reporting",
+    desc: "Prompt delivery of official, audit-ready NABL accredited test reports complete with measurement traceability, quality checks, and expert advisory support.",
+    icon: Handshake,
+    color: "#0d9488",
+    halo: "rgba(13, 148, 136, 0.08)",
+    glow: "rgba(13, 148, 136, 0.22)"
   }
 ];
 
@@ -682,11 +702,6 @@ function Home() {
           </div>
         </div>
 
-        <div className="site-container text-center mt-8">
-          <p className="text-xs text-muted-foreground max-w-xl mx-auto">
-            Hover over any sector card to pause. Whether you need routine batch release tests, regulatory compliance certificates, or periodic monitoring, Certigo Laboratories delivers dependable testing support.
-          </p>
-        </div>
       </section>
 
       {/* 7. SECTION 5: WHY CHOOSE CERTIGO LABORATORIES? (7 PILLARS) */}
@@ -717,34 +732,67 @@ function Home() {
         </div>
       </section>
 
-      {/* 8. SECTION 6: SAMPLE COLLECTION & TESTING SUPPORT WORKFLOW */}
-      <section className="section bg-background">
+      {/* 8. SECTION 6: HOW OUR TESTING PROCESS WORKS (MATCHING USER REFERENCE DESIGN) */}
+      <section className="process-flow-section">
         <div className="site-container">
-          <SectionHeading 
-            eyebrow="11. SAMPLE COLLECTION & TESTING SUPPORT"
-            title="Streamlined Workflow From Sample to Certified Report"
-            description="Depending on service availability and customer requirements, Certigo Laboratories provides structured support across the entire testing cycle."
-          />
+          <div className="process-header-wrap">
+            <div className="process-eyebrow-flex">
+              <span className="process-eyebrow-line" />
+              <span className="process-eyebrow-pill">OUR APPROACH</span>
+              <span className="process-eyebrow-line" />
+            </div>
+            <h2 className="process-header-title">
+              How Our Testing <span className="text-teal">Process Works</span>
+            </h2>
+            <p className="process-header-desc">
+              A structured, quality-controlled testing workflow from initial parameter consultation to certified report delivery.
+            </p>
+          </div>
 
-          <div className="steps-grid">
+          <div className="process-flow-grid">
             {sampleSupportSteps.map((s, idx) => (
-              <div className="step" key={s.step}>
-                <span 
-                  className="step-number"
-                  style={{ borderColor: idx % 2 === 0 ? "#00A8B5" : "#6EA236", color: idx % 2 === 0 ? "#00A8B5" : "#6EA236" }}
-                >
-                  {s.step}
-                </span>
-                <ArrowRight className="step-arrow" size={20} />
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
+              <div 
+                className="process-flow-item" 
+                key={s.step}
+                style={{
+                  "--step-color": s.color,
+                  "--step-halo": s.halo,
+                  "--step-glow": s.glow
+                } as React.CSSProperties}
+              >
+                {/* Connecting Line to next card (visible on desktop) */}
+                {idx < sampleSupportSteps.length - 1 && (
+                  <div className="process-flow-connector">
+                    <div className="process-connector-badge">
+                      <ChevronRight size={13} />
+                    </div>
+                  </div>
+                )}
+
+                {/* Top Emblem Circle with number badge and pointer */}
+                <div className="process-circle-wrap">
+                  <span className="process-circle-badge">{s.step}</span>
+                  <div className="process-circle-outer" />
+                  <div className="process-circle-inner">
+                    <s.icon size={30} />
+                  </div>
+                  <div className="process-circle-pointer" />
+                </div>
+
+                {/* Card Body below the emblem */}
+                <div className="process-card-body">
+                  <span className="process-card-short">{s.shortTitle}</span>
+                  <h3 className="process-card-title">{s.title}</h3>
+                  <div className="process-card-accent-bar" />
+                  <p className="process-card-desc">{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 p-7 rounded-xl bg-secondary/50 border border-border text-center max-w-3xl mx-auto shadow-xs">
-            <h4 className="text-base font-bold text-primary mb-2">12. Our Commitment</h4>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-0">
+          <div className="mt-14 p-7 rounded-2xl bg-white border border-border text-center max-w-3xl mx-auto shadow-xs">
+            <h4 className="text-base font-bold text-primary mb-2">12. Our Quality Commitment</h4>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-0">
               “At Certigo Laboratories Private Limited, we believe that reliable laboratory testing plays an important role in protecting food safety, public health, water quality and the environment. We are committed to continuously improving our laboratory systems, technical competence and customer service to provide dependable testing support to our customers.”
             </p>
           </div>

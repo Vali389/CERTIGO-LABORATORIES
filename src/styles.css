@@ -1649,5 +1649,268 @@ body { font-size:15px; }
   animation: appearScale 0.3s ease-out;
 }
 
+/* ==========================================================================
+   How Our Service / Testing Process Works (Matching Reference Design)
+   ========================================================================== */
+.process-flow-section {
+  position: relative;
+  padding: 90px 0 80px;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(240, 249, 250, 0.5) 50%, #ffffff 100%);
+}
+
+.process-header-wrap {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 56px;
+}
+
+.process-eyebrow-flex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.process-eyebrow-line {
+  height: 1px;
+  width: 50px;
+  background: #cbd5e1;
+}
+
+.process-eyebrow-pill {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #0d9488;
+  background: rgba(13, 148, 136, 0.08);
+  padding: 5px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(13, 148, 136, 0.25);
+}
+
+.process-header-title {
+  font-family: var(--font-sans);
+  font-size: 38px;
+  font-weight: 800;
+  color: #133552;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 640px) {
+  .process-header-title {
+    font-size: 28px;
+  }
+}
+
+.process-header-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #64748b;
+  margin-bottom: 0;
+}
+
+.process-flow-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .process-flow-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .process-flow-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+}
+
+.process-flow-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Emblem Circle with floating number badge and downward pointer */
+.process-circle-wrap {
+  position: relative;
+  width: 106px;
+  height: 106px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  margin-bottom: -30px;
+}
+
+.process-circle-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3.5px solid var(--step-color);
+  background: var(--step-halo);
+  box-shadow: 0 8px 24px var(--step-glow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-flow-item:hover .process-circle-outer {
+  transform: scale(1.06);
+  box-shadow: 0 12px 32px var(--step-glow);
+}
+
+.process-circle-inner {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--step-color);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.process-flow-item:hover .process-circle-inner {
+  transform: scale(1.02);
+}
+
+/* Number badge at top center */
+.process-circle-badge {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--step-color);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  z-index: 3;
+}
+
+/* Pointer wedge at bottom center */
+.process-circle-pointer {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 8px solid var(--step-color);
+  z-index: 3;
+}
+
+/* Connecting Line between cards on desktop */
+.process-flow-connector {
+  position: absolute;
+  top: 53px;
+  left: calc(50% + 53px);
+  right: calc(-50% + 53px);
+  height: 2px;
+  background: #cbd5e1;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .process-flow-connector {
+    display: none;
+  }
+}
+
+.process-connector-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Card Body below the emblem */
+.process-card-body {
+  width: 100%;
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
+  border-radius: 22px;
+  padding: 46px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(19, 53, 82, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  flex: 1;
+}
+
+.process-flow-item:hover .process-card-body {
+  transform: translateY(-4px);
+  border-color: var(--step-color);
+  box-shadow: 0 18px 36px var(--step-glow);
+}
+
+.process-card-short {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--step-color);
+  margin-bottom: 4px;
+}
+
+.process-card-title {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 800;
+  color: #133552;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.process-card-accent-bar {
+  width: 34px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--step-color);
+  margin-bottom: 14px;
+}
+
+.process-card-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #64748b;
+  margin-bottom: 0;
+}
+
 
 
