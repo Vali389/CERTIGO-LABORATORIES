@@ -48,7 +48,7 @@ function About() {
       <section className="section gradient-section-mesh">
         <div className="site-container editorial-split">
           <div>
-            <span className="eyebrow">1. ABOUT CERTIGO LABORATORIES</span>
+            <span className="eyebrow">ABOUT CERTIGO LABORATORIES</span>
             <h2 className="text-3xl sm:text-4xl font-serif text-primary mb-5 leading-tight">
               Quality-Focused Testing &amp;<br />
               <span className="text-teal">Environmental Monitoring</span>
@@ -186,11 +186,11 @@ function About() {
         </div>
       </section>
 
-      {/* 4. QUALITY & TECHNICAL COMPETENCE + NABL ACCREDITATION */}
-      <section className="section bg-background">
+      {/* QUALITY & TECHNICAL COMPETENCE + NABL ACCREDITATION */}
+      <section className="section gradient-section-mesh">
         <div className="site-container">
           <SectionHeading 
-            eyebrow="7. QUALITY & TECHNICAL COMPETENCE" 
+            eyebrow="QUALITY & TECHNICAL COMPETENCE" 
             title="Rigorous Quality Management System" 
             description="Our laboratory practices adhere to recognized national and international testing standards to ensure dependable, technically sound data." 
           />
@@ -282,7 +282,7 @@ function About() {
       {/* 5. OUR COMMITMENT */}
       <section className="section gradient-section-mesh">
         <div className="site-container text-center max-w-3xl mx-auto">
-          <span className="eyebrow">12. OUR COMMITMENT</span>
+          <span className="eyebrow">OUR COMMITMENT</span>
           <h2 className="text-3xl font-serif text-primary mb-4">Dedicated to Food Safety &amp; Public Health</h2>
           <p className="text-base text-muted-foreground leading-relaxed italic mb-8">
             “At Certigo Laboratories Private Limited, we believe that reliable laboratory testing plays an important role in protecting food safety, public health, water quality and the environment. We are committed to continuously improving our laboratory systems, technical competence and customer service to provide dependable testing support to our customers.”

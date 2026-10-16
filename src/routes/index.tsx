@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { 
   ArrowUpRight, ArrowRight, Check, ShieldCheck, FlaskConical, GraduationCap, 
   Leaf, MessagesSquare, Target, Clock, Award, Lock, Layers, Eye, Compass, 
   Building2, Droplets, Apple, Microscope, Wind, Phone, Mail, MapPin, 
-  CheckCircle2, FileText, ChevronRight, Users, ClipboardCheck, Handshake 
+  CheckCircle2, FileText, ChevronRight, Users, ClipboardCheck, Handshake,
+  Sparkles, Quote, Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHeading, WhatsAppIcon } from "@/components/site";
@@ -12,6 +14,14 @@ import {
   standardsList, researchImage, foodImage, waterImage, 
   microImage, chemImage, envImage, airImage, cellsImage, learningImage 
 } from "@/lib/site-data";
+import realMicroscopeImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.36 PM.jpeg";
+import realLaminarImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.34 PM (1).jpeg";
+import realBalanceImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.34 PM.jpeg";
+import realAutoclaveImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.34 PM (2).jpeg";
+import realHomogenizerImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.35 PM.jpeg";
+import realIncubatorImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.35 PM (1).jpeg";
+import realBinocularImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.37 PM.jpeg";
+import realGlasswareImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.37 PM (1).jpeg";
 
 export const Route = createFileRoute("/")({ 
   head: () => pageHead(
@@ -23,39 +33,74 @@ export const Route = createFileRoute("/")({
 
 const whyPillars = [
   {
+    num: "01",
     icon: Target,
     title: "Accuracy",
-    desc: "We focus on generating dependable and technically sound test results using validated standard methods."
+    tag: "Validated Protocols",
+    desc: "We focus on generating dependable and technically sound test results using validated standard methods (BIS, FSSAI, APHA, ISO).",
+    color: "#00A8B5",
+    bg: "rgba(0, 168, 181, 0.12)",
+    border: "rgba(0, 168, 181, 0.35)"
   },
   {
+    num: "02",
     icon: ShieldCheck,
     title: "Reliability",
-    desc: "We follow systematic laboratory procedures, internal quality checks, and rigorous quality-control practices."
+    tag: "Systematic QA/QC",
+    desc: "We follow systematic laboratory procedures, internal quality checks, matrix spikes, and rigorous quality-control practices.",
+    color: "#6EA236",
+    bg: "rgba(110, 162, 54, 0.12)",
+    border: "rgba(110, 162, 54, 0.35)"
   },
   {
+    num: "03",
     icon: Clock,
     title: "Timely Service",
-    desc: "We understand the importance of timely testing and reporting for your production and regulatory schedules."
+    tag: "Predictable Schedules",
+    desc: "We understand the importance of timely testing and reporting for your production batch release and regulatory schedules.",
+    color: "#0284c7",
+    bg: "rgba(2, 132, 199, 0.12)",
+    border: "rgba(2, 132, 199, 0.35)"
   },
   {
+    num: "04",
     icon: Award,
     title: "Technical Expertise",
-    desc: "Our laboratory personnel follow established testing procedures, standard operating protocols, and calibration."
+    tag: "ISO 17025 Calibrated",
+    desc: "Our qualified analytical scientists strictly follow established testing procedures, validated SOPs, and equipment calibration.",
+    color: "#d97706",
+    bg: "rgba(217, 119, 6, 0.12)",
+    border: "rgba(217, 119, 6, 0.35)"
   },
   {
+    num: "05",
     icon: MessagesSquare,
     title: "Customer Support",
-    desc: "We work closely with customers to understand their testing requirements and provide appropriate testing solutions."
+    tag: "Dedicated SPOC",
+    desc: "We work closely with customers to understand their testing requirements and provide appropriate testing and sampling guidance.",
+    color: "#8b5cf6",
+    bg: "rgba(139, 92, 246, 0.12)",
+    border: "rgba(139, 92, 246, 0.35)"
   },
   {
+    num: "06",
     icon: Lock,
     title: "Confidentiality",
-    desc: "Customer information, sample data, and test results are handled with the highest standards of confidentiality."
+    tag: "Data Integrity Vault",
+    desc: "Customer information, proprietary sample formulations, and test certificates are safeguarded with strict non-disclosure security.",
+    color: "#0d9488",
+    bg: "rgba(13, 148, 136, 0.12)",
+    border: "rgba(13, 148, 136, 0.35)"
   },
   {
+    num: "07",
     icon: Layers,
     title: "Comprehensive Testing",
-    desc: "Our integrated laboratory covers Food, Water, Microbiology, Chemical, Environmental, and Air Quality Testing."
+    tag: "Multi-Discipline Lab",
+    desc: "Our integrated testing facility covers Food, Water, Microbiology, Chemical, Environmental, and Ambient Air monitoring.",
+    color: "#133552",
+    bg: "rgba(19, 53, 82, 0.12)",
+    border: "rgba(19, 53, 82, 0.35)"
   }
 ];
 
@@ -291,7 +336,7 @@ const luxuryStudentProgrammes = [
       "Standard Operating Procedures (SOPs) & calibrated tool handling",
       "Official Certificate of Laboratory Training upon course completion"
     ],
-    applyLink: "/programmes-apply"
+    applyLink: "/apply"
   },
   {
     slug: "long-term-internships",
@@ -309,7 +354,7 @@ const luxuryStudentProgrammes = [
       "Dedicated 1-on-1 mentorship adhering to ISO/IEC 17025 workflows",
       "Industry-recognized Internship Training Credential for career placement"
     ],
-    applyLink: "/programmes-apply"
+    applyLink: "/apply"
   },
   {
     slug: "academic-projects",
@@ -327,11 +372,161 @@ const luxuryStudentProgrammes = [
       "Expert consultation on research methodology, protocols & parameter design",
       "Official Laboratory Project Completion Letter & signed validation certificate"
     ],
-    applyLink: "/programmes-apply"
+    applyLink: "/apply"
+  }
+];
+
+const nablDisciplines = [
+  { icon: Apple, name: "Food & Agriculture", sub: "Proximate, Residues & FSSAI", color: "#00A8B5", bg: "rgba(0,168,181,0.2)" },
+  { icon: Droplets, name: "Drinking & Packaged Water", sub: "IS 10500 Potability & Minerals", color: "#38bdf8", bg: "rgba(56,189,248,0.2)" },
+  { icon: Microscope, name: "Microbiological Testing", sub: "Pathogens, Coliforms & Sterility", color: "#6EA236", bg: "rgba(110,162,54,0.2)" },
+  { icon: FlaskConical, name: "Analytical Chemistry", sub: "Heavy Metals, Assays & Assays", color: "#0284c7", bg: "rgba(2,132,199,0.2)" },
+  { icon: Leaf, name: "Environmental Monitoring", sub: "Effluent, ETP & APPCB Rules", color: "#0d9488", bg: "rgba(13,148,136,0.2)" },
+  { icon: Wind, name: "Ambient & Stack Air", sub: "PM2.5, PM10, SOx, NOx & Noise", color: "#818cf8", bg: "rgba(129,140,248,0.2)" },
+];
+
+const galleryCategories = [
+  { id: "all", label: "All Facilities" },
+  { id: "microbiology", label: "Microbiology Suite" },
+  { id: "chemistry", label: "Analytical Chemistry" },
+  { id: "water-env", label: "Water & Environmental" },
+  { id: "prep-sterility", label: "Sterilization & Prep" },
+];
+
+const facilityGalleryItems = [
+  {
+    image: realBalanceImg,
+    title: "Analytical Micro-Balance (0.0001g)",
+    room: "Weighing & Reference Suite",
+    category: "Analytical Chemistry",
+    categoryKey: "chemistry",
+    spec: "High-precision electromagnetic analytical balance with anti-draft shield, calibrated against NPL-traceable reference masses.",
+    tags: ["0.0001g Precision", "CRM Traceable", "Anti-Draft Shield"]
+  },
+  {
+    image: realLaminarImg,
+    title: "Laminar Air Flow Clean Bench (Type A2)",
+    room: "Microbiology Inoculation Suite",
+    category: "Microbiology Suite",
+    categoryKey: "microbiology",
+    spec: "ISO Class 5 vertical HEPA laminar airflow cabinet ensuring sterile sample inoculation, pathogen plating, and zero cross-contamination.",
+    tags: ["HEPA 99.99%", "UV Germicidal Lamp", "Aseptic Handling"]
+  },
+  {
+    image: realMicroscopeImg,
+    title: "Digital Colony Counter & Inoculation Bench",
+    room: "Microbial Enumeration Lab",
+    category: "Microbiology Suite",
+    categoryKey: "microbiology",
+    spec: "Electronic pressure-sensitive colony counter with LED illumination and optical magnification for colony forming unit (CFU) counts.",
+    tags: ["CFU Enumeration", "Magnified Lens", "Pressure Touch Sensor"]
+  },
+  {
+    image: realBinocularImg,
+    title: "High-Power Binocular Research Microscope",
+    room: "Cellular & Morphology Station",
+    category: "Microbiology Suite",
+    categoryKey: "microbiology",
+    spec: "Achromatic optical system with 1000x oil-immersion magnification for bacterial staining and fungal identification.",
+    tags: ["1000x Magnification", "LED Illumination", "Oil Immersion 100x"]
+  },
+  {
+    image: realIncubatorImg,
+    title: "Microbiological BOD Incubator Suite",
+    room: "Controlled Incubation Lab",
+    category: "Water & Environmental",
+    categoryKey: "water-env",
+    spec: "Digital microprocessor-controlled temperature chambers (+/- 0.5°C) for 5-day BOD assays and culture incubation.",
+    tags: ["20°C / 37°C / 44°C", "Microprocessor Control", "5-Day BOD Testing"]
+  },
+  {
+    image: realAutoclaveImg,
+    title: "Vertical Sterilization Autoclave",
+    room: "Media Prep & Decontamination",
+    category: "Sterilization & Prep",
+    categoryKey: "prep-sterility",
+    spec: "High-pressure saturated steam sterilization (121°C / 15 psi) ensuring absolute sterility of media and culture vessels.",
+    tags: ["121°C Saturated Steam", "Stainless Steel 304", "Biological Indicator QC"]
+  },
+  {
+    image: realHomogenizerImg,
+    title: "Stomacher Homogenizer & Vortex Station",
+    room: "Food Matrix Extraction Lab",
+    category: "Analytical Chemistry",
+    categoryKey: "chemistry",
+    spec: "Paddle-action sterile stomacher for thorough microbial extraction from solid and semi-solid food samples.",
+    tags: ["Aseptic Stomaching", "Variable Speed Paddle", "Zero Cross-Contamination"]
+  },
+  {
+    image: realGlasswareImg,
+    title: "Analytical Glassware & Titration Station",
+    room: "Wet Chemistry Laboratory",
+    category: "Water & Environmental",
+    categoryKey: "water-env",
+    spec: "Class-A calibrated volumetric glassware, digital titrators, and chemical reagents for potability and effluent assays.",
+    tags: ["Class-A Volumetric", "Acid-Base Titration", "Chemical Hardness"]
+  }
+];
+
+const testimonialsData = [
+  {
+    initial: "Q",
+    name: "Quality Assurance Lead",
+    role: "Packaged Drinking Water (IS 10500)",
+    color: "#00A8B5",
+    quote: "Certigo Laboratories has been our dependable partner for routine IS 10500 potability and trace metal testing. Their NABL accredited certificates are delivered on schedule and fully audit-ready."
+  },
+  {
+    initial: "P",
+    name: "Plant Operations Director",
+    role: "Commercial Food Manufacturing",
+    color: "#133552",
+    quote: "A collaborative approach, thoughtful solutions, and a testing team that truly understands our batch release goals. Their turnaround time for microbiological pathogen screening is exceptional."
+  },
+  {
+    initial: "E",
+    name: "Environmental Compliance Head",
+    role: "Industrial Effluents & Ambient Air",
+    color: "#6EA236",
+    quote: "The right balance of technical expertise and clear communication. Their stack emission and wastewater monitoring reports strictly adhere to CPCB and APPCB regulatory compliance guidelines."
+  },
+  {
+    initial: "S",
+    name: "MSc Biotechnology Scholar",
+    role: "Academic Dissertation & Project Research",
+    color: "#0284c7",
+    quote: "A fresh perspective on laboratory science. Direct bench training on calibrated micro-balances, laminar airflow chambers, and digital colony counters gave me immense practical confidence."
   }
 ];
 
 function Home() {
+  const [activeGalleryFilter, setActiveGalleryFilter] = useState("all");
+
+  const filteredGalleryItems = activeGalleryFilter === "all"
+    ? facilityGalleryItems
+    : facilityGalleryItems.filter(item => item.categoryKey === activeGalleryFilter);
+
+  useEffect(() => {
+    const elements = document.querySelectorAll(".fade-up-init");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* 1. HERO SECTION WITH RICH GRADIENT WASH OVERLAY */}
@@ -377,7 +572,7 @@ function Home() {
       </section>
 
       {/* 2. TRUST STRIP WITH REFINED GRADIENT TINT */}
-      <section className="trust-strip">
+      <section className="trust-strip fade-up-init">
         <div className="site-container trust-grid">
           <div className="trust-intro">
             NABL Accredited Testing Facility.<br />
@@ -399,8 +594,8 @@ function Home() {
         </div>
       </section>
 
-      {/* 3. SECTION 1: A PARTNER IN SCIENCE. A PLACE TO GROW. (EDITORIAL SPLIT) */}
-      <section className="section gradient-section-mesh">
+      {/* 3. SECTION 1: A PARTNER IN SCIENCE. A PLACE TO GROW. (EDITORIAL SPLIT WITH SOFT GRADIENT) */}
+      <section className="section gradient-section-editorial fade-up-init">
         <div className="site-container editorial-split">
           <div>
             <span className="eyebrow">A PARTNER IN SCIENCE. A PLACE TO GROW.</span>
@@ -489,11 +684,11 @@ function Home() {
         </div>
       </section>
 
-      {/* 4. SECTION 2: OUR TESTING SERVICES (CARD UI MATCHING USER REFERENCE IMAGE 2) */}
-      <section className="section gradient-section-teal" id="services">
+      {/* 4. SECTION 2: OUR TESTING SERVICES (RICH GRADIENT MESH) */}
+      <section className="section gradient-section-services fade-up-init" id="services">
         <div className="site-container">
           <SectionHeading 
-            eyebrow="4. OUR TESTING SERVICES"
+            eyebrow="OUR TESTING SERVICES"
             title="The Right Solutions. Real Possibilities."
             description="From everyday essentials to comprehensive environmental compliance, we bring technical excellence that supports your quality and regulatory requirements."
           />
@@ -501,7 +696,7 @@ function Home() {
           {/* 6 Cards Grid exactly matching user reference Image 2 */}
           <div className="service-cards-grid">
             {services.map((s) => (
-              <article className="service-grid-card" key={s.slug}>
+              <Link to={s.path} className="service-grid-card" key={s.slug}>
                 {/* Top media container with floating badge and title on image */}
                 <div className="service-grid-card-media">
                   <img 
@@ -534,12 +729,12 @@ function Home() {
                     ))}
                   </div>
 
-                  {/* Explore link */}
-                  <Link className="service-grid-card-link" to={s.path}>
+                  {/* Explore link indicator */}
+                  <span className="service-grid-card-link">
                     Explore Service <ArrowUpRight size={15} />
-                  </Link>
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
 
@@ -553,97 +748,145 @@ function Home() {
         </div>
       </section>
 
-      {/* 5. SECTION 3: QUALITY & TECHNICAL COMPETENCE + NABL ACCREDITATION */}
-      <section className="section bg-background">
+      {/* 5. SECTION 3: QUALITY & TECHNICAL COMPETENCE + NABL ACCREDITATION (PREMIER DARK EXECUTIVE SUITE) */}
+      <section className="section gradient-section-nabl-suite fade-up-init">
         <div className="site-container">
-          <SectionHeading 
-            eyebrow="7. QUALITY & TECHNICAL COMPETENCE"
-            title="NABL Accreditation & Validated Standards"
-            description="Certigo Laboratories is committed to maintaining a strong quality management system, calibrated analytical instrumentation, and technically sound laboratory operations."
-          />
-
-          {/* Luxury NABL Accreditation Banner with Glowing Badges & Glassmorphism */}
-          <div className="luxury-nabl-banner">
-            <div className="luxury-nabl-header-strip">
-              <span className="nabl-glow-badge">
-                <span className="nabl-pulse-dot" /> NABL ACCREDITED TESTING LABORATORY
-              </span>
-              <span className="nabl-iso-tag">
-                ISO/IEC 17025:2017 CERTIFIED COMPLIANCE
-              </span>
+          <div className="nabl-suite-header">
+            <div className="nabl-suite-eyebrow">
+              <span className="nabl-pulse-dot" /> QUALITY &amp; TECHNICAL COMPETENCE
             </div>
+            <h2 className="nabl-suite-title">
+              NABL Accreditation &amp; Validated Standards
+            </h2>
+            <p className="nabl-suite-desc">
+              Certigo Laboratories Private Limited is formally accredited in accordance with the international standard ISO/IEC 17025:2017 for technical competence in testing, operating calibrated analytical instrumentation and legal test certificates accepted nationwide.
+            </p>
+          </div>
 
-            <div className="luxury-nabl-body">
-              <div>
-                <h3 className="luxury-nabl-title">
-                  National Accreditation Board for Testing and Calibration Laboratories
-                </h3>
+          {/* Two-Column Master Executive Hub */}
+          <div className="nabl-executive-grid">
+            {/* Left: Official Master Credential */}
+            <div className="nabl-master-card">
+              <div className="nabl-master-badge-row">
+                <span className="nabl-badge-pill-cyan">
+                  <ShieldCheck size={14} /> NABL ACCREDITED LABORATORY
+                </span>
+                <span className="nabl-badge-pill-green">
+                  ISO/IEC 17025:2017 CERTIFIED
+                </span>
+              </div>
 
-                <div className="nabl-cert-card">
-                  <span className="text-[11px] text-cyan-200 uppercase tracking-widest font-semibold mb-1">
-                    Accreditation Certificate Number
-                  </span>
-                  <span className="nabl-cert-code">
-                    {contact.nablNumber}
-                  </span>
+              <h3 className="nabl-master-title">
+                National Accreditation Board for Testing &amp; Calibration Laboratories
+              </h3>
+
+              {/* Certificate Code Plaque */}
+              <div className="nabl-code-plaque">
+                <div className="nabl-code-info">
+                  <span className="nabl-code-label">Accreditation Certificate Number</span>
+                  <span className="nabl-code-number">{contact.nablNumber}</span>
                 </div>
-
-                <p className="luxury-nabl-desc">
-                  Certigo Laboratories Private Limited is formally accredited in accordance with the international standard ISO/IEC 17025:2017 for technical competence in the field of testing. Our validated test methods, calibrated equipment, and traceable certified standards guarantee reliable and legally accepted test reports across India.
-                </p>
-
-                <div className="luxury-nabl-pills-grid">
-                  <div className="luxury-nabl-pill-item">
-                    <ShieldCheck size={16} />
-                    <span>ISO/IEC 17025:2017 Standard Compliance</span>
-                  </div>
-                  <div className="luxury-nabl-pill-item">
-                    <Award size={16} />
-                    <span>Traceable Certified Reference Standards</span>
-                  </div>
-                  <div className="luxury-nabl-pill-item">
-                    <FlaskConical size={16} />
-                    <span>Calibrated Analytical Instrumentation</span>
-                  </div>
-                  <div className="luxury-nabl-pill-item">
-                    <Lock size={16} />
-                    <span>Impartial, Confidential &amp; Audit-Ready Reports</span>
-                  </div>
+                <div className="nabl-verified-tag">
+                  <CheckCircle2 size={15} /> Active NABL Scope
                 </div>
               </div>
 
-              <div className="luxury-nabl-actions">
-                <Button asChild size="lg" className="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold shadow-lg">
+              <p className="nabl-master-desc">
+                Accreditation under ISO/IEC 17025:2017 confirms that Certigo Laboratories operates an internationally recognized quality management system, utilizes calibrated instrumentation, participates in regular proficiency testing (PT), and issues legally valid, audit-ready test reports accepted across India.
+              </p>
+
+              <div className="nabl-competence-checklist">
+                <div className="nabl-check-item">
+                  <ShieldCheck size={16} />
+                  <span>ISO/IEC 17025:2017 Standard Compliance</span>
+                </div>
+                <div className="nabl-check-item">
+                  <Award size={16} />
+                  <span>Traceable Reference Standards (CRM)</span>
+                </div>
+                <div className="nabl-check-item">
+                  <FlaskConical size={16} />
+                  <span>Calibrated Analytical Instrumentation</span>
+                </div>
+                <div className="nabl-check-item">
+                  <Lock size={16} />
+                  <span>Impartial &amp; Tamper-Proof Audit Reports</span>
+                </div>
+              </div>
+
+              <div className="nabl-master-buttons">
+                <Button asChild size="lg" className="bg-teal hover:bg-teal/90 text-white font-bold shadow-md">
                   <Link to="/contact">
                     Confirm Scope of Accreditation <ArrowUpRight size={17} />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="w-full border-cyan-400/40 text-cyan-200 hover:bg-cyan-950/60 font-semibold">
+                <Button asChild variant="outline" size="lg" className="border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold shadow-sm">
                   <a 
                     href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20verify%20the%20NABL%20scope%20of%20accreditation%20for%20testing." 
                     target="_blank" 
                     rel="noreferrer"
                   >
-                    <WhatsAppIcon className="w-4 h-4 mr-2" /> WhatsApp Consultation
+                    <WhatsAppIcon className="w-4 h-4 mr-2 text-emerald-600" /> WhatsApp Verification Desk
                   </a>
                 </Button>
               </div>
             </div>
+
+            {/* Right: Accredited Scope & Statutory Recognition Matrix */}
+            <div className="nabl-scope-card">
+              <div className="nabl-scope-header">
+                <div>
+                  <h4 className="nabl-scope-title">Accredited Testing Disciplines</h4>
+                  <span className="nabl-scope-subtitle">Comprehensive Analytical Capabilities</span>
+                </div>
+                <span className="text-xs font-mono font-bold text-teal bg-teal/10 border border-teal/30 px-2.5 py-1 rounded-md">
+                  Scope Approved
+                </span>
+              </div>
+
+              <div className="nabl-disciplines-list">
+                {nablDisciplines.map((disc) => (
+                  <div className="nabl-discipline-item" key={disc.name}>
+                    <div className="nabl-discipline-icon" style={{ background: disc.bg, color: disc.color }}>
+                      <disc.icon size={16} />
+                    </div>
+                    <div className="nabl-discipline-text">
+                      <strong>{disc.name}</strong>
+                      <small>{disc.sub}</small>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="nabl-guarantee-box">
+                <Award size={18} />
+                <span>
+                  <strong>National Traceability:</strong> Certified reference materials traceable to NPL / NIST ensuring high measurement integrity.
+                </span>
+              </div>
+
+              <div className="nabl-guarantee-box">
+                <ShieldCheck size={18} />
+                <span>
+                  <strong>Statutory Acceptance:</strong> Test reports accepted by FSSAI, BIS, APPCB, CPCB, and export inspection authorities.
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Standards & Recognized Test Methods Luxury Grid */}
-          <div className="mb-6 mt-16">
-            <SectionHeading 
-              eyebrow="RECOGNIZED NATIONAL & INTERNATIONAL METHODS"
-              title="8. Standards & Recognized Test Methods"
-              description="Depending on the sample matrix, parameter specifications, and statutory guidelines, testing is executed with reference to recognized national and international protocols:"
-            />
+          {/* Section 8: Standards & Recognized Test Methods (Dark Glass Showcase) */}
+          <div className="standards-suite-header mt-8">
+            <span className="standards-suite-eyebrow">RECOGNIZED NATIONAL &amp; INTERNATIONAL PROTOCOLS</span>
+            <h3 className="standards-suite-title">Standards &amp; Recognized Test Methods</h3>
+            <p className="standards-suite-desc">
+              Depending on the sample matrix, parameter specifications, and statutory guidelines, analytical testing is executed in accordance with authorized protocols:
+            </p>
           </div>
 
-          <div className="luxury-standards-grid">
+          <div className="dark-glass-standards-grid">
             {detailedStandards.map((std) => (
               <div 
-                className="luxury-standard-card" 
+                className="dark-glass-standard-card" 
                 key={std.name}
                 style={{
                   "--std-color": std.color,
@@ -653,18 +896,18 @@ function Home() {
                   "--std-shadow": std.shadow
                 } as React.CSSProperties}
               >
-                <div className="luxury-standard-top">
-                  <div className="luxury-standard-icon-box">
+                <div className="dark-glass-standard-top">
+                  <div className="dark-glass-standard-icon-box">
                     <FileText size={20} />
                   </div>
-                  <span className="luxury-standard-badge">{std.badge}</span>
+                  <span className="dark-glass-standard-badge">{std.badge}</span>
                 </div>
-                <h4 className="luxury-standard-title">{std.name}</h4>
-                <div className="luxury-standard-emblem">{std.emblem}</div>
-                <p className="luxury-standard-desc">{std.desc}</p>
-                <div className="luxury-standard-tags">
+                <h4 className="dark-glass-standard-title">{std.name}</h4>
+                <div className="dark-glass-standard-emblem">{std.emblem}</div>
+                <p className="dark-glass-standard-desc">{std.desc}</p>
+                <div className="dark-glass-standard-tags">
                   {std.tags.map((t) => (
-                    <span className="luxury-standard-tag" key={t}>{t}</span>
+                    <span className="dark-glass-standard-tag" key={t}>{t}</span>
                   ))}
                 </div>
               </div>
@@ -674,10 +917,10 @@ function Home() {
       </section>
 
       {/* 6. SECTION 4: INDUSTRIES & SECTORS WE SERVE (SINGLE-ROW AUTO-SCROLL WITH CIRCULAR PHOTO CARDS MATCHING REFERENCE UI) */}
-      <section className="section gradient-section-mesh overflow-hidden">
+      <section className="section gradient-section-sectors overflow-hidden fade-up-init">
         <div className="site-container">
           <SectionHeading 
-            eyebrow="9. INDUSTRIES & SECTORS WE SERVE"
+            eyebrow="INDUSTRIES & SECTORS WE SERVE"
             title="Trusted Testing Partner Across Diverse Sectors"
             description="Supporting private and government enterprises, food manufacturers, packaged water plants, commercial facilities, and residential units with certified analytical testing."
           />
@@ -704,36 +947,208 @@ function Home() {
 
       </section>
 
-      {/* 7. SECTION 5: WHY CHOOSE CERTIGO LABORATORIES? (7 PILLARS) */}
-      <section className="section gradient-section-teal">
+      {/* SECTION 5: WHY CHOOSE CERTIGO LABORATORIES? (EXECUTIVE CREDIBILITY SPOTLIGHT & 7 LUXURY PILLARS) */}
+      <section className="section gradient-section-why fade-up-init">
         <div className="site-container">
           <SectionHeading 
-            eyebrow="10. WHY CHOOSE CERTIGO LABORATORIES?"
+            eyebrow="WHY CHOOSE CERTIGO LABORATORIES?"
             title="Technical Excellence You Can Depend On"
-            description="We focus on generating dependable and technically sound test results through systematic procedures and client-focused service."
+            description="We focus on generating dependable and technically sound test results through systematic procedures, certified analytical instrumentation, and client-focused service."
           />
 
-          <div className="why-pillars-grid">
-            {whyPillars.map((p, idx) => (
-              <div className="why-pillar-card" key={p.title}>
-                <div 
-                  className="why-pillar-icon-box"
-                  style={{ color: idx % 2 === 0 ? "#00A8B5" : "#6EA236" }}
-                >
-                  <p.icon size={22} />
+          {/* Authentic Facility Spotlight Banner featuring real WhatsApp laboratory equipment photos */}
+          <div className="why-facility-spotlight">
+            <div className="why-spotlight-media">
+              <img 
+                src={realMicroscopeImg} 
+                alt="Authentic research microscopes and colony counter at Certigo Laboratories" 
+                className="why-spotlight-img"
+                width={800}
+                height={550}
+                loading="lazy"
+              />
+              <div className="why-spotlight-badge">
+                <Sparkles size={14} className="text-teal" />
+                <span>AUTHENTIC TESTING FACILITY · VISAKHAPATNAM</span>
+              </div>
+            </div>
+
+            <div className="why-spotlight-content">
+              <span className="why-spotlight-eyebrow">ISO/IEC 17025:2017 STANDARDS</span>
+              <h3 className="why-spotlight-title">Precision Instrumentation &amp; Qualified Scientific Personnel</h3>
+              <p className="why-spotlight-desc">
+                From analytical micro-balances calibrated to 0.0001g to laminar air flow pathogen containment and research-grade microscopy, Certigo operates high-fidelity analytical setups adhering strictly to national and international testing guidelines.
+              </p>
+
+              <div className="why-spotlight-badges-grid">
+                <div className="why-spotlight-badge-item">
+                  <ShieldCheck size={18} className="text-teal" />
+                  <div>
+                    <strong>100% Calibrated Equipment</strong>
+                    <small>Traceable to CRM reference standards</small>
+                  </div>
                 </div>
-                <div className="why-pillar-text">
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
+                <div className="why-spotlight-badge-item">
+                  <Award size={18} className="text-brand-green" />
+                  <div>
+                    <strong>NABL Accredited Scope</strong>
+                    <small>Accreditation No. {contact.nablNumber}</small>
+                  </div>
                 </div>
+                <div className="why-spotlight-badge-item">
+                  <FlaskConical size={18} className="text-primary" />
+                  <div>
+                    <strong>6 Testing Disciplines</strong>
+                    <small>Food, Water, Micro, Chem, Env &amp; Air</small>
+                  </div>
+                </div>
+                <div className="why-spotlight-badge-item">
+                  <CheckCircle2 size={18} className="text-teal" />
+                  <div>
+                    <strong>Legally Valid Reports</strong>
+                    <small>Accepted nationwide by FSSAI &amp; BIS</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 7 Luxury Pillars Grid */}
+          <div className="luxury-why-grid">
+            {whyPillars.map((p) => (
+              <div 
+                className="luxury-why-card" 
+                key={p.title}
+                style={{
+                  "--card-color": p.color,
+                  "--card-bg": p.bg,
+                  "--card-border": p.border
+                } as React.CSSProperties}
+              >
+                <div className="luxury-why-top">
+                  <div className="luxury-why-icon-box">
+                    <p.icon size={22} />
+                  </div>
+                  <span className="luxury-why-number">{p.num}</span>
+                </div>
+                <span className="luxury-why-tag">{p.tag}</span>
+                <h3 className="luxury-why-title">{p.title}</h3>
+                <p className="luxury-why-desc">{p.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 8. SECTION 6: HOW OUR TESTING PROCESS WORKS (MATCHING USER REFERENCE DESIGN) */}
-      <section className="process-flow-section">
+      {/* SECTION: SAMPLE INTEGRITY & TESTING ASSURANCE (REVERSE EDITORIAL: LEFT IMAGE, RIGHT CONTENT) */}
+      <section className="section gradient-section-integrity fade-up-init">
+        <div className="site-container reverse-editorial-split">
+          {/* Left side: Authentic Laboratory Image with floating credentials */}
+          <figure className="editorial-photo shadow-lg reverse-editorial-media">
+            <img 
+              src={realGlasswareImg} 
+              width={1200} 
+              height={900} 
+              loading="lazy" 
+              alt="Calibrated analytical wet chemistry setup and volumetric glassware at Certigo Laboratories" 
+            />
+            <div className="reverse-editorial-badges">
+              <span className="reverse-badge-pill">
+                <ShieldCheck size={14} className="text-teal" /> NABL SCOPE COMPLIANT
+              </span>
+              <span className="reverse-badge-pill reverse-badge-pill-green">
+                <Award size={14} /> ISO/IEC 17025:2017 BENCH
+              </span>
+            </div>
+            <figcaption>
+              <div>
+                <span>ANALYTICAL RIGOR</span>
+                <strong>Controlled bench procedures.</strong>
+              </div>
+              <Link 
+                to="/about" 
+                className="ml-auto w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors" 
+                aria-label="Learn more about Certigo analytical procedures"
+              >
+                <ArrowUpRight size={20} />
+              </Link>
+            </figcaption>
+          </figure>
+
+          {/* Right side: Editorial text and feature points */}
+          <div className="reverse-editorial-content">
+            <span className="eyebrow">SAMPLE INTEGRITY &amp; TESTING ASSURANCE</span>
+            <h2>
+              Dependable Turnaround.<br />Uncompromising Precision.
+            </h2>
+            <p>
+              From initial cold-chain preservation to instrument-calibrated analysis and legal test certificates, Certigo Laboratories follows strict quality assurance workflows so your test reports withstand regulatory scrutiny.
+            </p>
+
+            <div className="reverse-integrity-grid">
+              <div className="reverse-integrity-item">
+                <div className="reverse-integrity-icon">
+                  <ShieldCheck size={19} />
+                </div>
+                <div className="reverse-integrity-text">
+                  <strong>Chain of Custody Tracking</strong>
+                  <small>Standardized sample containers, tamper seals, and cold-chain transit logs.</small>
+                </div>
+              </div>
+
+              <div className="reverse-integrity-item">
+                <div className="reverse-integrity-icon" style={{ background: "rgba(110, 162, 54, 0.12)", color: "#4d7c1e" }}>
+                  <FlaskConical size={19} />
+                </div>
+                <div className="reverse-integrity-text">
+                  <strong>Double-Blind QA/QC</strong>
+                  <small>Matrix spikes, duplicate runs, and certified CRM reference calibration.</small>
+                </div>
+              </div>
+
+              <div className="reverse-integrity-item">
+                <div className="reverse-integrity-icon" style={{ background: "rgba(2, 132, 199, 0.12)", color: "#0284c7" }}>
+                  <FileText size={19} />
+                </div>
+                <div className="reverse-integrity-text">
+                  <strong>Audit-Ready Reports</strong>
+                  <small>Digitally authenticated certificates accepted nationwide by statutory boards.</small>
+                </div>
+              </div>
+
+              <div className="reverse-integrity-item">
+                <div className="reverse-integrity-icon" style={{ background: "rgba(217, 119, 6, 0.12)", color: "#d97706" }}>
+                  <MessagesSquare size={19} />
+                </div>
+                <div className="reverse-integrity-text">
+                  <strong>Dedicated Testing Advisory</strong>
+                  <small>Direct access to qualified chemists for parameter guidance and compliance.</small>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white shadow-sm">
+                <Link to="/quote">
+                  Discuss Your Testing Requirements <ArrowUpRight />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <a 
+                  href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20discuss%20sample%20collection%20and%20testing%20parameters." 
+                  target="_blank" 
+                  rel="noreferrer"
+                >
+                  <WhatsAppIcon className="w-4 h-4 mr-2 text-emerald-600" /> Connect on WhatsApp
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: HOW OUR TESTING PROCESS WORKS (MATCHING USER REFERENCE DESIGN) */}
+      <section className="process-flow-section fade-up-init">
         <div className="site-container">
           <div className="process-header-wrap">
             <div className="process-eyebrow-flex">
@@ -790,17 +1205,109 @@ function Home() {
             ))}
           </div>
 
-          <div className="mt-14 p-7 rounded-2xl bg-white border border-border text-center max-w-3xl mx-auto shadow-xs">
-            <h4 className="text-base font-bold text-primary mb-2">12. Our Quality Commitment</h4>
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-0">
-              “At Certigo Laboratories Private Limited, we believe that reliable laboratory testing plays an important role in protecting food safety, public health, water quality and the environment. We are committed to continuously improving our laboratory systems, technical competence and customer service to provide dependable testing support to our customers.”
-            </p>
+          {/* Presidential Quality Commitment Banner (Matching Reference Design) */}
+          <div className="quality-pledge-banner">
+            <div className="quality-pledge-badge-row">
+              <span className="quality-pledge-seal">
+                <Award size={15} /> OFFICIAL QUALITY PLEDGE
+              </span>
+              <span className="quality-pledge-iso">
+                <ShieldCheck size={14} /> ISO/IEC 17025:2017 COMPLIANCE
+              </span>
+            </div>
+
+            <h3 className="quality-pledge-title">Our Quality Commitment</h3>
+
+            <div className="quality-pledge-quote-wrap">
+              <span className="quality-quote-mark">“</span>
+              <p className="quality-pledge-text">
+                At Certigo Laboratories Private Limited, we believe that reliable laboratory testing plays an important role in protecting food safety, public health, water quality and the environment. We are committed to continuously improving our laboratory systems, technical competence and customer service to provide dependable testing support to our customers.
+              </p>
+              <span className="quality-quote-mark-end">”</span>
+            </div>
+
+            <div className="quality-pledge-footer">
+              <div className="quality-pledge-location">
+                <ShieldCheck size={16} className="text-brand-green" />
+                <span>Certigo Laboratories Pvt Ltd · NABL Accreditation No. {contact.nablNumber} · Visakhapatnam, AP</span>
+              </div>
+              <div className="quality-pledge-actions">
+                <Button asChild size="sm" className="bg-teal hover:bg-teal/90 text-white font-semibold">
+                  <Link to="/quote">Request a Testing Quote <ArrowRight size={14} /></Link>
+                </Button>
+                <a 
+                  href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20verify%20the%20quality%20commitment%20and%20testing%20scope."
+                  target="_blank"
+                  rel="noreferrer"
+                  className="quality-pledge-wa-btn"
+                >
+                  <WhatsAppIcon className="w-4 h-4 mr-1 text-emerald-600" /> WhatsApp Testing Desk
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: AUTHENTIC LABORATORY & EQUIPMENT GALLERY */}
+      <section className="section gradient-section-gallery fade-up-init" id="facility-gallery">
+        <div className="site-container">
+          <SectionHeading 
+            eyebrow="AUTHENTIC TESTING INFRASTRUCTURE"
+            title="Inside Certigo: Calibrated Equipment & Testing Bench"
+            description="An authentic glimpse inside our Visakhapatnam laboratory. Operating high-precision micro-balances, laminar airflow biosafety chambers, digital colony counters, and calibrated incubation suites under ISO/IEC 17025:2017 standards."
+          />
+
+          {/* Interactive Category Filter Pills */}
+          <div className="gallery-filter-bar">
+            {galleryCategories.map((cat) => (
+              <button 
+                key={cat.id} 
+                className={`gallery-filter-btn ${activeGalleryFilter === cat.id ? "is-active" : ""}`}
+                onClick={() => setActiveGalleryFilter(cat.id)}
+                type="button"
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Gallery 8-Card Grid */}
+          <div className="facility-gallery-grid">
+            {filteredGalleryItems.map((item, idx) => (
+              <article className="facility-gallery-card" key={`${item.title}-${idx}`}>
+                <div className="gallery-card-media">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="gallery-card-img"
+                    loading="lazy"
+                    width={480}
+                    height={330}
+                  />
+                  <span className="gallery-card-top-tag">{item.category}</span>
+                  <span className="gallery-card-status-pill">
+                    <CheckCircle2 size={11} /> Calibrated
+                  </span>
+                </div>
+                <div className="gallery-card-body">
+                  <span className="gallery-card-room">{item.room}</span>
+                  <h3 className="gallery-card-title">{item.title}</h3>
+                  <p className="gallery-card-spec">{item.spec}</p>
+                  <div className="gallery-card-tags">
+                    {item.tags.map((t) => (
+                      <span className="gallery-card-tag" key={t}>{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
       {/* 9. SECTION 7: STUDENT PROGRAMMES & PRACTICAL LEARNING (LUXURY GRADIENT CARDS WITHOUT COUNTERS) */}
-      <section className="section gradient-section-mesh">
+      <section className="section gradient-section-programmes fade-up-init">
         <div className="site-container">
           <SectionHeading 
             eyebrow="STUDENT PROGRAMMES & INTERNSHIPS"
@@ -868,8 +1375,56 @@ function Home() {
         </div>
       </section>
 
+      {/* SECTION: CLIENT TESTIMONIALS (MATCHING REFERENCE DESIGN) */}
+      <section className="section gradient-section-testimonials fade-up-init" id="testimonials">
+        <div className="site-container">
+          <SectionHeading 
+            eyebrow="CLIENT TESTIMONIALS &amp; TRUST"
+            title="Trusted by Quality Leaders &amp; Researchers"
+            description="What quality assurance heads, plant managers, and researchers say about testing accuracy, turnaround time, and technical competence at Certigo Laboratories."
+          />
+
+          <div className="testimonials-grid mt-10">
+            {testimonialsData.map((t, idx) => (
+              <div className="testimonial-item-wrap" key={idx}>
+                {/* Speech Card with Top Circular Quote Emblem and Downward Pointer */}
+                <div className="testimonial-speech-card">
+                  <div className="testimonial-quote-emblem" aria-hidden="true">
+                    <Quote size={18} />
+                  </div>
+
+                  {/* 5 Golden Stars */}
+                  <div className="testimonial-stars-row">
+                    {[...Array(5)].map((_, sIdx) => (
+                      <Star key={sIdx} size={15} className="testimonial-star-icon" />
+                    ))}
+                  </div>
+
+                  {/* Quote Text */}
+                  <p className="testimonial-quote-text">
+                    “{t.quote}”
+                  </p>
+                </div>
+
+                {/* Author Profile Below Card */}
+                <div className="testimonial-author-wrap">
+                  <div 
+                    className="testimonial-avatar-initial" 
+                    style={{ background: `linear-gradient(135deg, ${t.color} 0%, #133552 100%)` }}
+                  >
+                    {t.initial}
+                  </div>
+                  <strong className="testimonial-author-name">{t.name}</strong>
+                  <span className="testimonial-author-role">{t.role}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 10. SECTION 8: FULL-WIDTH IMAGE CTA BANNER */}
-      <section className="image-cta-section">
+      <section className="image-cta-section fade-up-init">
         <img 
           src={labImage} 
           alt="Modern testing laboratory at Certigo Laboratories" 

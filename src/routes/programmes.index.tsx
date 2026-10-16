@@ -32,7 +32,7 @@ const programmeDetails = [
       "Standard Operating Procedures (SOPs) & calibrated tool handling",
       "Official Certificate of Laboratory Training upon course completion"
     ],
-    applyLink: "/programmes-apply"
+    applyLink: "/apply"
   },
   {
     slug: "long-term-internships",
@@ -50,7 +50,7 @@ const programmeDetails = [
       "Dedicated 1-on-1 mentorship adhering to ISO/IEC 17025 workflows",
       "Industry-recognized Internship Training Credential for career placement"
     ],
-    applyLink: "/programmes-apply"
+    applyLink: "/apply"
   },
   {
     slug: "academic-projects",
@@ -68,7 +68,7 @@ const programmeDetails = [
       "Expert consultation on research methodology, protocols & parameter design",
       "Official Laboratory Project Completion Letter & signed validation certificate"
     ],
-    applyLink: "/programmes-apply"
+    applyLink: "/apply"
   }
 ];
 
@@ -156,7 +156,7 @@ function Programmes() {
               Fill out our simple application form with your college credentials, preferred discipline (Food, Water, or Microbiology), and timeline. Our scientific team will prepare your onboarding details.
             </p>
             <Button asChild size="lg" className="bg-teal hover:bg-teal/90 text-white font-bold shadow-md">
-              <Link to="/programmes-apply">
+              <Link to="/apply">
                 Submit Online Application <ArrowRight size={16} />
               </Link>
             </Button>

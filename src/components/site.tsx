@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import { 
   ArrowUpRight, ArrowRight, ArrowUp, Phone, Mail, MapPin, 
-  Menu, X, ChevronDown, FlaskConical 
+  Menu, X, ChevronDown, FlaskConical, GraduationCap 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { contact, services, programmes, labImage, openingImage } from "@/lib/site-data";
@@ -36,21 +36,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <div className="topbar">
-        <div className="site-container flex items-center justify-between gap-4">
-          <span className="flex items-center gap-2">
-            <MapPin size={13} /> Visakhapatnam, Andhra Pradesh
-          </span>
-          <div className="flex items-center gap-6">
-            <a href={`mailto:${contact.email}`} className="hidden sm:flex items-center gap-2">
-              <Mail size={13} />{contact.email}
-            </a>
-            <a href={contact.phoneHref} className="flex items-center gap-2">
-              <Phone size={13} />{contact.phone}
-            </a>
-          </div>
-        </div>
-      </div>
+
 
       <header className="site-header">
         <div className="site-container header-inner">
@@ -65,8 +51,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link to="/contact" className={pathname === "/contact" ? "nav-active" : ""}>Contact</Link>
           </nav>
           <div className="header-actions">
-            <Link to="/apply" className="apply-link">
-              Apply for a Programme <ArrowUpRight size={14} />
+            <Link to="/apply" className="apply-highlight-btn" title="Apply for Student Laboratory Training & Projects">
+              <GraduationCap size={16} />
+              <span>Apply for Programme</span>
+              <ArrowUpRight size={13} />
             </Link>
             <Button asChild className="quote-button">
               <Link to="/quote">
@@ -103,9 +91,15 @@ export function SiteShell({ children }: { children: ReactNode }) {
             ))}
             <Link to="/about" onClick={() => setOpen(false)}>About Us</Link>
             <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
-            <div className="flex gap-3 pb-4">
-              <Button asChild><Link to="/quote" onClick={() => setOpen(false)}>Request a Quote</Link></Button>
-              <Button asChild variant="outline"><Link to="/apply" onClick={() => setOpen(false)}>Apply</Link></Button>
+            <div className="flex flex-col gap-2.5 pb-4 pt-2">
+              <Button asChild className="w-full bg-gradient-to-r from-teal to-emerald-600 text-white font-bold shadow-md">
+                <Link to="/apply" onClick={() => setOpen(false)}>
+                  <GraduationCap size={17} className="mr-2" /> Apply for Programme
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/quote" onClick={() => setOpen(false)}>Request a Quote</Link>
+              </Button>
             </div>
           </nav>
         )}
