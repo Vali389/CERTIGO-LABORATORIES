@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowUpRight, ArrowRight, Check, ShieldCheck, FlaskConical, GraduationCap,
-  Leaf, MessagesSquare, Target, Clock, Award, Lock, Layers, Eye, Compass,
+  Leaf, Trees, MessagesSquare, Target, Clock, Award, Lock, Layers, Eye, Compass,
   Building2, Droplets, Apple, Microscope, Wind, Phone, Mail, MapPin,
   CheckCircle2, FileText, ChevronRight, ChevronLeft, Users, ClipboardCheck, Handshake,
-  Sparkles, Quote, Star
+  Sparkles, Quote, Star, X, Maximize2, Activity, Cpu, SlidersHorizontal
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHeading, WhatsAppIcon } from "@/components/site";
@@ -230,87 +230,185 @@ const luxuryStudentProgrammes = [
   }
 ];
 
+const facilityCategories = [
+  { id: "all", label: "All Infrastructure", count: 9 },
+  { id: "microbiology", label: "Microbiology Suite", count: 4 },
+  { id: "chemistry", label: "Analytical Chemistry", count: 2 },
+  { id: "water-env", label: "Water & Environmental", count: 1 },
+  { id: "prep-sterility", label: "Sterilization & Prep", count: 2 }
+];
+
+const nablDisciplines = [
+  { icon: Apple, name: "Food & Agriculture", sub: "Proximate, Residues & FSSAI", color: "#39B54A", bg: "rgba(57, 181, 74, 0.12)" },
+  { icon: Droplets, name: "Drinking & Packaged Water", sub: "IS 10500 Potability & Minerals", color: "#064B83", bg: "rgba(6, 75, 131, 0.12)" },
+  { icon: Microscope, name: "Microbiological Testing", sub: "Pathogens, Coliforms & Sterility", color: "#08AFC1", bg: "rgba(8, 175, 193, 0.12)" },
+  { icon: FlaskConical, name: "Analytical Chemistry", sub: "Heavy Metals, Assays & Assays", color: "#064B83", bg: "rgba(6, 75, 131, 0.12)" },
+  { icon: Trees, name: "Environmental Monitoring", sub: "Effluent, ETP & APPCB Rules", color: "#39B54A", bg: "rgba(57, 181, 74, 0.12)" },
+  { icon: Wind, name: "Ambient & Stack Air", sub: "PM2.5, PM10, SOx, NOx & Noise", color: "#08AFC1", bg: "rgba(8, 175, 193, 0.12)" }
+];
+
 const facilityGalleryItems = [
   {
+    id: "EQ-BAL-01",
     image: realBalanceImg,
     title: "Analytical Micro-Balance (0.0001g)",
     room: "Weighing & Reference Suite",
     category: "Analytical Chemistry",
     categoryKey: "chemistry",
     spec: "Calibrated 0.0001g balance for high-precision analytical weighing.",
-    tags: ["0.0001g Precision", "CRM Traceable", "Anti-Draft Shield"]
+    precision: "± 0.0001 g",
+    standard: "ISO/IEC 17025",
+    tags: ["0.0001g Precision", "CRM Traceable", "Anti-Draft Shield"],
+    features: [
+      "Electromagnetic force compensation weighing cell",
+      "Draft shield with anti-static coated glass panels",
+      "Traceable calibration against NPL reference standards",
+      "Automatic internal temperature-triggered recalibration"
+    ]
   },
   {
+    id: "EQ-LAF-02",
     image: realLaminarImg,
     title: "Laminar Air Flow Clean Bench (Type A2)",
     room: "Microbiology Inoculation Suite",
     category: "Microbiology Suite",
     categoryKey: "microbiology",
     spec: "ISO Class 5 vertical HEPA chamber for sterile sample inoculation.",
-    tags: ["HEPA 99.99%", "UV Germicidal Lamp", "Aseptic Handling"]
+    precision: "99.997% @ 0.3μm",
+    standard: "ISO 14644-1 Class 5",
+    tags: ["HEPA 99.99%", "UV Germicidal Lamp", "Aseptic Handling"],
+    features: [
+      "Ultra-low penetration air (HEPA) filtration matrix",
+      "Continuous airflow velocity monitor (0.45 m/s ± 20%)",
+      "Programmable UV decontamination cycle with interlock",
+      "Certified aseptic bench for pathogen inoculation"
+    ]
   },
   {
+    id: "EQ-DCC-03",
     image: realMicroscopeImg,
     title: "Digital Colony Counter & Inoculation Bench",
     room: "Microbial Enumeration Lab",
     category: "Microbiology Suite",
     categoryKey: "microbiology",
     spec: "Pressure-sensitive digital colony counter with optical magnification.",
-    tags: ["CFU Enumeration", "Magnified Lens", "Pressure Touch Sensor"]
+    precision: "0 - 9,999 CFU",
+    standard: "BAM / ISO 7218",
+    tags: ["CFU Enumeration", "Magnified Lens", "Pressure Touch Sensor"],
+    features: [
+      "Glare-free ring illumination with dark-field contrast",
+      "Pressure-sensitive electronic pen sensor with audible beep",
+      "Wolfhugel grid counting mask with 1.7x / 3x distortion-free lens",
+      "Direct digital readout for standardized microbiological counts"
+    ]
   },
   {
+    id: "EQ-MIC-04",
     image: realBinocularImg,
     title: "High-Power Binocular Research Microscope",
     room: "Cellular & Morphology Station",
     category: "Microbiology Suite",
     categoryKey: "microbiology",
     spec: "Achromatic 1000x oil-immersion optics for microbial morphology.",
-    tags: ["1000x Magnification", "LED Illumination", "Oil Immersion 100x"]
+    precision: "1000x Optical",
+    standard: "DIN / ISO 19012",
+    tags: ["1000x Magnification", "LED Illumination", "Oil Immersion 100x"],
+    features: [
+      "Quadruple revolving nosepiece with plan-achromatic objectives",
+      "Coaxial coarse and fine focusing with 0.002mm graduation",
+      "Abbe condenser N.A. 1.25 with iris diaphragm & filter holder",
+      "Pure white LED Koehler illumination for high resolution"
+    ]
   },
   {
+    id: "EQ-INC-05",
     image: realIncubatorImg,
-    title: "Standard and BOD incubators for controlled-temperature incubation in laboratory testing",
+    title: "Standard & BOD Controlled-Temperature Incubators",
     room: "Controlled Incubation Lab",
     category: "Water & Environmental",
     categoryKey: "water-env",
     spec: "Controlled chambers for BOD assays and microbial incubation.",
-    tags: ["20°C / 37°C / 44°C", "Microprocessor Control", "5-Day BOD Testing"]
+    precision: "± 0.1°C Stability",
+    standard: "IS 3025 (Part 44) / APHA",
+    tags: ["20°C / 37°C / 44°C", "Microprocessor Control", "5-Day BOD Testing"],
+    features: [
+      "Microprocessor PID temperature controller with dual sensors",
+      "Continuous air circulation for uniform thermal gradient",
+      "Hermetically sealed refrigeration unit for 20°C BOD incubation",
+      "Digital safety thermostat and high-temperature cutoff alarm"
+    ]
   },
   {
+    id: "EQ-AUT-06",
     image: realAutoclaveImg,
-    title: "Vertical Sterilization Autoclave",
+    title: "Vertical High-Pressure Sterilization Autoclave",
     room: "Media Prep & Decontamination",
     category: "Sterilization & Prep",
     categoryKey: "prep-sterility",
     spec: "High-pressure saturated steam sterilization (121°C / 15 psi).",
-    tags: ["121°C Saturated Steam", "Stainless Steel 304", "Biological Indicator QC"]
+    precision: "121°C / 15 psi",
+    standard: "IS 3829 / ASME",
+    tags: ["121°C Saturated Steam", "Stainless Steel 304", "Biological Indicator QC"],
+    features: [
+      "Heavy-gauge SS 304 deep-drawn sterilization chamber",
+      "Radial locking lid system with dual silicon gasket seal",
+      "Automatic purge valve for complete air evacuation",
+      "Validated weekly using Geobacillus stearothermophilus spore ampoules"
+    ]
   },
   {
+    id: "EQ-BSC-07",
     image: realBiosafetyImg,
-    title: "Class II Biosafety Cabinet",
+    title: "Class II Type A2 Biosafety Cabinet",
     room: "Microbiology Inoculation Suite",
     category: "Microbiology Suite",
     categoryKey: "microbiology",
     spec: "Certified HEPA laminar airflow chamber for sterile operator protection.",
-    tags: ["Class II Type A2", "HEPA Filtration", "Operator Safety"]
+    precision: "70% Recirc / 30% Exhaust",
+    standard: "EN 12469 / NSF 49",
+    tags: ["Class II Type A2", "HEPA Filtration", "Operator Safety"],
+    features: [
+      "Dual HEPA H14 filtration ensuring 99.995% efficiency",
+      "Dynamic negative pressure plenum preventing perimeter leaks",
+      "Acoustically dampened motor blower for quiet precision operation",
+      "Motorized tempered safety glass sash with aerodynamic airfoil"
+    ]
   },
   {
+    id: "EQ-OVEN-08",
     image: realHotAirOvenImg,
     title: "Digital Hot Air Sterilization Oven",
     room: "Media Prep & Decontamination",
     category: "Sterilization & Prep",
     categoryKey: "prep-sterility",
     spec: "Microprocessor dry heat sterilization for laboratory glassware.",
-    tags: ["Dry Heat Sterilization", "Microprocessor Control", "Glassware Prep"]
+    precision: "± 1.0°C Uniformity",
+    standard: "ISO 20857 / ASTM",
+    tags: ["Dry Heat Sterilization", "Microprocessor Control", "Glassware Prep"],
+    features: [
+      "Forced air convection system with whisper-quiet impeller",
+      "Double-walled insulation with high-density mineral wool",
+      "Digital countdown timer with auto-shutoff and soak period",
+      "Corrosion-resistant electropolished stainless steel interior"
+    ]
   },
   {
+    id: "EQ-HOM-09",
     image: realHomogenizerImg,
     title: "Stomacher Homogenizer & Vortex Station",
     room: "Food Matrix Extraction Lab",
     category: "Analytical Chemistry",
     categoryKey: "chemistry",
     spec: "Paddle-action sterile homogenizer for food microbial extraction.",
-    tags: ["Aseptic Stomaching", "Variable Speed Paddle", "Zero Cross-Contamination"]
+    precision: "4 - 10 strokes/sec",
+    standard: "ISO 6887 / AOAC",
+    tags: ["Aseptic Stomaching", "Variable Speed Paddle", "Zero Cross-Contamination"],
+    features: [
+      "Oscillating paddle mechanism for rapid cellular dispersion",
+      "Aseptic sterile filter bag system preventing sample cross-contact",
+      "Adjustable paddle distance for diverse food matrix densities",
+      "Removable drip tray with smooth easy-clean curved interior"
+    ]
   }
 ];
 
@@ -380,18 +478,11 @@ const heroSlides = [
 
 const refCircularServices = [
   {
-    title: "Environmental Testing",
-    sub: "Cleaner Environment for a Healthier Tomorrow",
-    path: "/services/environmental-testing" as const,
-    icon: Leaf,
+    title: "Food Testing",
+    sub: "Safe Food, Healthy Lives",
+    path: "/services/food-testing" as const,
+    icon: Apple,
     color: "#39B54A"
-  },
-  {
-    title: "Air Quality Testing",
-    sub: "Breathable Air, Better Living",
-    path: "/services/air-quality-testing" as const,
-    icon: Wind,
-    color: "#08AFC1"
   },
   {
     title: "Water Testing",
@@ -399,13 +490,6 @@ const refCircularServices = [
     path: "/services/water-testing" as const,
     icon: Droplets,
     color: "#064B83"
-  },
-  {
-    title: "Food Testing",
-    sub: "Safe Food, Healthy Lives",
-    path: "/services/food-testing" as const,
-    icon: Apple,
-    color: "#39B54A"
   },
   {
     title: "Microbiological Testing",
@@ -420,6 +504,20 @@ const refCircularServices = [
     path: "/services/chemical-testing" as const,
     icon: FlaskConical,
     color: "#064B83"
+  },
+  {
+    title: "Environmental Testing",
+    sub: "Cleaner Environment for a Healthier Tomorrow",
+    path: "/services/environmental-testing" as const,
+    icon: Trees,
+    color: "#39B54A"
+  },
+  {
+    title: "Air Quality Testing",
+    sub: "Breathable Air, Better Living",
+    path: "/services/air-quality-testing" as const,
+    icon: Wind,
+    color: "#08AFC1"
   }
 ];
 
@@ -448,6 +546,18 @@ const refPosterTrust = [
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedFacilityCategory, setSelectedFacilityCategory] = useState("all");
+  const [activeEquipmentModal, setActiveEquipmentModal] = useState<typeof facilityGalleryItems[0] | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveEquipmentModal(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -795,6 +905,134 @@ function Home() {
         </div>
       </section>
 
+      {/* SECTION: QUALITY & TECHNICAL COMPETENCE + NABL ACCREDITATION (EXECUTIVE SUITE MATCHING 2ND ATTACHED IMAGE) */}
+      <section className="section gradient-section-nabl-suite fade-up-init" id="nabl-accreditation">
+        <div className="site-container">
+          <div className="nabl-suite-header text-center max-w-3xl mx-auto mb-10">
+            <div className="nabl-suite-eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-3 bg-teal/10 text-teal border border-teal/25">
+              <span className="nabl-pulse-dot" /> QUALITY &amp; TECHNICAL COMPETENCE
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-serif text-primary font-bold mb-3">
+              NABL Accreditation &amp; Validated Standards
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Certigo Laboratories Private Limited is formally accredited in accordance with the international standard ISO/IEC 17025:2017 for technical competence in testing, operating calibrated analytical instrumentation and legal test certificates accepted nationwide.
+            </p>
+          </div>
+
+          {/* Two-Column Master Executive Hub */}
+          <div className="nabl-executive-grid">
+            {/* Left: Official Master Credential */}
+            <div className="nabl-master-card">
+              <div className="nabl-master-badge-row">
+                <span className="nabl-badge-pill-cyan">
+                  <ShieldCheck size={14} /> NABL ACCREDITED LABORATORY
+                </span>
+                <span className="nabl-badge-pill-green">
+                  ISO/IEC 17025:2017 CERTIFIED
+                </span>
+              </div>
+
+              <h3 className="nabl-master-title">
+                National Accreditation Board for Testing &amp; Calibration Laboratories
+              </h3>
+
+              {/* Certificate Code Plaque */}
+              <div className="nabl-code-plaque">
+                <div className="nabl-code-info">
+                  <span className="nabl-code-label">Accreditation Certificate Number</span>
+                  <span className="nabl-code-number">{contact.nablNumber}</span>
+                </div>
+                <div className="nabl-verified-tag">
+                  <CheckCircle2 size={15} /> Active NABL Scope
+                </div>
+              </div>
+
+              <p className="nabl-master-desc">
+                Accreditation under ISO/IEC 17025:2017 confirms that Certigo Laboratories operates an internationally recognized quality management system, utilizes calibrated instrumentation, participates in regular proficiency testing (PT), and issues legally valid, audit-ready test reports accepted across India.
+              </p>
+
+              <div className="nabl-competence-checklist">
+                <div className="nabl-check-item">
+                  <ShieldCheck size={16} />
+                  <span>ISO/IEC 17025:2017 Standard Compliance</span>
+                </div>
+                <div className="nabl-check-item">
+                  <Award size={16} />
+                  <span>Traceable Reference Standards (CRM)</span>
+                </div>
+                <div className="nabl-check-item">
+                  <FlaskConical size={16} />
+                  <span>Calibrated Analytical Instrumentation</span>
+                </div>
+                <div className="nabl-check-item">
+                  <Lock size={16} />
+                  <span>Impartial &amp; Tamper-Proof Audit Reports</span>
+                </div>
+              </div>
+
+              <div className="nabl-master-buttons">
+                <Button asChild size="lg" className="bg-teal hover:bg-teal/90 text-white font-bold shadow-md">
+                  <Link to="/contact">
+                    Confirm Scope of Accreditation <ArrowUpRight size={17} />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold shadow-sm">
+                  <a 
+                    href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20verify%20the%20NABL%20scope%20of%20accreditation%20for%20testing." 
+                    target="_blank" 
+                    rel="noreferrer"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 mr-2 text-emerald-600" /> WhatsApp Verification Desk
+                  </a>
+                </Button>
+              </div>
+            </div>
+
+            {/* Right: Accredited Scope & Statutory Recognition Matrix */}
+            <div className="nabl-scope-card">
+              <div className="nabl-scope-header">
+                <div>
+                  <h4 className="nabl-scope-title">Accredited Testing Disciplines</h4>
+                  <span className="nabl-scope-subtitle">Comprehensive Analytical Capabilities</span>
+                </div>
+                <span className="text-xs font-mono font-bold text-teal bg-teal/10 border border-teal/30 px-2.5 py-1 rounded-md">
+                  Scope Approved
+                </span>
+              </div>
+
+              <div className="nabl-disciplines-list">
+                {nablDisciplines.map((disc) => (
+                  <div className="nabl-discipline-item" key={disc.name}>
+                    <div className="nabl-discipline-icon" style={{ background: disc.bg, color: disc.color }}>
+                      <disc.icon size={16} />
+                    </div>
+                    <div className="nabl-discipline-text">
+                      <strong>{disc.name}</strong>
+                      <small>{disc.sub}</small>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="nabl-guarantee-box">
+                <Award size={18} />
+                <span>
+                  <strong>National Traceability:</strong> Certified reference materials traceable to NPL / NIST ensuring high measurement integrity.
+                </span>
+              </div>
+
+              <div className="nabl-guarantee-box">
+                <ShieldCheck size={18} />
+                <span>
+                  <strong>Statutory Acceptance:</strong> Test reports accepted by FSSAI, BIS, APPCB, CPCB, and export inspection authorities.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. INDUSTRIES & SECTORS WE SERVE (SINGLE-ROW AUTO-SCROLL WITH CIRCULAR PHOTO CARDS MATCHING REFERENCE UI) */}
       <section className="section gradient-section-sectors overflow-hidden fade-up-init">
         <div className="site-container">
@@ -931,50 +1169,318 @@ function Home() {
         </div>
       </section>
 
-      {/* SECTION: AUTHENTIC LABORATORY & EQUIPMENT GALLERY */}
+      {/* SECTION: AUTHENTIC TESTING INFRASTRUCTURE (20-YEARS-AHEAD SCI-FI LAB SHOWCASE) */}
       <section className="section gradient-section-gallery fade-up-init" id="facility-gallery">
         <div className="site-container">
-          <SectionHeading
-            eyebrow="AUTHENTIC TESTING INFRASTRUCTURE"
-            title="Inside Certigo: Calibrated Equipment & Testing Bench"
-            description="Calibrated laboratory testing instruments operating under ISO/IEC 17025 standards."
-          />
+          {/* Header */}
+          <div className="facility-futuristic-header text-center max-w-3xl mx-auto mb-10">
+            <div className="facility-hud-eyebrow inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase mb-3">
+              <span className="hud-radar-dot" /> AUTHENTIC TESTING INFRASTRUCTURE
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-primary font-bold mb-4 tracking-tight">
+              Inside Certigo: Calibrated Equipment &amp; Testing Bench
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Explore our real-world analytical instrumentation operating in temperature-controlled, ISO/IEC 17025 accredited cleanrooms. Every instrument undergoes scheduled traceable calibration to ensure audit-ready testing precision.
+            </p>
+          </div>
 
-          {/* Simple Clean Photo Grid with Calibrated Badges & Green Theme */}
-          <div className="facility-gallery-grid mt-10">
-            {facilityGalleryItems.map((item, idx) => (
-              <article className="facility-gallery-card" key={`${item.title}-${idx}`}>
-                <div className="gallery-card-media">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="gallery-card-img"
-                    loading="lazy"
-                    width={480}
-                    height={330}
-                  />
-                  <div className="gallery-card-badge-cat">
-                    <span>{item.category}</span>
+          {/* 1. Futuristic Sci-Fi Diagnostics Telemetry Bar */}
+          <div className="facility-telemetry-hud mb-10">
+            <div className="telemetry-hud-item">
+              <div className="telemetry-hud-icon">
+                <ShieldCheck size={20} className="text-teal" />
+              </div>
+              <div className="telemetry-hud-data">
+                <span className="telemetry-hud-label">CALIBRATION STATUS</span>
+                <strong className="telemetry-hud-value text-emerald-600 dark:text-emerald-400">100% Active &amp; Traceable</strong>
+                <span className="telemetry-hud-sub">Traceable to NPL / NIST</span>
+              </div>
+              <span className="telemetry-hud-pulse" />
+            </div>
+
+            <div className="telemetry-hud-item">
+              <div className="telemetry-hud-icon">
+                <Cpu size={20} className="text-brand-green" />
+              </div>
+              <div className="telemetry-hud-data">
+                <span className="telemetry-hud-label">CLEANROOM MATRIX</span>
+                <strong className="telemetry-hud-value text-primary">ISO Class 5 &amp; Class II A2</strong>
+                <span className="telemetry-hud-sub">HEPA 99.997% Filtration</span>
+              </div>
+              <span className="telemetry-hud-pulse pulse-green" />
+            </div>
+
+            <div className="telemetry-hud-item">
+              <div className="telemetry-hud-icon">
+                <Activity size={20} className="text-cyan-600" />
+              </div>
+              <div className="telemetry-hud-data">
+                <span className="telemetry-hud-label">MICRO-PRECISION</span>
+                <strong className="telemetry-hud-value text-teal">± 0.0001 g Weighing</strong>
+                <span className="telemetry-hud-sub">Anti-Draft Compensation</span>
+              </div>
+              <span className="telemetry-hud-pulse pulse-cyan" />
+            </div>
+
+            <div className="telemetry-hud-item">
+              <div className="telemetry-hud-icon">
+                <Award size={20} className="text-blue-600" />
+              </div>
+              <div className="telemetry-hud-data">
+                <span className="telemetry-hud-label">QUALITY PROTOCOL</span>
+                <strong className="telemetry-hud-value text-primary">ISO/IEC 17025:2017</strong>
+                <span className="telemetry-hud-sub">NABL Accr. NABLT0626AD18278</span>
+              </div>
+              <span className="telemetry-hud-pulse" />
+            </div>
+          </div>
+
+          {/* 2. Interactive Cybernetic Filter Switch Tabs */}
+          <div className="facility-filter-tabs-wrapper mb-10">
+            <div className="facility-filter-tabs">
+              {facilityCategories.map((cat) => {
+                const isActive = selectedFacilityCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setSelectedFacilityCategory(cat.id)}
+                    className={`facility-filter-tab ${isActive ? "is-active" : ""}`}
+                  >
+                    <span>{cat.label}</span>
+                    <span className="facility-tab-counter">{cat.count}</span>
+                    {isActive && <span className="facility-tab-glow-indicator" />}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* 3. Futuristic Equipment Cards Grid */}
+          <div className="facility-cyber-grid">
+            {facilityGalleryItems
+              .filter(
+                (item) =>
+                  selectedFacilityCategory === "all" ||
+                  item.categoryKey === selectedFacilityCategory
+              )
+              .map((item, idx) => (
+                <article
+                  className="facility-cyber-card"
+                  key={item.id}
+                  onClick={() => setActiveEquipmentModal(item)}
+                >
+                  {/* Cyber Corner HUD Reticles */}
+                  <div className="cyber-reticle reticle-tl" />
+                  <div className="cyber-reticle reticle-tr" />
+                  <div className="cyber-reticle reticle-bl" />
+                  <div className="cyber-reticle reticle-br" />
+
+                  {/* Media Container */}
+                  <div className="facility-cyber-media">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="facility-cyber-img"
+                      loading="lazy"
+                      width={520}
+                      height={360}
+                    />
+
+                    {/* Gradient & Scanline Overlays */}
+                    <div className="facility-cyber-vignette" />
+                    <div className="facility-cyber-scanline" />
+
+                    {/* Top HUD Badges */}
+                    <div className="facility-cyber-hud-top">
+                      <span className="cyber-id-badge">
+                        <Cpu size={11} /> {item.id}
+                      </span>
+                      <span className="cyber-status-badge">
+                        <span className="cyber-live-dot" /> ACTIVE &amp; CALIBRATED
+                      </span>
+                    </div>
+
+                    {/* Center Hover Trigger */}
+                    <div className="facility-cyber-hover-action">
+                      <span className="cyber-inspect-btn">
+                        <Maximize2 size={15} /> Inspect Diagnostics
+                      </span>
+                    </div>
+
+                    {/* Bottom Chamber Tag */}
+                    <div className="facility-cyber-chamber-pill">
+                      <span>{item.room}</span>
+                    </div>
                   </div>
-                  <div className="gallery-card-badge-calibrated">
-                    <span className="calibrated-pulse-dot" />
-                    <span>Calibrated</span>
+
+                  {/* Card Body */}
+                  <div className="facility-cyber-body">
+                    <div className="facility-cyber-meta-row">
+                      <span className="facility-cyber-cat">{item.category}</span>
+                      <span className="facility-cyber-precision">
+                        <Activity size={12} className="text-teal" /> {item.precision}
+                      </span>
+                    </div>
+
+                    <h3 className="facility-cyber-title">{item.title}</h3>
+                    <p className="facility-cyber-spec">{item.spec}</p>
+
+                    {/* High-tech tags */}
+                    <div className="facility-cyber-tags">
+                      {item.tags.map((tag, tIdx) => (
+                        <span className="facility-cyber-tag" key={tIdx}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Bottom Telemetry Footer */}
+                    <div className="facility-cyber-footer">
+                      <span className="cyber-standard-badge">
+                        <ShieldCheck size={13} className="text-brand-green" /> {item.standard}
+                      </span>
+                      <button
+                        type="button"
+                        className="cyber-card-action-link"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveEquipmentModal(item);
+                        }}
+                      >
+                        Full Specs <ChevronRight size={14} />
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="gallery-card-body">
-                  <span className="gallery-card-room">{item.room}</span>
-                  <h3 className="gallery-card-title">{item.title}</h3>
-                  <p className="gallery-card-spec">{item.spec}</p>
-                  <div className="gallery-card-tags">
-                    {item.tags.map((t, tIdx) => (
-                      <span className="gallery-card-tag" key={tIdx}>{t}</span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+          </div>
+
+          {/* Section Bottom Banner Note */}
+          <div className="facility-assurance-banner mt-12">
+            <div className="facility-assurance-inner">
+              <div className="facility-assurance-icon">
+                <Sparkles size={24} className="text-teal" />
+              </div>
+              <div className="facility-assurance-text">
+                <strong>Need testing performed on a specific analytical bench?</strong>
+                <p>All instruments at Certigo Laboratories are operated by ISO/IEC 17025 trained senior analysts following validated FSSAI, BIS, AOAC and APHA protocols.</p>
+              </div>
+              <Button asChild size="lg" className="facility-assurance-btn">
+                <Link to="/quote">
+                  Request Custom Analysis <ArrowUpRight size={16} />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
+
+        {/* 4. Futuristic High-Tech Equipment Inspector Modal */}
+        {activeEquipmentModal && (
+          <div
+            className="equipment-modal-backdrop"
+            onClick={() => setActiveEquipmentModal(null)}
+          >
+            <div
+              className="equipment-modal-dialog"
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-equipment-title"
+            >
+              {/* Modal Close Button */}
+              <button
+                type="button"
+                className="equipment-modal-close"
+                onClick={() => setActiveEquipmentModal(null)}
+                aria-label="Close Inspector"
+              >
+                <X size={20} />
+              </button>
+
+              <div className="equipment-modal-grid">
+                {/* Left Side: Photo with Telemetry HUD Overlay */}
+                <div className="equipment-modal-media">
+                  <img
+                    src={activeEquipmentModal.image}
+                    alt={activeEquipmentModal.title}
+                    className="equipment-modal-img"
+                  />
+                  <div className="equipment-modal-media-overlay" />
+                  <div className="equipment-modal-seal">
+                    <ShieldCheck size={18} />
+                    <span>NABL CERTIFIED · ISO/IEC 17025</span>
+                  </div>
+                  <div className="equipment-modal-hud-id">
+                    <span>ASSET ID: {activeEquipmentModal.id}</span>
+                  </div>
+                </div>
+
+                {/* Right Side: Technical Telemetry & Specifications */}
+                <div className="equipment-modal-details">
+                  <div className="equipment-modal-room-pill">
+                    <MapPin size={12} className="text-teal" /> {activeEquipmentModal.room}
+                  </div>
+
+                  <h3 id="modal-equipment-title" className="equipment-modal-title">
+                    {activeEquipmentModal.title}
+                  </h3>
+
+                  <div className="equipment-modal-badges">
+                    <span className="equipment-modal-badge badge-active">
+                      <span className="cyber-live-dot" /> Status: Calibrated &amp; Active
+                    </span>
+                    <span className="equipment-modal-badge badge-precision">
+                      <Activity size={13} /> Tolerance: {activeEquipmentModal.precision}
+                    </span>
+                    <span className="equipment-modal-badge badge-standard">
+                      <Award size={13} /> {activeEquipmentModal.standard}
+                    </span>
+                  </div>
+
+                  <div className="equipment-modal-desc-box">
+                    <strong>Analytical Function:</strong>
+                    <p>{activeEquipmentModal.spec}</p>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="equipment-modal-features">
+                    <span className="equipment-modal-features-title">
+                      Key Technical &amp; Operational Features:
+                    </span>
+                    <ul>
+                      {activeEquipmentModal.features.map((feat, fIdx) => (
+                        <li key={fIdx}>
+                          <CheckCircle2 size={16} className="text-brand-green flex-shrink-0" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Modal CTA Buttons */}
+                  <div className="equipment-modal-actions">
+                    <Button asChild size="lg" className="equipment-modal-btn-primary">
+                      <Link to={`/quote?equipment=${encodeURIComponent(activeEquipmentModal.title)}`}>
+                        Enquire Testing on this Bench <ArrowUpRight size={17} />
+                      </Link>
+                    </Button>
+                    <a
+                      href={`https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20am%20inquiring%20about%20testing%20using%20${encodeURIComponent(activeEquipmentModal.title)}.`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="equipment-modal-btn-whatsapp"
+                    >
+                      <WhatsAppIcon className="w-5 h-5 text-white" />
+                      <span>WhatsApp Specialist</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 9. SECTION 7: STUDENT PROGRAMMES & PRACTICAL LEARNING (LUXURY GRADIENT CARDS WITHOUT COUNTERS) */}

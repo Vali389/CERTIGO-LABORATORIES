@@ -1,4 +1,4 @@
-import { Apple, Droplets, Microscope, GraduationCap, BookOpen, FlaskConical, Wind, Leaf } from "lucide-react";
+import { Apple, Droplets, Microscope, GraduationCap, BookOpen, FlaskConical, Wind, Leaf, Trees } from "lucide-react";
 import labImage from "@/assets/hero-certigo-lab.jpg";
 import heroSlide1 from "@/assets/hero-slide-1.png";
 import heroSlide2 from "@/assets/hero-slide-2.png";
@@ -159,7 +159,7 @@ export const services = [
     slug: "environmental-testing",
     path: "/services/environmental-testing" as const,
     title: "Environmental Testing",
-    icon: Leaf,
+    icon: Trees,
     label: "ENVIRONMENTAL MONITORING & COMPLIANCE",
     intro: "Monitoring industrial effluents, soil, sludge, and environmental pollution.",
     description: "Comprehensive environmental testing supporting manufacturing units, construction projects, and commercial facilities in regulatory compliance.",
