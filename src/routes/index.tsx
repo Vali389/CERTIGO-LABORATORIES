@@ -905,128 +905,107 @@ function Home() {
         </div>
       </section>
 
-      {/* SECTION: QUALITY & TECHNICAL COMPETENCE + NABL ACCREDITATION (EXECUTIVE SUITE MATCHING 2ND ATTACHED IMAGE) */}
+      {/* SECTION: QUALITY & TECHNICAL COMPETENCE + NABL ACCREDITATION (CLEAN & SIMPLE) */}
       <section className="section gradient-section-nabl-suite fade-up-init" id="nabl-accreditation">
         <div className="site-container">
-          <div className="nabl-suite-header text-center max-w-3xl mx-auto mb-10">
-            <div className="eyebrow mb-4" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <span className="eyebrow mb-3" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
               <span className="nabl-pulse-dot" /> QUALITY &amp; TECHNICAL COMPETENCE
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-serif text-primary font-bold mb-3">
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-primary font-bold mb-3">
               NABL Accreditation &amp; Validated Standards
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Certigo Laboratories Private Limited is formally accredited in accordance with the international standard ISO/IEC 17025:2017 for technical competence in testing, operating calibrated analytical instrumentation and legal test certificates accepted nationwide.
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              Formally accredited under <strong>ISO/IEC 17025:2017</strong> for testing competence, calibrated instrumentation, and legal test certificates accepted nationwide.
             </p>
           </div>
 
-          {/* Two-Column Master Executive Hub */}
-          <div className="nabl-executive-grid">
-            {/* Left: Official Master Credential */}
-            <div className="nabl-master-card">
-              <div className="nabl-master-badge-row">
-                <span className="nabl-badge-pill-cyan">
-                  <ShieldCheck size={14} /> NABL ACCREDITED LABORATORY
+          {/* Very Simple & Attractive NABL Accreditation Card */}
+          <div className="nabl-simple-card">
+            {/* Top Bar: Certificate Plaque & Status */}
+            <div className="nabl-simple-topbar">
+              <div className="nabl-simple-cert-info">
+                <div className="nabl-simple-shield">
+                  <ShieldCheck size={26} className="text-brand-green" />
+                </div>
+                <div>
+                  <div className="nabl-simple-cert-label">NABL ACCREDITED LABORATORY · ISO/IEC 17025:2017</div>
+                  <h3 className="nabl-simple-cert-title">
+                    National Accreditation Board for Testing &amp; Calibration Laboratories
+                  </h3>
+                </div>
+              </div>
+
+              <div className="nabl-simple-cert-badge">
+                <span className="nabl-simple-badge-label">Certificate No:</span>
+                <span className="nabl-simple-badge-val">{contact.nablNumber}</span>
+                <span className="nabl-simple-verified">
+                  <CheckCircle2 size={13} /> Active Scope
                 </span>
-                <span className="nabl-badge-pill-green">
-                  ISO/IEC 17025:2017 CERTIFIED
-                </span>
-              </div>
-
-              <h3 className="nabl-master-title">
-                National Accreditation Board for Testing &amp; Calibration Laboratories
-              </h3>
-
-              {/* Certificate Code Plaque */}
-              <div className="nabl-code-plaque">
-                <div className="nabl-code-info">
-                  <span className="nabl-code-label">Accreditation Certificate Number</span>
-                  <span className="nabl-code-number">{contact.nablNumber}</span>
-                </div>
-                <div className="nabl-verified-tag">
-                  <CheckCircle2 size={15} /> Active NABL Scope
-                </div>
-              </div>
-
-              <p className="nabl-master-desc">
-                Accreditation under ISO/IEC 17025:2017 confirms that Certigo Laboratories operates an internationally recognized quality management system, utilizes calibrated instrumentation, participates in regular proficiency testing (PT), and issues legally valid, audit-ready test reports accepted across India.
-              </p>
-
-              <div className="nabl-competence-checklist">
-                <div className="nabl-check-item">
-                  <ShieldCheck size={16} />
-                  <span>ISO/IEC 17025:2017 Standard Compliance</span>
-                </div>
-                <div className="nabl-check-item">
-                  <Award size={16} />
-                  <span>Traceable Reference Standards (CRM)</span>
-                </div>
-                <div className="nabl-check-item">
-                  <FlaskConical size={16} />
-                  <span>Calibrated Analytical Instrumentation</span>
-                </div>
-                <div className="nabl-check-item">
-                  <Lock size={16} />
-                  <span>Impartial &amp; Tamper-Proof Audit Reports</span>
-                </div>
-              </div>
-
-              <div className="nabl-master-buttons">
-                <Button asChild size="lg" className="bg-teal hover:bg-teal/90 text-white font-bold shadow-md">
-                  <Link to="/contact">
-                    Confirm Scope of Accreditation <ArrowUpRight size={17} />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold shadow-sm">
-                  <a 
-                    href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20verify%20the%20NABL%20scope%20of%20accreditation%20for%20testing." 
-                    target="_blank" 
-                    rel="noreferrer"
-                  >
-                    <WhatsAppIcon className="w-4 h-4 mr-2 text-emerald-600" /> WhatsApp Verification Desk
-                  </a>
-                </Button>
               </div>
             </div>
 
-            {/* Right: Accredited Scope & Statutory Recognition Matrix */}
-            <div className="nabl-scope-card">
-              <div className="nabl-scope-header">
-                <div>
-                  <h4 className="nabl-scope-title">Accredited Testing Disciplines</h4>
-                  <span className="nabl-scope-subtitle">Comprehensive Analytical Capabilities</span>
+            {/* 4 Clean Competence Pillars */}
+            <div className="nabl-simple-grid">
+              <div className="nabl-simple-item">
+                <div className="nabl-simple-icon" style={{ background: "rgba(57,181,74,0.12)", color: "#278834" }}>
+                  <Award size={20} />
                 </div>
-                <span className="text-xs font-mono font-bold text-teal bg-teal/10 border border-teal/30 px-2.5 py-1 rounded-md">
-                  Scope Approved
-                </span>
+                <div>
+                  <h4>ISO/IEC 17025:2017</h4>
+                  <p>Accredited quality management system &amp; testing procedures</p>
+                </div>
               </div>
 
-              <div className="nabl-disciplines-list">
-                {nablDisciplines.map((disc) => (
-                  <div className="nabl-discipline-item" key={disc.name}>
-                    <div className="nabl-discipline-icon" style={{ background: disc.bg, color: disc.color }}>
-                      <disc.icon size={16} />
-                    </div>
-                    <div className="nabl-discipline-text">
-                      <strong>{disc.name}</strong>
-                      <small>{disc.sub}</small>
-                    </div>
-                  </div>
-                ))}
+              <div className="nabl-simple-item">
+                <div className="nabl-simple-icon" style={{ background: "rgba(8,175,193,0.12)", color: "#08AFC1" }}>
+                  <FlaskConical size={20} />
+                </div>
+                <div>
+                  <h4>Calibrated Equipment</h4>
+                  <p>Certified reference materials (CRM) traceable to NIST &amp; NPL</p>
+                </div>
               </div>
 
-              <div className="nabl-guarantee-box">
-                <Award size={18} />
-                <span>
-                  <strong>National Traceability:</strong> Certified reference materials traceable to NPL / NIST ensuring high measurement integrity.
-                </span>
+              <div className="nabl-simple-item">
+                <div className="nabl-simple-icon" style={{ background: "rgba(6,75,131,0.1)", color: "#064B83" }}>
+                  <ShieldCheck size={20} />
+                </div>
+                <div>
+                  <h4>Statutory Acceptance</h4>
+                  <p>Recognized by FSSAI, BIS, APPCB, CPCB &amp; audit authorities</p>
+                </div>
               </div>
 
-              <div className="nabl-guarantee-box">
-                <ShieldCheck size={18} />
-                <span>
-                  <strong>Statutory Acceptance:</strong> Test reports accepted by FSSAI, BIS, APPCB, CPCB, and export inspection authorities.
-                </span>
+              <div className="nabl-simple-item">
+                <div className="nabl-simple-icon" style={{ background: "rgba(14,165,233,0.12)", color: "#0284c7" }}>
+                  <CheckCircle2 size={20} />
+                </div>
+                <div>
+                  <h4>Audit-Ready Reports</h4>
+                  <p>Legally valid test certificates with measurement uncertainty</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Row: Disciplines Chips & Quick Action */}
+            <div className="nabl-simple-footer">
+              <div className="nabl-simple-chips">
+                <span className="nabl-simple-chip-title">Disciplines:</span>
+                <span className="nabl-chip">Food &amp; Agriculture</span>
+                <span className="nabl-chip">Drinking &amp; Packaged Water</span>
+                <span className="nabl-chip">Microbiology</span>
+                <span className="nabl-chip">Chemical Assays</span>
+                <span className="nabl-chip">Environmental</span>
+                <span className="nabl-chip">Air Quality</span>
+              </div>
+
+              <div className="nabl-simple-actions">
+                <Button asChild size="sm" className="bg-teal hover:bg-teal/90 text-white font-semibold text-xs px-4">
+                  <Link to="/contact">
+                    Verify Scope <ArrowUpRight size={14} className="ml-1" />
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
