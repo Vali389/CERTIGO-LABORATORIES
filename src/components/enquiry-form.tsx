@@ -678,7 +678,7 @@ I acknowledge the Certigo privacy notice.`;
             <Button 
               type="submit" 
               size="lg" 
-              className="w-full sm:w-auto bg-gradient-to-r from-primary to-teal hover:opacity-95 text-white font-bold py-3.5 px-8 text-sm shadow-md transition-all hover:scale-[1.01]"
+              className="w-full sm:w-auto bg-gradient-to-r from-brand-green to-teal hover:opacity-95 text-white font-bold py-3.5 px-8 text-sm shadow-md transition-all hover:scale-[1.01]"
             >
               <WhatsAppIcon className="w-4 h-4 mr-2" /> Submit Application &amp; Chat on WhatsApp
             </Button>
@@ -963,7 +963,7 @@ I acknowledge the Certigo privacy notice.`;
           <Button 
             type="submit" 
             size="lg" 
-            className="bg-gradient-to-r from-primary to-teal hover:opacity-95 text-white font-bold py-3.5 px-8 text-sm shadow-md transition-all hover:scale-[1.01]"
+            className="bg-gradient-to-r from-brand-green to-teal hover:opacity-95 text-white font-bold py-3.5 px-8 text-sm shadow-md transition-all hover:scale-[1.01]"
           >
             <WhatsAppIcon className="w-4 h-4 mr-2" /> Send Enquiry via WhatsApp
           </Button>

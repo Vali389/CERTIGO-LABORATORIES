@@ -125,15 +125,19 @@ function Apply() {
 
               {/* Eligible Life Science Disciplines */}
               <div className="bg-card border border-border rounded-xl p-6 shadow-xs">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-primary mb-2">Eligible Degree Disciplines</h4>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-primary mb-3">Eligible Student Groups</h4>
                 <div className="flex flex-wrap gap-1.5">
                   {[
-                    "Biotechnology", "Microbiology", "Food Technology", 
-                    "Chemistry", "Analytical Chemistry", "Biochemistry", 
-                    "Environmental Science", "Life Sciences", "B.Pharmacy"
+                    "B.Sc Chemistry", "M.Sc Chemistry",
+                    "B.Sc / M.Sc Microbiology", "B.Sc / M.Sc Biotechnology",
+                    "B.Sc / M.Sc Environmental Science",
+                    "B.Tech / M.Tech Environmental Engineering",
+                    "B.Tech Food Technology",
+                    "B.Sc / M.Sc Food Science & Food Technology",
+                    "B.Tech Chemical Engineering"
                   ].map((field) => (
-                    <span key={field} className="text-[11px] bg-secondary text-primary font-medium px-2.5 py-1 rounded-md">
-                      {field}
+                    <span key={field} className="text-[11px] bg-[#E8F8EA] text-[#278834] border border-[#39B54A]/30 font-semibold px-2.5 py-1 rounded-full">
+                      ✓ {field}
                     </span>
                   ))}
                 </div>

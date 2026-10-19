@@ -1,28 +1,50 @@
 import { Apple, Droplets, Microscope, GraduationCap, BookOpen, FlaskConical, Wind, Leaf } from "lucide-react";
 import labImage from "@/assets/hero-certigo-lab.jpg";
-import foodImage from "@/assets/service-food-testing.jpg";
-import waterImage from "@/assets/service-water-testing.jpg";
-import microImage from "@/assets/service-microbiology-testing.jpg";
-import chemImage from "@/assets/service-chemical-testing.jpg";
-import envImage from "@/assets/service-environmental-testing.jpg";
-import airImage from "@/assets/service-air-quality-testing.jpg";
-import researchImage from "@/assets/research-lab.jpg";
+import heroSlide1 from "@/assets/hero-slide-1.png";
+import heroSlide2 from "@/assets/hero-slide-2.png";
+import heroSlide3 from "@/assets/hero-slide-3.png";
+import foodImage from "@/assets/food-testing-new.png";
+import waterImage from "@/assets/water-testing-new.png";
+import microImage from "@/assets/microbiology-testing.png";
+import chemImage from "@/assets/chemical-testing-new.png";
+import envImage from "@/assets/environment-testing.png";
+import airImage from "@/assets/air-testing.png";
+import researchImage from "@/assets/editorial-science-lab.jpg";
 import cellsImage from "@/assets/microscope-study.jpg";
 import learningImage from "@/assets/laboratory-research.jpg";
+import aboutImage from "@/assets/about-image.png";
+import contactImage from "@/assets/contact-image.png";
+import allProgrammesImage from "@/assets/All Student Programmes.png";
+import allTestingServicesImage from "@/assets/all-testing-sevices.png";
+import shortTermProgramImage from "@/assets/short-tem-program.png";
+import longTermProgramImage from "@/assets/long-term-program.png";
+import academicProjectsImage from "@/assets/bsc-msc-academic-projects.png";
 
-export { researchImage, cellsImage, learningImage, labImage, foodImage, waterImage, microImage, chemImage, envImage, airImage };
+export { 
+  researchImage, cellsImage, learningImage, labImage, 
+  heroSlide1, heroSlide2, heroSlide3,
+  foodImage, waterImage, microImage, chemImage, envImage, airImage,
+  aboutImage, contactImage, allProgrammesImage, allTestingServicesImage,
+  shortTermProgramImage, longTermProgramImage, academicProjectsImage
+};
 
 export function openingImage(path: string) {
+  if (path === "/about") return aboutImage;
+  if (path === "/contact") return contactImage;
+  if (path === "/programmes") return allProgrammesImage;
+  if (path.includes("short-term")) return shortTermProgramImage;
+  if (path.includes("long-term")) return longTermProgramImage;
+  if (path.includes("academic")) return academicProjectsImage;
+  if (path === "/apply") return allProgrammesImage;
+  if (path === "/quote") return contactImage;
+  if (path === "/services" || path === "/services/") return allTestingServicesImage;
   if (path.includes("chemical")) return chemImage;
   if (path.includes("environmental")) return envImage;
   if (path.includes("air-quality")) return airImage;
   if (path.includes("microbiological")) return microImage;
   if (path.includes("food")) return foodImage;
   if (path.includes("water")) return waterImage;
-  if (path.includes("academic") || path === "/apply" || path === "/about") return learningImage;
-  if (path.includes("long-term")) return researchImage;
-  if (path.includes("programmes")) return learningImage;
-  if (path === "/privacy") return researchImage;
+  if (path === "/privacy") return aboutImage;
   return labImage;
 }
 
@@ -37,6 +59,7 @@ export const contact = {
   phoneHref: "tel:+918247442084",
   landline: "0891-4568391",
   email: "certigolabs@gmail.com",
+  instagram: "https://www.instagram.com/certigo_labs?cplk=MWIwYjdmNTJxdHJmdg==",
   address: "D.No.49-55-19/A, Saligramapuram, Vidyut Nagar, Beside Port Stadium, Visakhapatnam - 530024, Andhra Pradesh, India",
   officialVision: "To be a globally recognized leader in food and water testing, ensuring safety, quality and compliance through cutting-edge technology, expert analysis, and unwavering commitment to excellence.",
   officialMission: "Delivering trusted, accurate, and timely testing services for food and water safety, fostering health and confidence in every sample analyzed with 'excellence'.",
@@ -185,6 +208,7 @@ export const programmes = [
     tag: "EXPLORE & LEARN",
     intro: "Your first step from classroom to laboratory.",
     description: "Enquire about a focused introduction to laboratory work. Discuss your learning goals, academic background, and available dates with the student programmes team.",
+    image: shortTermProgramImage,
     points: [
       "An introduction to professional laboratory environments",
       "Hands-on exposure to standard testing procedures",
@@ -201,6 +225,7 @@ export const programmes = [
     tag: "DEEPEN YOUR EXPERIENCE",
     intro: "More time to explore. More room to grow.",
     description: "Discuss an extended learning opportunity aligned with your academic interests. Availability, supervision, attendance, and learning activities are agreed with the laboratory.",
+    image: longTermProgramImage,
     points: [
       "An extended programme of hands-on laboratory learning",
       "In-depth exposure to instrumentation and analytical methods",
@@ -217,6 +242,7 @@ export const programmes = [
     tag: "TURN CURIOSITY INTO DISCOVERY",
     intro: "Bring your academic ideas to the next level.",
     description: "Enquire about laboratory support for your BSc or MSc project. Share your proposed topic, university requirements, and expected deliverables to discuss suitability.",
+    image: academicProjectsImage,
     points: [
       "Discussion of proposed academic project topics",
       "Access to standard testing facilities and guidance",

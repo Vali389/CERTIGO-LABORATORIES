@@ -163,7 +163,7 @@ function Contact() {
                     <h4 className="font-bold text-primary text-sm mb-0.5">Certigo Laboratories Pvt. Ltd.</h4>
                     <p className="text-xs text-muted-foreground mb-0">Beside Port Stadium, Vidyut Nagar, Saligramapuram, Visakhapatnam</p>
                   </div>
-                  <Button asChild size="sm" className="bg-teal hover:bg-teal/90 text-white flex-shrink-0">
+                  <Button asChild size="sm" className="bg-[#39B54A] hover:bg-[#2ea642] text-white flex-shrink-0 rounded-full font-semibold px-4 shadow-sm">
                     <a 
                       href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.address)}`} 
                       target="_blank" 

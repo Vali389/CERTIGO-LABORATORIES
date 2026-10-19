@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { 
   Eye, Compass, CheckCircle2, ShieldCheck, Target, Award, 
-  FlaskConical, ArrowUpRight, ArrowRight, Building2, MapPin, Phone, Mail, Lock 
+  FlaskConical, ArrowUpRight, ArrowRight, Building2, MapPin, Phone, Mail, Lock, UserCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero, EnquiryBand, SectionHeading, WhatsAppIcon } from "@/components/site";
-import { labImage, pageHead, contact, researchImage } from "@/lib/site-data";
+import { labImage, pageHead, contact, researchImage, aboutImage } from "@/lib/site-data";
+import managingDirectorImg from "@/assets/managing-director.jpeg";
 
 export const Route = createFileRoute("/about")({
   head: () => pageHead(
@@ -14,6 +15,90 @@ export const Route = createFileRoute("/about")({
   ),
   component: About
 });
+
+const teamMembers = [
+  {
+    name: "Ms. M. Sirisha",
+    role: "Admin Manager",
+    qualification: "M.Sc. with Ph.D. · 3 Years Experience",
+    tag: "Administration & Operations",
+    bio: "She holds an M.Sc. with Ph.D. and has 3 years of experience in administrative and operational management.",
+    training: "Completed ISO/IEC 17025 training related to administrative and documentation controls. Skilled in record maintenance, personnel coordination, procurement, and inventory support, and administrative process management.",
+    responsibilities: "Responsible for smooth laboratory operations, maintaining administrative records, coordinating staff activities, supporting procurement and inventory processes, and ensuring compliance with laboratory management system requirements."
+  },
+  {
+    name: "Mrs. T. Anusha",
+    role: "Quality Manager",
+    qualification: "M.Sc. in Microbiology · 6 Years Experience",
+    tag: "Quality Management & Compliance",
+    bio: "Holds an M.Sc. in Microbiology with 6 years of experience in quality control and microbiological testing.",
+    training: "Trained in ISO/IEC 17025 and oversees quality system implementation and compliance.",
+    responsibilities: "Preparation and control of quality documents, conducting internal audits, handling non-conformities and corrective actions, monitoring proficiency testing and inter-laboratory comparisons, training personnel on quality procedures, and ensuring ongoing compliance with NABL and regulatory guidelines."
+  },
+  {
+    name: "Mrs. G. Govindamma",
+    role: "Technical Manager",
+    qualification: "M.Sc. in Biotechnology · 4 Years Experience",
+    tag: "Technical Oversight & Validation",
+    bio: "Holds an M.Sc. in Biotechnology and 4 years of experience in laboratory testing and technical supervision.",
+    training: "Received internal training as per ISO/IEC 17025 and is responsible for technical oversight, validation of test methods, review of results, and ensuring technical competence within the laboratory.",
+    responsibilities: "Selection and validation of test methods, supervision of analytical work, authorization and review of test results, ensuring technical competence of analysts, monitoring equipment performance, and maintaining adherence to approved standard methods and technical procedures."
+  },
+  {
+    name: "Ms. S. RAMALAKSHMI",
+    role: "Microbiologist",
+    qualification: "M.Sc. in Microbiology · 2 Years Experience",
+    tag: "Microbiological Testing",
+    bio: "She holds an M.Sc. in Microbiology with 2 years’ experience in microbiological testing of food and water samples.",
+    training: "Completed ISO/IEC 17025 training, enabling accurate and reliable testing compliance with laboratory quality standards. Skilled in media preparation, sample processing, incubation, microbial enumeration, result calculation, and maintenance of test records.",
+    responsibilities: "Performing routine microbiological tests, preparing media and cultures, recording and interpreting results, and ensuring compliance with safety, quality, and ISO/IEC 17025 procedures."
+  },
+  {
+    name: "Ms. B. Pavitra",
+    role: "Quality Executive",
+    qualification: "M.Sc. in Microbiology · 2 Years Experience",
+    tag: "Quality Assurance Support",
+    bio: "She holds an M.Sc. in Microbiology with 2 years of experience in quality control and laboratory support.",
+    training: "Completed ISO/IEC 17025 training, equipping her to assist in maintaining the laboratory quality system. Skilled in quality monitoring, record keeping, audit support, calibration tracking, and assisting analytical work.",
+    responsibilities: "Supporting quality management activities, maintaining quality records, assisting in internal audits, monitoring calibration schedules, and ensuring compliance and accuracy in laboratory testing under supervision."
+  },
+  {
+    name: "Ms. P. NAGA SRI",
+    role: "Trainee Microbiologist",
+    qualification: "M.Sc. · Trainee",
+    tag: "Microbiology Trainee",
+    bio: "She holds an M.Sc. degree and is undergoing rigorous laboratory training.",
+    training: "Completed ISO/IEC 17025 orientation training and is developing skills in basic microbiological techniques, media preparation, sterilization, sample handling, and laboratory hygiene.",
+    responsibilities: "Assisting senior staff under supervision in routine laboratory activities, including preparing media, sterilizing glassware, processing samples, and maintaining laboratory cleanliness, while gaining technical competence and understanding quality management system requirements."
+  },
+  {
+    name: "Mr. CH. Raveendra Kumar",
+    role: "Customer Relation Executive / Sample Receiver",
+    qualification: "Diploma · 3 Years Experience",
+    tag: "Customer Coordination & Traceability",
+    bio: "He holds a Diploma qualification and has 3 years of experience in customer coordination and sample handling.",
+    training: "Undergone ISO/IEC 17025 training related to sample receipt, traceability, and documentation management, sample verification, labelling, registration, storage, and maintaining chain of custody.",
+    responsibilities: "Accurate receipt and documentation of samples, ensuring traceability, coordinating with clients regarding test requirements and timelines, and maintaining adherence to quality procedures during sample handling."
+  },
+  {
+    name: "Ms. K. Lokeswari",
+    role: "Trainee Analyst",
+    qualification: "B.Sc. Graduation · Trainee",
+    tag: "Analytical Support Trainee",
+    bio: "Holds a graduation (B.Sc) qualification and is a trainee undergoing laboratory preparation.",
+    training: "Completed ISO/IEC 17025 orientation training and is developing skills in basic laboratory operations, sample handling, safety precautions, and housekeeping procedures.",
+    responsibilities: "Assisting senior staff under supervision in laboratory support activities, including cleaning of equipment and work areas, sample preparation, waste management, and maintaining laboratory safety and cleanliness in compliance with ISO/IEC 17025 requirements."
+  },
+  {
+    name: "B. Keerthi Kiran",
+    role: "Customer Relation Executive / Sample Receiver",
+    qualification: "MBA · 17 Years Experience",
+    tag: "Customer Coordination & Traceability",
+    bio: "He holds an MBA qualification and has 17 years’ experience in customer coordination and sample handling.",
+    training: "Undergone ISO/IEC 17025 training related to sample receipt, traceability, and documentation management, sample verification, labelling, registration, storage, and maintaining chain of custody.",
+    responsibilities: "Accurate receipt and documentation of samples, ensuring traceability, coordinating with clients regarding test requirements and timelines, and maintaining adherence to quality procedures during sample handling."
+  }
+];
 
 const missionPoints = [
   "To provide accurate and reliable laboratory testing services.",
@@ -26,7 +111,7 @@ const missionPoints = [
 
 const qualityPractices = [
   { title: "Standard Operating Procedures (SOPs)", desc: "Strict adherence to documented, validated SOPs for all testing activities." },
-  { title: "Validated Test Methods", desc: "Referencing national & international protocols (BIS/IS, FSSAI, APHA, ISO, AOAC)." },
+  { title: "Validated Test Methods", desc: "Testing methods selected and verified for their intended use, following applicable ISO/IEC, BIS, and FSSAI methods and other relevant standards, as applicable to our testing scope." },
   { title: "Equipment Calibration", desc: "Routine calibration and maintenance schedules for all analytical instruments." },
   { title: "Quality Control of Results", desc: "Internal quality checks, duplicate samples, matrix spikes, and control charts." },
   { title: "Measurement Traceability", desc: "Traceability of measurements to certified reference materials and standards." },
@@ -64,10 +149,10 @@ function About() {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-teal hover:bg-teal/90 text-white">
+              <Button asChild size="lg" className="bg-[#39B54A] hover:bg-[#2ea642] text-white rounded-full font-semibold px-6 shadow-sm">
                 <Link to="/quote">Request a Testing Quote <ArrowRight /></Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="border-[#064B83] text-[#064B83] hover:bg-[#F0FAFD] rounded-full font-semibold px-6">
                 <Link to="/services">Explore Our Services <ArrowUpRight /></Link>
               </Button>
             </div>
@@ -75,7 +160,7 @@ function About() {
 
           <figure className="editorial-photo shadow-lg">
             <img 
-              src={researchImage} 
+              src={aboutImage} 
               width={1200} 
               height={900} 
               loading="lazy" 
@@ -279,7 +364,75 @@ function About() {
         </div>
       </section>
 
-      {/* 5. OUR COMMITMENT */}
+      {/* 5. LEADERSHIP & TECHNICAL TEAM */}
+      <section className="section bg-slate-50/70 dark:bg-card/40 border-y border-border/60">
+        <div className="site-container">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="eyebrow">OUR PEOPLE &amp; LEADERSHIP</span>
+            <h2 className="text-3xl sm:text-4xl font-serif text-primary mb-3">
+              Laboratory Governance &amp; <span className="text-brand-green">Technical Team</span>
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Trained in accordance with ISO/IEC 17025 to ensure technical competence, impartial testing operations, and dependable customer service.
+            </p>
+          </div>
+
+          {/* Managing Director Featured Spotlight */}
+          <div className="md-profile-card mb-12">
+            <div className="md-profile-media">
+              <img
+                src={managingDirectorImg}
+                alt="Mrs. K. RAJITHA - Managing Director, Certigo Laboratories Pvt Ltd"
+                className="md-profile-img"
+                width={400}
+                height={480}
+              />
+              <div className="md-profile-badge">
+                <ShieldCheck size={14} className="text-brand-green" /> Managing Director
+              </div>
+            </div>
+            <div className="md-profile-info">
+              <div className="md-profile-header">
+                <span className="md-profile-role-tag">Leadership &amp; Governance</span>
+                <h3 className="md-profile-name">Mrs. K. RAJITHA</h3>
+                <div className="md-profile-role">Managing Director · M. Tech</div>
+              </div>
+              <p className="md-profile-text">
+                Serves as the managing director of Certigo Laboratories Pvt Ltd. She holds an M. Tech degree and has 4 years of relevant professional experience in laboratory management and technical operations.
+              </p>
+              <div className="md-profile-pill-box">
+                <span className="font-semibold text-primary">ISO/IEC 17025 Trained:</span> She is trained as per ISO/IEC 17025 and is responsible for overall laboratory governance, strategic planning, resource planning administration, appointment of competent personnel, and ensuring impartiality and confidentiality of the laboratory activities. She provides strategic direction for continual improvement, customer satisfaction, and compliance with statutory and accreditation requirements.
+              </div>
+            </div>
+          </div>
+
+          {/* Team Grid */}
+          <div className="team-grid">
+            {teamMembers.map((m) => (
+              <div key={m.name} className="team-card">
+                <div className="team-card-top">
+                  <div className="team-avatar-badge">
+                    <UserCheck size={20} />
+                  </div>
+                  <span className="team-card-tag">{m.tag}</span>
+                </div>
+                <h4 className="team-card-name">{m.name}</h4>
+                <div className="team-card-role">{m.role}</div>
+                <div className="team-card-qual">{m.qualification}</div>
+                <p className="team-card-bio">{m.bio}</p>
+                <div className="team-card-training">
+                  <strong className="text-primary font-semibold">ISO/IEC 17025:</strong> {m.training}
+                </div>
+                <div className="team-card-duties">
+                  <strong className="text-primary font-semibold">Responsibilities:</strong> {m.responsibilities}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. OUR COMMITMENT */}
       <section className="section gradient-section-mesh">
         <div className="site-container text-center max-w-3xl mx-auto">
           <span className="eyebrow">OUR COMMITMENT</span>
@@ -287,8 +440,14 @@ function About() {
           <p className="text-base text-muted-foreground leading-relaxed italic mb-8">
             “At Certigo Laboratories Private Limited, we believe that reliable laboratory testing plays an important role in protecting food safety, public health, water quality and the environment. We are committed to continuously improving our laboratory systems, technical competence and customer service to provide dependable testing support to our customers.”
           </p>
-          <div className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-xs font-semibold mb-8 shadow-sm">
             <ShieldCheck size={16} className="text-teal" /> Visakhapatnam, Andhra Pradesh · NABL Accredited
+          </div>
+
+          {/* Slogan Banner with Green color combination font */}
+          <div className="slogan-commitment-box mt-2">
+            <div className="slogan-green-quote">“You deserve the quality”</div>
+            <div className="slogan-green-sub">“We are determined for your safety”</div>
           </div>
         </div>
       </section>

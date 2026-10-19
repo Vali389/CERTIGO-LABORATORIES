@@ -1,12 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState, useEffect, useRef, type ReactNode } from "react";
-import { 
-  ArrowUpRight, ArrowRight, ArrowUp, Phone, Mail, MapPin, 
-  Menu, X, ChevronDown, FlaskConical, GraduationCap 
+import {
+  ArrowUpRight, ArrowRight, ArrowUp, Phone, Mail, MapPin,
+  Menu, X, ChevronDown, FlaskConical, GraduationCap,
+  MessagesSquare, ClipboardCheck, Sparkles, Award
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { contact, services, programmes, labImage, openingImage } from "@/lib/site-data";
-import logo from "@/assets/certigo-logo.png";
+import logo from "@/assets/new-certigo-logo.jpeg";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 export function WhatsAppIcon({ className = "w-6 h-6" }: { className?: string }) {
@@ -41,7 +42,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <header className="site-header">
         <div className="site-container header-inner">
           <Link to="/" aria-label="Certigo Laboratories home" onClick={() => setOpen(false)}>
-            <img className="site-logo" src={logo} width={470} height={154} alt="Certigo Laboratories" />
+            <img className="site-logo" src={logo} width={727} height={241} alt="Certigo Laboratories" />
           </Link>
           <nav className="desktop-nav" aria-label="Main navigation">
             <Link to="/" className={pathname === "/" ? "nav-active" : ""}>Home</Link>
@@ -50,24 +51,19 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link to="/about" className={pathname === "/about" ? "nav-active" : ""}>About Us</Link>
             <Link to="/contact" className={pathname === "/contact" ? "nav-active" : ""}>Contact</Link>
           </nav>
-          <div className="header-actions">
+          <div className="header-actions hidden md:flex">
             <Link to="/apply" className="apply-highlight-btn" title="Apply for Student Laboratory Training & Projects">
               <GraduationCap size={16} />
               <span>Apply for Programme</span>
               <ArrowUpRight size={13} />
             </Link>
-            <Button asChild className="quote-button">
-              <Link to="/quote">
-                Request a Quote <ArrowUpRight />
-              </Link>
-            </Button>
           </div>
-          <Button 
-            className="mobile-menu-button" 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => setOpen(!open)} 
-            aria-label={open ? "Close navigation" : "Open navigation"} 
+          <Button
+            className="mobile-menu-button"
+            variant="ghost"
+            size="icon"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}
           >
             {open ? <X /> : <Menu />}
@@ -92,13 +88,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link to="/about" onClick={() => setOpen(false)}>About Us</Link>
             <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
             <div className="flex flex-col gap-2.5 pb-4 pt-2">
-              <Button asChild className="w-full bg-gradient-to-r from-teal to-emerald-600 text-white font-bold shadow-md">
+              <Button asChild className="w-full quote-button text-white font-bold shadow-md">
                 <Link to="/apply" onClick={() => setOpen(false)}>
                   <GraduationCap size={17} className="mr-2" /> Apply for Programme
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="w-full">
-                <Link to="/quote" onClick={() => setOpen(false)}>Request a Quote</Link>
+              <Button asChild variant="outline" className="w-full border-teal/40 text-primary hover:bg-secondary">
+                <Link to="/quote" onClick={() => setOpen(false)}>Get a Quote</Link>
               </Button>
             </div>
           </nav>
@@ -111,7 +107,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="site-container footer-grid">
           <div>
             <Link to="/" className="footer-brand">
-              <img src={logo} width={470} height={154} alt="Certigo Laboratories Pvt Ltd." />
+              <img src={logo} width={727} height={241} alt="Certigo Laboratories Pvt Ltd." />
             </Link>
             <p>Quality testing for a healthier tomorrow.<br />A place for curiosity. A partner in clarity.</p>
             <div className="footer-tagline">ACCURATE <span>·</span> RELIABLE <span>·</span> TRUSTED</div>
@@ -130,6 +126,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <h3>Let's connect</h3>
             <a href={contact.phoneHref}><Phone size={15} />{contact.phone}</a>
             <a href={`mailto:${contact.email}`}><Mail size={15} />{contact.email}</a>
+            <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="footer-instagram-link">
+              <svg className="w-4 h-4 shrink-0 text-brand-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+              <span>Follow on Instagram</span>
+            </a>
             <p className="footer-address"><MapPin size={17} />{contact.address}</p>
           </div>
         </div>
@@ -137,6 +141,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <span>© {new Date().getFullYear()} Certigo Laboratories Pvt Ltd.</span>
           <div>
             <Link to="/about">About Us</Link>
+            <a href={contact.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
             <Link to="/privacy">Privacy Notice</Link>
           </div>
         </div>
@@ -154,12 +159,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <ArrowUp size={22} className="stroke-[2.5]" />
           </button>
         )}
-        <a 
-          className="floating-whatsapp-btn" 
-          href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20have%20a%20testing%20enquiry." 
-          target="_blank" 
-          rel="noreferrer" 
-          aria-label="Chat with Certigo on WhatsApp" 
+        <a
+          className="floating-whatsapp-btn"
+          href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20have%20a%20testing%20enquiry."
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Chat with Certigo on WhatsApp"
           title="Chat on WhatsApp"
         >
           <WhatsAppIcon className="w-7 h-7" />
@@ -175,25 +180,28 @@ export function PageHero({ title, eyebrow, description, image, children }: { tit
     <section className="page-hero" data-page={pathname}>
       <img src={image ?? openingImage(pathname)} className="hero-photo" alt="Illustrative laboratory scene" width={1920} height={1024} />
       <div className="hero-wash" />
-      <div className="site-container page-hero-content">
-        <div className="breadcrumb"><Link to="/">Home</Link><span>/</span><span>{title}</span></div>
-        <span className="eyebrow">{eyebrow}</span>
-        <h1>{title}</h1>
-        <p>{description}</p>
-        {children}
+      <div className="site-container page-hero-container">
+        <div className="page-hero-content">
+          <div className="page-hero-header-row">
+            <span className="eyebrow">{eyebrow}</span>
+            <h1>{title}</h1>
+          </div>
+          <p>{description}</p>
+          {children}
+        </div>
       </div>
     </section>
   );
 }
 
-export function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) { 
+export function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
   return (
     <div className="section-heading">
       <span className="eyebrow">{eyebrow}</span>
       <h2>{title}</h2>
       {description && <p>{description}</p>}
     </div>
-  ); 
+  );
 }
 
 /* Full-Width Image CTA Section (Matching User Reference Image 1) */
@@ -205,16 +213,16 @@ export function EnquiryBand({
   title?: string;
   pill?: string;
   description?: string;
-}) { 
+}) {
   return (
     <section className="image-cta-section">
-      <img 
-        src={labImage} 
-        alt="Certigo Laboratories advanced facility" 
-        className="image-cta-bg" 
-        width={1920} 
-        height={800} 
-        loading="lazy" 
+      <img
+        src={labImage}
+        alt="Certigo Laboratories advanced facility"
+        className="image-cta-bg"
+        width={1920}
+        height={800}
+        loading="lazy"
       />
       <div className="image-cta-wash" />
       <div className="site-container image-cta-content">
@@ -233,10 +241,10 @@ export function EnquiryBand({
               Let's Start a Conversation <ArrowUpRight size={17} />
             </Link>
           </Button>
-          <a 
-            href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20chat%20about%20a%20testing%20enquiry." 
-            target="_blank" 
-            rel="noreferrer" 
+          <a
+            href="https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20would%20like%20to%20chat%20about%20a%20testing%20enquiry."
+            target="_blank"
+            rel="noreferrer"
             className="image-cta-btn-whatsapp"
           >
             <WhatsAppIcon className="w-5 h-5 text-white" />
@@ -246,46 +254,71 @@ export function EnquiryBand({
       </div>
       <div className="image-cta-border-bottom" />
     </section>
-  ); 
+  );
 }
 
-export function Steps({ student = false }: { student?: boolean }) { 
-  const items = student 
-    ? [["Share your interests", "Tell us about your studies, goals, and preferred dates."], ["Discuss the opportunity", "The team reviews availability and programme suitability."], ["Confirm the details", "Agree the scope, schedule, and any applicable requirements."], ["Begin your journey", "Start after your place and programme details are confirmed."]] 
-    : [["Start a conversation", "Share your sample type and testing requirements."], ["Confirm your scope", "Discuss tests, sample requirements, pricing, and timelines."], ["Submit your sample", "Follow the collection and transport guidance provided."], ["Testing & reporting", "Receive results according to the agreed testing scope."]]; 
+export function Steps({ student = false }: { student?: boolean }) {
+  const items = student
+    ? [
+        { num: "01", title: "Share your interests", text: "Tell us about your studies, goals, and preferred dates.", icon: MessagesSquare },
+        { num: "02", title: "Discuss the opportunity", text: "The team reviews availability and programme suitability.", icon: ClipboardCheck },
+        { num: "03", title: "Confirm the details", text: "Agree the scope, schedule, and any applicable requirements.", icon: Sparkles },
+        { num: "04", title: "Begin your journey", text: "Start after your place and programme details are confirmed.", icon: Award }
+      ]
+    : [
+        { num: "01", title: "Start a conversation", text: "Share your sample type and testing requirements.", icon: MessagesSquare },
+        { num: "02", title: "Confirm your scope", text: "Discuss tests, sample requirements, pricing, and timelines.", icon: ClipboardCheck },
+        { num: "03", title: "Submit your sample", text: "Follow the collection and transport guidance provided.", icon: FlaskConical },
+        { num: "04", title: "Testing & reporting", text: "Receive results according to the agreed testing scope.", icon: Award }
+      ];
+
   return (
-    <div className="steps-grid">
-      {items.map(([title, text], i) => (
-        <div className="step" key={title}>
-          <span className="step-number">0{i + 1}</span>
-          <ArrowRight className="step-arrow" size={20} />
-          <h3>{title}</h3>
-          <p>{text}</p>
-        </div>
-      ))}
+    <div className="steps-luxury-wrap">
+      <div className="steps-luxury-grid">
+        {items.map((item, i) => (
+          <div className="step-luxury-card group" key={item.title}>
+            <div className="step-card-top-row">
+              <div className="step-luxury-num-badge">
+                <span>{item.num}</span>
+              </div>
+              <div className="step-luxury-icon-box">
+                <item.icon size={20} />
+              </div>
+              {i < items.length - 1 && (
+                <div className="step-luxury-arrow" aria-hidden="true">
+                  <ArrowRight size={14} />
+                </div>
+              )}
+            </div>
+            <h3 className="step-luxury-title">{item.title}</h3>
+            <p className="step-luxury-text">{item.text}</p>
+            <div className="step-luxury-bottom-bar" />
+          </div>
+        ))}
+      </div>
     </div>
-  ); 
+  );
 }
 
-function SiteDropdown({label, active, student}:{label:string;active:boolean;student:boolean}) {
+function SiteDropdown({ label, active, student }: { label: string; active: boolean; student: boolean }) {
   const items = student ? programmes : services;
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className={`nav-menu-trigger border-0 outline-none shadow-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus:shadow-none hover:bg-transparent ${active ? "nav-active" : ""}`}>
-          {label}<ChevronDown size={14}/>
+          {label}<ChevronDown size={14} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="site-dropdown-content" align="start" sideOffset={18}>
         <DropdownMenuItem asChild>
           <Link to={student ? "/programmes" : "/services"}>
-            All {student ? "student programmes" : "testing services"}<ArrowUpRight size={16}/>
+            All {student ? "student programmes" : "testing services"}<ArrowUpRight size={16} />
           </Link>
         </DropdownMenuItem>
         {items.map(x => (
           <DropdownMenuItem key={x.slug} asChild>
             <Link to={x.path}>
-              <x.icon size={19}/>{x.title}<ArrowUpRight className="ml-auto" size={14}/>
+              <x.icon size={19} />{x.title}<ArrowUpRight className="ml-auto" size={14} />
             </Link>
           </DropdownMenuItem>
         ))}
@@ -294,17 +327,17 @@ function SiteDropdown({label, active, student}:{label:string;active:boolean;stud
   );
 }
 
-function RevealPage({children}:{children:ReactNode}) {
+function RevealPage({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const node = ref.current;
-    if(!node || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!node || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if(entry.isIntersecting){
+      if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
         observer.unobserve(entry.target);
       }
-    }), {threshold: .08});
+    }), { threshold: .08 });
     node.querySelectorAll(".editorial-split,.section-heading,.programme-card,.step,.detail-main").forEach(el => {
       el.classList.add("reveal-section");
       observer.observe(el);
