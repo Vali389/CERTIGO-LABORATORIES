@@ -547,7 +547,7 @@ const refPosterTrust = [
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedFacilityCategory, setSelectedFacilityCategory] = useState("all");
-  const [activeEquipmentModal, setActiveEquipmentModal] = useState<typeof facilityGalleryItems[0] | null>(null);
+  const [hoveredEquipmentId, setHoveredEquipmentId] = useState<string | null>("EQ-LAF-02");
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -909,7 +909,7 @@ function Home() {
       <section className="section gradient-section-nabl-suite fade-up-init" id="nabl-accreditation">
         <div className="site-container">
           <div className="nabl-suite-header text-center max-w-3xl mx-auto mb-10">
-            <div className="nabl-suite-eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-3 bg-teal/10 text-teal border border-teal/25">
+            <div className="eyebrow mb-4" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
               <span className="nabl-pulse-dot" /> QUALITY &amp; TECHNICAL COMPETENCE
             </div>
             <h2 className="text-3xl sm:text-4xl font-serif text-primary font-bold mb-3">
@@ -1169,75 +1169,17 @@ function Home() {
         </div>
       </section>
 
-      {/* SECTION: AUTHENTIC TESTING INFRASTRUCTURE (20-YEARS-AHEAD SCI-FI LAB SHOWCASE) */}
+      {/* SECTION: AUTHENTIC TESTING INFRASTRUCTURE (CLEAN, SIMPLE & ATTRACTIVE UI) */}
       <section className="section gradient-section-gallery fade-up-init" id="facility-gallery">
         <div className="site-container">
-          {/* Header */}
-          <div className="facility-futuristic-header text-center max-w-3xl mx-auto mb-10">
-            <div className="facility-hud-eyebrow inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest uppercase mb-3">
-              <span className="hud-radar-dot" /> AUTHENTIC TESTING INFRASTRUCTURE
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-primary font-bold mb-4 tracking-tight">
-              Inside Certigo: Calibrated Equipment &amp; Testing Bench
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Explore our real-world analytical instrumentation operating in temperature-controlled, ISO/IEC 17025 accredited cleanrooms. Every instrument undergoes scheduled traceable calibration to ensure audit-ready testing precision.
-            </p>
-          </div>
+          <SectionHeading
+            eyebrow="AUTHENTIC TESTING INFRASTRUCTURE"
+            title="Inside Certigo: Calibrated Equipment & Testing Bench"
+            description="Calibrated laboratory testing instruments operating under ISO/IEC 17025 standards."
+          />
 
-          {/* 1. Futuristic Sci-Fi Diagnostics Telemetry Bar */}
-          <div className="facility-telemetry-hud mb-10">
-            <div className="telemetry-hud-item">
-              <div className="telemetry-hud-icon">
-                <ShieldCheck size={20} className="text-teal" />
-              </div>
-              <div className="telemetry-hud-data">
-                <span className="telemetry-hud-label">CALIBRATION STATUS</span>
-                <strong className="telemetry-hud-value text-emerald-600 dark:text-emerald-400">100% Active &amp; Traceable</strong>
-                <span className="telemetry-hud-sub">Traceable to NPL / NIST</span>
-              </div>
-              <span className="telemetry-hud-pulse" />
-            </div>
-
-            <div className="telemetry-hud-item">
-              <div className="telemetry-hud-icon">
-                <Cpu size={20} className="text-brand-green" />
-              </div>
-              <div className="telemetry-hud-data">
-                <span className="telemetry-hud-label">CLEANROOM MATRIX</span>
-                <strong className="telemetry-hud-value text-primary">ISO Class 5 &amp; Class II A2</strong>
-                <span className="telemetry-hud-sub">HEPA 99.997% Filtration</span>
-              </div>
-              <span className="telemetry-hud-pulse pulse-green" />
-            </div>
-
-            <div className="telemetry-hud-item">
-              <div className="telemetry-hud-icon">
-                <Activity size={20} className="text-cyan-600" />
-              </div>
-              <div className="telemetry-hud-data">
-                <span className="telemetry-hud-label">MICRO-PRECISION</span>
-                <strong className="telemetry-hud-value text-teal">± 0.0001 g Weighing</strong>
-                <span className="telemetry-hud-sub">Anti-Draft Compensation</span>
-              </div>
-              <span className="telemetry-hud-pulse pulse-cyan" />
-            </div>
-
-            <div className="telemetry-hud-item">
-              <div className="telemetry-hud-icon">
-                <Award size={20} className="text-blue-600" />
-              </div>
-              <div className="telemetry-hud-data">
-                <span className="telemetry-hud-label">QUALITY PROTOCOL</span>
-                <strong className="telemetry-hud-value text-primary">ISO/IEC 17025:2017</strong>
-                <span className="telemetry-hud-sub">NABL Accr. NABLT0626AD18278</span>
-              </div>
-              <span className="telemetry-hud-pulse" />
-            </div>
-          </div>
-
-          {/* 2. Interactive Cybernetic Filter Switch Tabs */}
-          <div className="facility-filter-tabs-wrapper mb-10">
+          {/* Simple, Clean & Attractive Category Filter Pills */}
+          <div className="facility-filter-tabs-wrapper mt-8 mb-10">
             <div className="facility-filter-tabs">
               {facilityCategories.map((cat) => {
                 const isActive = selectedFacilityCategory === cat.id;
@@ -1250,237 +1192,95 @@ function Home() {
                   >
                     <span>{cat.label}</span>
                     <span className="facility-tab-counter">{cat.count}</span>
-                    {isActive && <span className="facility-tab-glow-indicator" />}
                   </button>
                 );
               })}
             </div>
           </div>
 
-          {/* 3. Futuristic Equipment Cards Grid */}
-          <div className="facility-cyber-grid">
+          {/* Authentic Testing Infrastructure Cards (Matching User's Attached Reference Image) */}
+          <div className="equipment-showcase-grid">
             {facilityGalleryItems
               .filter(
                 (item) =>
                   selectedFacilityCategory === "all" ||
                   item.categoryKey === selectedFacilityCategory
               )
-              .map((item, idx) => (
-                <article
-                  className="facility-cyber-card"
-                  key={item.id}
-                  onClick={() => setActiveEquipmentModal(item)}
-                >
-                  {/* Cyber Corner HUD Reticles */}
-                  <div className="cyber-reticle reticle-tl" />
-                  <div className="cyber-reticle reticle-tr" />
-                  <div className="cyber-reticle reticle-bl" />
-                  <div className="cyber-reticle reticle-br" />
-
-                  {/* Media Container */}
-                  <div className="facility-cyber-media">
+              .map((item, idx) => {
+                const isActive = (hoveredEquipmentId === item.id) || (!hoveredEquipmentId && idx === 1);
+                return (
+                  <article
+                    className={`equipment-feature-card ${isActive ? "is-active" : ""}`}
+                    key={item.id}
+                    onMouseEnter={() => setHoveredEquipmentId(item.id)}
+                    onClick={() => setHoveredEquipmentId(item.id)}
+                  >
+                    {/* Background Equipment Photograph */}
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="facility-cyber-img"
+                      className="equipment-card-bg-img"
                       loading="lazy"
-                      width={520}
-                      height={360}
+                      width={480}
+                      height={460}
                     />
 
-                    {/* Gradient & Scanline Overlays */}
-                    <div className="facility-cyber-vignette" />
-                    <div className="facility-cyber-scanline" />
+                    {/* Gradient Overlay for Legibility */}
+                    <div className="equipment-card-vignette" />
 
-                    {/* Top HUD Badges */}
-                    <div className="facility-cyber-hud-top">
-                      <span className="cyber-id-badge">
-                        <Cpu size={11} /> {item.id}
-                      </span>
-                      <span className="cyber-status-badge">
-                        <span className="cyber-live-dot" /> ACTIVE &amp; CALIBRATED
-                      </span>
+                    {/* Top-Right Accent Dot (Green/Brand color matching reference image) */}
+                    <span className="equipment-card-accent-dot" />
+
+                    {/* Default State: Bottom Title + Accent Underline Bar */}
+                    <div className="equipment-card-default-bottom">
+                      <span className="equipment-card-room-badge">{item.room}</span>
+                      <h3 className="equipment-card-bottom-title">{item.title}</h3>
+                      <span className="equipment-card-underline-bar" />
                     </div>
 
-                    {/* Center Hover Trigger */}
-                    <div className="facility-cyber-hover-action">
-                      <span className="cyber-inspect-btn">
-                        <Maximize2 size={15} /> Inspect Diagnostics
-                      </span>
+                    {/* Active/Hover State: Top Title + Floating White Features Box (Middle Card in Reference Image) */}
+                    <div className="equipment-card-active-overlay">
+                      <div className="equipment-overlay-top">
+                        <span className="equipment-card-room-badge">{item.room}</span>
+                        <h3 className="equipment-overlay-title">{item.title}</h3>
+                        <span className="equipment-card-underline-bar" />
+                      </div>
+
+                      {/* Floating White Features Card */}
+                      <div className="equipment-features-box">
+                        <div className="equipment-features-heading">
+                          <span className="equipment-features-vertical-bar" />
+                          <span>KEY FEATURES</span>
+                        </div>
+
+                        <ul className="equipment-features-list">
+                          {item.features.slice(0, 4).map((feat, fIdx) => (
+                            <li key={fIdx}>
+                              <span className="equipment-check-badge">✓</span>
+                              <span>{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <div className="equipment-features-bottom-row">
+                          <Link
+                            to={`/quote?equipment=${encodeURIComponent(item.title)}`}
+                            className="equipment-view-more-btn"
+                          >
+                            <span>View More</span>
+                            <ChevronRight size={15} />
+                          </Link>
+                          <span className="equipment-standard-chip">
+                            {item.standard}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-
-                    {/* Bottom Chamber Tag */}
-                    <div className="facility-cyber-chamber-pill">
-                      <span>{item.room}</span>
-                    </div>
-                  </div>
-
-                  {/* Card Body */}
-                  <div className="facility-cyber-body">
-                    <div className="facility-cyber-meta-row">
-                      <span className="facility-cyber-cat">{item.category}</span>
-                      <span className="facility-cyber-precision">
-                        <Activity size={12} className="text-teal" /> {item.precision}
-                      </span>
-                    </div>
-
-                    <h3 className="facility-cyber-title">{item.title}</h3>
-                    <p className="facility-cyber-spec">{item.spec}</p>
-
-                    {/* High-tech tags */}
-                    <div className="facility-cyber-tags">
-                      {item.tags.map((tag, tIdx) => (
-                        <span className="facility-cyber-tag" key={tIdx}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Bottom Telemetry Footer */}
-                    <div className="facility-cyber-footer">
-                      <span className="cyber-standard-badge">
-                        <ShieldCheck size={13} className="text-brand-green" /> {item.standard}
-                      </span>
-                      <button
-                        type="button"
-                        className="cyber-card-action-link"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveEquipmentModal(item);
-                        }}
-                      >
-                        Full Specs <ChevronRight size={14} />
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              ))}
-          </div>
-
-          {/* Section Bottom Banner Note */}
-          <div className="facility-assurance-banner mt-12">
-            <div className="facility-assurance-inner">
-              <div className="facility-assurance-icon">
-                <Sparkles size={24} className="text-teal" />
-              </div>
-              <div className="facility-assurance-text">
-                <strong>Need testing performed on a specific analytical bench?</strong>
-                <p>All instruments at Certigo Laboratories are operated by ISO/IEC 17025 trained senior analysts following validated FSSAI, BIS, AOAC and APHA protocols.</p>
-              </div>
-              <Button asChild size="lg" className="facility-assurance-btn">
-                <Link to="/quote">
-                  Request Custom Analysis <ArrowUpRight size={16} />
-                </Link>
-              </Button>
-            </div>
+                  </article>
+                );
+              })}
           </div>
         </div>
-
-        {/* 4. Futuristic High-Tech Equipment Inspector Modal */}
-        {activeEquipmentModal && (
-          <div
-            className="equipment-modal-backdrop"
-            onClick={() => setActiveEquipmentModal(null)}
-          >
-            <div
-              className="equipment-modal-dialog"
-              onClick={(e) => e.stopPropagation()}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="modal-equipment-title"
-            >
-              {/* Modal Close Button */}
-              <button
-                type="button"
-                className="equipment-modal-close"
-                onClick={() => setActiveEquipmentModal(null)}
-                aria-label="Close Inspector"
-              >
-                <X size={20} />
-              </button>
-
-              <div className="equipment-modal-grid">
-                {/* Left Side: Photo with Telemetry HUD Overlay */}
-                <div className="equipment-modal-media">
-                  <img
-                    src={activeEquipmentModal.image}
-                    alt={activeEquipmentModal.title}
-                    className="equipment-modal-img"
-                  />
-                  <div className="equipment-modal-media-overlay" />
-                  <div className="equipment-modal-seal">
-                    <ShieldCheck size={18} />
-                    <span>NABL CERTIFIED · ISO/IEC 17025</span>
-                  </div>
-                  <div className="equipment-modal-hud-id">
-                    <span>ASSET ID: {activeEquipmentModal.id}</span>
-                  </div>
-                </div>
-
-                {/* Right Side: Technical Telemetry & Specifications */}
-                <div className="equipment-modal-details">
-                  <div className="equipment-modal-room-pill">
-                    <MapPin size={12} className="text-teal" /> {activeEquipmentModal.room}
-                  </div>
-
-                  <h3 id="modal-equipment-title" className="equipment-modal-title">
-                    {activeEquipmentModal.title}
-                  </h3>
-
-                  <div className="equipment-modal-badges">
-                    <span className="equipment-modal-badge badge-active">
-                      <span className="cyber-live-dot" /> Status: Calibrated &amp; Active
-                    </span>
-                    <span className="equipment-modal-badge badge-precision">
-                      <Activity size={13} /> Tolerance: {activeEquipmentModal.precision}
-                    </span>
-                    <span className="equipment-modal-badge badge-standard">
-                      <Award size={13} /> {activeEquipmentModal.standard}
-                    </span>
-                  </div>
-
-                  <div className="equipment-modal-desc-box">
-                    <strong>Analytical Function:</strong>
-                    <p>{activeEquipmentModal.spec}</p>
-                  </div>
-
-                  {/* Features List */}
-                  <div className="equipment-modal-features">
-                    <span className="equipment-modal-features-title">
-                      Key Technical &amp; Operational Features:
-                    </span>
-                    <ul>
-                      {activeEquipmentModal.features.map((feat, fIdx) => (
-                        <li key={fIdx}>
-                          <CheckCircle2 size={16} className="text-brand-green flex-shrink-0" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Modal CTA Buttons */}
-                  <div className="equipment-modal-actions">
-                    <Button asChild size="lg" className="equipment-modal-btn-primary">
-                      <Link to={`/quote?equipment=${encodeURIComponent(activeEquipmentModal.title)}`}>
-                        Enquire Testing on this Bench <ArrowUpRight size={17} />
-                      </Link>
-                    </Button>
-                    <a
-                      href={`https://wa.me/918247442084?text=Hello%20Certigo%2C%20I%20am%20inquiring%20about%20testing%20using%20${encodeURIComponent(activeEquipmentModal.title)}.`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="equipment-modal-btn-whatsapp"
-                    >
-                      <WhatsAppIcon className="w-5 h-5 text-white" />
-                      <span>WhatsApp Specialist</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </section>
 
       {/* 9. SECTION 7: STUDENT PROGRAMMES & PRACTICAL LEARNING (LUXURY GRADIENT CARDS WITHOUT COUNTERS) */}
