@@ -3,11 +3,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Search, Filter, MapPin, Briefcase, Clock, IndianRupee,
   GraduationCap, ArrowUpRight, ArrowRight, ShieldCheck,
-  CheckCircle2, Sparkles, Building2, Phone, Mail, Award,
-  X, RotateCcw, ChevronRight
+  CheckCircle2, Sparkles, Building2, Mail, Award,
+  X, RotateCcw, ChevronRight, ChevronLeft, FlaskConical
 } from "lucide-react";
-import { PageHero, WhatsAppIcon, SectionHeading } from "@/components/site";
-import { pageHead, contact, jobOpenings, type JobListing } from "@/lib/site-data";
+import { PageHero, WhatsAppIcon } from "@/components/site";
+import { pageHead, contact, jobOpenings } from "@/lib/site-data";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/careers/")({
@@ -24,6 +24,8 @@ function CareersIndex() {
   const [selectedDept, setSelectedDept] = useState<string>("all");
   const [selectedExp, setSelectedExp] = useState<string>("all");
   const [selectedType, setSelectedType] = useState<string>("all");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const jobsPerPage = 4;
 
   const departments = [
     { id: "all", label: "All Departments" },
@@ -72,13 +74,38 @@ function CareersIndex() {
     });
   }, [searchTerm, selectedDept, selectedExp, selectedType]);
 
+  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+  const startIndex = (currentPage - 1) * jobsPerPage;
+  const paginatedJobs = filteredJobs.slice(startIndex, startIndex + jobsPerPage);
+
   const hasActiveFilters = searchTerm !== "" || selectedDept !== "all" || selectedExp !== "all" || selectedType !== "all";
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setCurrentPage(1);
+  };
+
+  const handleDeptChange = (dept: string) => {
+    setSelectedDept(dept);
+    setCurrentPage(1);
+  };
+
+  const handleExpChange = (exp: string) => {
+    setSelectedExp(exp);
+    setCurrentPage(1);
+  };
+
+  const handleTypeChange = (type: string) => {
+    setSelectedType(type);
+    setCurrentPage(1);
+  };
 
   const resetFilters = () => {
     setSearchTerm("");
     setSelectedDept("all");
     setSelectedExp("all");
     setSelectedType("all");
+    setCurrentPage(1);
   };
 
   return (
@@ -145,7 +172,7 @@ function CareersIndex() {
               Current Laboratory Openings
             </h2>
             <p className="text-sm text-muted-foreground">
-              Filter by department, experience, or search by skills to find your ideal scientific role.
+              Filter by department, experience, or search by skills to find your ideal scientific role in Visakhapatnam.
             </p>
           </div>
 
@@ -157,14 +184,14 @@ function CareersIndex() {
               <input
                 type="text"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="Search by job title, analytical skill (e.g. HPLC, Salmonella, AAS), or degree..."
                 className="career-search-input"
               />
               {searchTerm && (
                 <button
                   type="button"
-                  onClick={() => setSearchTerm("")}
+                  onClick={() => handleSearchChange("")}
                   className="career-search-clear"
                   title="Clear search"
                 >
@@ -186,7 +213,7 @@ function CareersIndex() {
                   <button
                     key={dept.id}
                     type="button"
-                    onClick={() => setSelectedDept(dept.id)}
+                    onClick={() => handleDeptChange(dept.id)}
                     className={`career-dept-tab ${isActive ? "is-active" : ""}`}
                   >
                     <span>{dept.label}</span>
@@ -207,7 +234,7 @@ function CareersIndex() {
                 {/* Experience Filter */}
                 <select
                   value={selectedExp}
-                  onChange={(e) => setSelectedExp(e.target.value)}
+                  onChange={(e) => handleExpChange(e.target.value)}
                   className="career-dropdown-filter"
                   aria-label="Filter by Experience"
                 >
@@ -220,7 +247,7 @@ function CareersIndex() {
                 {/* Job Type Filter */}
                 <select
                   value={selectedType}
-                  onChange={(e) => setSelectedType(e.target.value)}
+                  onChange={(e) => handleTypeChange(e.target.value)}
                   className="career-dropdown-filter"
                   aria-label="Filter by Job Type"
                 >
@@ -243,89 +270,173 @@ function CareersIndex() {
 
               {/* Live Count Indicator */}
               <div className="text-xs text-slate-500 font-medium">
-                Showing <strong className="text-teal">{filteredJobs.length}</strong> of {jobOpenings.length} positions
+                Showing <strong className="text-teal">{filteredJobs.length}</strong> available positions
               </div>
             </div>
           </div>
 
           {/* Job Listings Grid */}
-          {filteredJobs.length > 0 ? (
-            <div className="career-jobs-grid">
-              {filteredJobs.map((job) => (
-                <article key={job.id} className="career-job-card">
-                  {/* Card Top Row */}
-                  <div className="career-card-header">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="career-card-dept-badge">{job.department}</span>
-                      <span className="career-card-ref-badge">{job.id}</span>
+          {paginatedJobs.length > 0 ? (
+            <>
+              <div className="career-jobs-grid">
+                {paginatedJobs.map((job) => (
+                  <article key={job.id} className="career-luxury-card group">
+                    <div className="career-card-top-accent" />
+
+                    {/* Top Row: Department Badge + Hiring Status (No Ref Number) */}
+                    <div className="career-card-header">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="career-dept-luxury-pill">
+                          <FlaskConical size={12} className="text-teal" />
+                          <span>{job.department}</span>
+                        </span>
+                        <span className="career-type-subtle-badge">
+                          {job.type}
+                        </span>
+                      </div>
+                      <span className="career-hiring-now-pill">
+                        <span className="career-live-dot" /> Actively Interviewing
+                      </span>
                     </div>
-                    <span className="career-card-status">
-                      <span className="career-live-dot" /> {job.status}
-                    </span>
-                  </div>
 
-                  {/* Job Title */}
-                  <h3 className="career-card-job-title">
-                    <Link to={job.path} className="hover:text-teal transition-colors">
-                      {job.title}
-                    </Link>
-                  </h3>
-
-                  {/* Metadata Chips */}
-                  <div className="career-card-meta-chips">
-                    <span className="career-meta-chip">
-                      <MapPin size={13} className="text-teal flex-shrink-0" />
-                      <span>{job.location}</span>
-                    </span>
-                    <span className="career-meta-chip">
-                      <Clock size={13} className="text-teal flex-shrink-0" />
-                      <span>{job.experience}</span>
-                    </span>
-                    <span className="career-meta-chip">
-                      <Briefcase size={13} className="text-teal flex-shrink-0" />
-                      <span>{job.type}</span>
-                    </span>
-                    <span className="career-meta-chip highlight-salary">
-                      <IndianRupee size={13} className="text-emerald-600 flex-shrink-0" />
-                      <span>{job.salary}</span>
-                    </span>
-                  </div>
-
-                  {/* Summary */}
-                  <p className="career-card-summary">
-                    {job.summary}
-                  </p>
-
-                  {/* Key Skills Tags */}
-                  <div className="career-card-skills-row">
-                    {job.keySkills.slice(0, 3).map((skill, sIdx) => (
-                      <span key={sIdx} className="career-micro-skill">
-                        {skill}
-                      </span>
-                    ))}
-                    {job.keySkills.length > 3 && (
-                      <span className="career-micro-skill-more">
-                        +{job.keySkills.length - 3} more
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Card Bottom CTA Row */}
-                  <div className="career-card-footer">
-                    <span className="text-[11px] text-slate-400 font-medium">
-                      Posted: {job.postedDate}
-                    </span>
-
-                    <Button asChild size="sm" className="bg-teal hover:bg-teal/90 text-white font-bold text-xs shadow-xs">
-                      <Link to={job.path}>
-                        <span>View Details &amp; Apply</span>
-                        <ChevronRight size={14} className="ml-1" />
+                    {/* Job Title */}
+                    <h3 className="career-card-title-wrap">
+                      <Link to={job.path} className="career-card-title-link">
+                        <span>{job.title}</span>
+                        <ArrowUpRight size={18} className="career-title-arrow" />
                       </Link>
-                    </Button>
+                    </h3>
+
+                    {/* Key Specs Pills */}
+                    <div className="career-specs-grid">
+                      <div className="career-spec-item">
+                        <MapPin size={13} className="text-teal flex-shrink-0" />
+                        <span>{job.location}</span>
+                      </div>
+                      <div className="career-spec-item">
+                        <Clock size={13} className="text-teal flex-shrink-0" />
+                        <span>{job.experience}</span>
+                      </div>
+                      <div className="career-spec-item">
+                        <GraduationCap size={13} className="text-teal flex-shrink-0" />
+                        <span>{job.education}</span>
+                      </div>
+                      <div className="career-spec-item career-salary-highlight">
+                        <IndianRupee size={13} className="text-emerald-600 flex-shrink-0" />
+                        <span>{job.salary}</span>
+                      </div>
+                    </div>
+
+                    {/* Summary */}
+                    <p className="career-luxury-summary">
+                      {job.summary}
+                    </p>
+
+                    {/* Key Technical Skills */}
+                    <div className="career-card-skills-row">
+                      {job.keySkills.slice(0, 4).map((skill, sIdx) => (
+                        <span key={sIdx} className="career-luxury-skill-tag">
+                          {skill}
+                        </span>
+                      ))}
+                      {job.keySkills.length > 4 && (
+                        <span className="career-luxury-skill-more">
+                          +{job.keySkills.length - 4} more
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Card Footer: Immediate Joining + Action Buttons */}
+                    <div className="career-luxury-footer">
+                      <div className="career-posting-status">
+                        <CheckCircle2 size={13} className="text-brand-green flex-shrink-0" />
+                        <span>Immediate Joining · Visakhapatnam</span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={`https://wa.me/918247442084?text=Hello%20Certigo%20HR%2C%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(job.title)}%20role.`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="career-quick-wa-btn"
+                          title="Quick inquiry on WhatsApp"
+                          aria-label={`Inquire about ${job.title} on WhatsApp`}
+                        >
+                          <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-600" />
+                        </a>
+
+                        <Button asChild size="sm" className="career-apply-action-btn">
+                          <Link to={job.path}>
+                            <span>View Role &amp; Apply</span>
+                            <ArrowRight size={14} className="ml-1.5 transition-transform group-hover:translate-x-1" />
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              {/* Professional Pagination Controls */}
+              {totalPages > 1 && (
+                <div className="career-pagination-wrap mt-10">
+                  <div className="career-pagination-info">
+                    Showing <strong className="text-primary">{startIndex + 1}–{Math.min(startIndex + jobsPerPage, filteredJobs.length)}</strong> of <strong className="text-primary">{filteredJobs.length}</strong> positions
                   </div>
-                </article>
-              ))}
-            </div>
+
+                  <div className="career-pagination-controls">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCurrentPage((prev) => Math.max(prev - 1, 1));
+                        document.getElementById("openings-section")?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      disabled={currentPage === 1}
+                      className="career-page-nav-btn"
+                      aria-label="Previous Page"
+                    >
+                      <ChevronLeft size={16} />
+                      <span className="hidden sm:inline">Previous</span>
+                    </button>
+
+                    <div className="flex items-center gap-1.5">
+                      {Array.from({ length: totalPages }, (_, idx) => {
+                        const pageNum = idx + 1;
+                        const isCurrent = pageNum === currentPage;
+                        return (
+                          <button
+                            key={pageNum}
+                            type="button"
+                            onClick={() => {
+                              setCurrentPage(pageNum);
+                              document.getElementById("openings-section")?.scrollIntoView({ behavior: "smooth" });
+                            }}
+                            className={`career-page-num-btn ${isCurrent ? "is-active" : ""}`}
+                            aria-current={isCurrent ? "page" : undefined}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+                        document.getElementById("openings-section")?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      disabled={currentPage === totalPages}
+                      className="career-page-nav-btn"
+                      aria-label="Next Page"
+                    >
+                      <span className="hidden sm:inline">Next</span>
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
           ) : (
             /* Empty State */
             <div className="bg-white border border-slate-200 rounded-2xl p-10 text-center max-w-lg mx-auto shadow-xs">
@@ -342,82 +453,77 @@ function CareersIndex() {
         </div>
       </section>
 
-      {/* Why Work at Certigo Section */}
-      <section className="section bg-white py-16 border-t border-slate-100">
-        <div className="site-container">
-          <SectionHeading
-            eyebrow="WHY WORK WITH US"
-            title="Building a Scientific Culture You Can Be Proud Of"
-            description="At Certigo Laboratories, we combine analytical precision with employee growth, offering mentorship, modern equipment, and a safety-first mindset."
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-            {[
-              {
-                icon: ShieldCheck,
-                color: "text-brand-green",
-                bg: "rgba(57,181,74,0.12)",
-                title: "NABL Accreditation",
-                desc: "Gain recognized analytical experience working under ISO/IEC 17025:2017 international testing quality standards."
-              },
-              {
-                icon: Sparkles,
-                color: "text-teal",
-                bg: "rgba(8,175,193,0.12)",
-                title: "Modern Instrumentation",
-                desc: "Hands-on operation with spectrophotometers, AAS, laminar hoods, and calibrated testing infrastructure."
-              },
-              {
-                icon: Award,
-                color: "text-primary",
-                bg: "rgba(6,75,131,0.1)",
-                title: "Structured Growth",
-                desc: "Clear career paths from technician to senior analytical chemist, technical manager, and quality auditor."
-              },
-              {
-                icon: Building2,
-                color: "text-emerald-700",
-                bg: "rgba(16,185,129,0.12)",
-                title: "Ethical Science",
-                desc: "An impartial, transparent testing environment dedicated to food safety and environmental protection."
-              }
-            ].map((pillar, idx) => (
-              <div key={idx} className="p-6 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-teal/30 hover:shadow-sm transition-all">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ background: pillar.bg }}>
-                  <pillar.icon size={24} className={pillar.color} />
-                </div>
-                <h3 className="text-base font-bold text-primary mb-2">{pillar.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed mb-0">{pillar.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Spontaneous / Open Application Banner */}
-      <section className="site-container mb-16">
-        <div className="bg-gradient-to-r from-[#064B83] via-[#053d6b] to-[#042848] text-white rounded-3xl p-8 sm:p-10 shadow-lg relative overflow-hidden">
-          <div className="relative z-10 max-w-2xl">
-            <span className="text-xs font-bold text-teal uppercase tracking-widest block mb-2">
-              SPONTANEOUS APPLICATIONS
+      {/* Executive Scientific Talent Network & Open Application Desk */}
+      <section className="site-container my-14">
+        <div className="career-talent-network-box">
+          <div className="career-talent-network-header">
+            <span className="career-talent-badge">
+              <Sparkles size={13} className="text-teal" />
+              <span>DIRECT SCIENTIFIC TALENT NETWORK</span>
             </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold mb-3">
-              Don't see a role that fits your exact profile?
-            </h3>
-            <p className="text-sm text-slate-300 leading-relaxed mb-6">
-              We are constantly expanding our laboratory testing teams and welcome open applications from passionate analytical chemists, microbiologists, and field sampling professionals.
+            <h2 className="career-talent-title">
+              Didn't Find a Role Matching Your Exact Specialization?
+            </h2>
+            <p className="career-talent-desc">
+              Certigo Laboratories is constantly expanding analytical capabilities and laboratory scopes in Visakhapatnam. We actively evaluate spontaneous CV submissions for upcoming positions across microbiology, analytical chemistry, environmental monitoring, and food safety validation.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-teal hover:bg-teal/90 text-white font-bold shadow-md">
-                <a href={`mailto:${contact.email}?subject=Open%20Application%20for%20Scientific%20Role%20-%20Certigo%20Laboratories`}>
-                  <Mail className="mr-2" size={17} /> Email Your CV to HR
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 font-semibold">
-                <a href="https://wa.me/918247442084?text=Hello%20Certigo%20HR%2C%20I%20would%20like%20to%20submit%20an%20open%20application%20for%20future%20laboratory%20openings." target="_blank" rel="noreferrer">
-                  <WhatsAppIcon className="w-4 h-4 mr-2 text-emerald-400" /> WhatsApp Recruitment Desk
-                </a>
-              </Button>
+          </div>
+
+          <div className="career-talent-cards-grid">
+            {/* Card 1: Direct HR CV Intake */}
+            <div className="career-talent-action-card">
+              <div className="career-talent-card-icon-box bg-cyan-500/10 text-cyan-400">
+                <Mail size={22} />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-bold text-white mb-1.5">Email Your Resume to HR</h3>
+                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                  Direct submission to our Technical Review Committee. Include your educational specialization, analytical equipment experience, and preferred laboratory division.
+                </p>
+                <Button asChild size="default" className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold shadow-md">
+                  <a href={`mailto:${contact.email}?subject=Spontaneous%20Application%20-%20Laboratory%20Scientific%20Role%20-%20Certigo%20Laboratories&body=Dear%20HR%20Team%2C%0A%0APlease%20find%20attached%20my%20curriculum%20vitae%20for%20consideration%20in%20future%20laboratory%20scientific%20openings.%0A%0AName%3A%0APhone%3A%0AHighest%20Qualification%3A%0AArea%20of%20Specialization%20(Microbiology%2FChemistry%2FEnvironment)%3A%0AAnalytical%20Instruments%20Handled%3A%0A%0AThank%20you.`}>
+                    <Mail size={15} className="mr-2" /> Send CV to {contact.email}
+                  </a>
+                </Button>
+              </div>
+            </div>
+
+            {/* Card 2: WhatsApp Recruitment Desk */}
+            <div className="career-talent-action-card">
+              <div className="career-talent-card-icon-box bg-emerald-500/10 text-emerald-400">
+                <WhatsAppIcon className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-bold text-white mb-1.5">WhatsApp Recruitment Desk</h3>
+                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                  Speak directly with our Recruitment Coordinator at Visakhapatnam to clarify upcoming vacancies, interview schedules, and shift timings.
+                </p>
+                <Button asChild variant="outline" size="default" className="w-full sm:w-auto border-emerald-400/40 text-emerald-300 hover:bg-emerald-950/60 font-semibold">
+                  <a
+                    href="https://wa.me/918247442084?text=Hello%20Certigo%20HR%2C%20I%20am%20interested%20in%20submitting%20an%20open%20application%20for%20laboratory%20scientific%20roles."
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 mr-2 text-emerald-400" /> WhatsApp +91 82474 42084
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Trust & Transparency Bar */}
+          <div className="career-talent-trust-bar">
+            <div className="flex items-center gap-2 text-xs text-slate-300">
+              <ShieldCheck size={14} className="text-brand-green flex-shrink-0" />
+              <span>100% Confidential Candidate Evaluation</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs text-slate-300">
+              <Award size={14} className="text-teal flex-shrink-0" />
+              <span>Technical Directorate Review</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs text-slate-300">
+              <Clock size={14} className="text-cyan-400 flex-shrink-0" />
+              <span>Prompt 48-Hour Response</span>
             </div>
           </div>
         </div>

@@ -56,9 +56,6 @@ export function CareerDetail({ slug }: { slug: string }) {
                 <span className="career-status-pill">
                   <span className="career-live-dot" /> {job.status}
                 </span>
-                <span className="text-xs font-mono text-slate-500 font-semibold bg-white/80 border border-slate-200 px-2 py-0.5 rounded">
-                  REF: {job.id}
-                </span>
               </div>
 
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-primary font-bold mb-4 leading-tight">
@@ -96,7 +93,7 @@ export function CareerDetail({ slug }: { slug: string }) {
                 </a>
               </Button>
               <a
-                href={`https://wa.me/918247442084?text=Hello%20Certigo%20HR%2C%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(job.title)}%20(Ref%3A%20${job.id})%20position.`}
+                href={`https://wa.me/918247442084?text=Hello%20Certigo%20HR%2C%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(job.title)}%20position%20at%20Certigo%20Laboratories.`}
                 target="_blank"
                 rel="noreferrer"
                 className="career-whatsapp-share-btn"
@@ -210,11 +207,8 @@ export function CareerDetail({ slug }: { slug: string }) {
             <aside className="lg:col-span-4 flex flex-col gap-6">
               {/* Quick Specs Card */}
               <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs">
-                <h3 className="text-base font-bold text-primary mb-4 pb-3 border-b border-slate-100 flex items-center justify-between">
-                  <span>Position Details</span>
-                  <span className="text-xs font-mono font-bold text-teal bg-teal/10 px-2 py-0.5 rounded">
-                    {job.id}
-                  </span>
+                <h3 className="text-base font-bold text-primary mb-4 pb-3 border-b border-slate-100">
+                  Position Details
                 </h3>
 
                 <dl className="career-sidebar-dl">
