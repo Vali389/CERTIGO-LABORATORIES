@@ -112,9 +112,13 @@ function CareersIndex() {
     <>
       <PageHero
         title="Careers at Certigo Laboratories"
-        eyebrow="JOIN OUR SCIENTIFIC TEAM · VISAKHAPATNAM"
         description="Advance your analytical career with a high-precision, NABL accredited (ISO/IEC 17025:2017) laboratory. We offer an intellectually stimulating environment for microbiologists, analytical chemists, and environmental scientists."
       >
+        <div className="pt-1 mb-4">
+          <span className="eyebrow m-0 inline-block bg-white/95 text-primary font-bold shadow-xs">
+            JOIN OUR SCIENTIFIC TEAM · VISAKHAPATNAM
+          </span>
+        </div>
         <div className="hero-buttons">
           <Button asChild size="lg" className="hero-btn-primary">
             <a href="#openings-section">
@@ -280,98 +284,60 @@ function CareersIndex() {
             <>
               <div className="career-jobs-grid">
                 {paginatedJobs.map((job) => (
-                  <article key={job.id} className="career-luxury-card group">
-                    <div className="career-card-top-accent" />
-
-                    {/* Top Row: Department Badge + Hiring Status (No Ref Number) */}
-                    <div className="career-card-header">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="career-dept-luxury-pill">
-                          <FlaskConical size={12} className="text-teal" />
-                          <span>{job.department}</span>
-                        </span>
-                        <span className="career-type-subtle-badge">
-                          {job.type}
-                        </span>
-                      </div>
-                      <span className="career-hiring-now-pill">
-                        <span className="career-live-dot" /> Actively Interviewing
+                  <article key={job.id} className="career-simple-card">
+                    {/* Header: Dept Pill + Type */}
+                    <div className="flex items-center justify-between gap-2 mb-2.5">
+                      <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-md">
+                        {job.department}
+                      </span>
+                      <span className="text-xs font-medium text-muted-foreground bg-slate-100 px-2 py-0.5 rounded">
+                        {job.type}
                       </span>
                     </div>
 
                     {/* Job Title */}
-                    <h3 className="career-card-title-wrap">
-                      <Link to={job.path} className="career-card-title-link">
-                        <span>{job.title}</span>
-                        <ArrowUpRight size={18} className="career-title-arrow" />
+                    <h3 className="text-lg sm:text-xl font-bold text-primary mb-2 leading-snug">
+                      <Link to={job.path} className="hover:text-teal transition-colors">
+                        {job.title}
                       </Link>
                     </h3>
 
-                    {/* Key Specs Pills */}
-                    <div className="career-specs-grid">
-                      <div className="career-spec-item">
-                        <MapPin size={13} className="text-teal flex-shrink-0" />
-                        <span>{job.location}</span>
-                      </div>
-                      <div className="career-spec-item">
-                        <Clock size={13} className="text-teal flex-shrink-0" />
-                        <span>{job.experience}</span>
-                      </div>
-                      <div className="career-spec-item">
-                        <GraduationCap size={13} className="text-teal flex-shrink-0" />
-                        <span>{job.education}</span>
-                      </div>
-                      <div className="career-spec-item career-salary-highlight">
-                        <IndianRupee size={13} className="text-emerald-600 flex-shrink-0" />
-                        <span>{job.salary}</span>
-                      </div>
+                    {/* Simple Details Wrap */}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-600 mb-3">
+                      <span className="flex items-center gap-1">
+                        <MapPin size={13} className="text-teal flex-shrink-0" /> {job.location}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock size={13} className="text-teal flex-shrink-0" /> {job.experience}
+                      </span>
+                      <span className="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                        <IndianRupee size={12} className="text-emerald-600 flex-shrink-0" /> {job.salary}
+                      </span>
                     </div>
 
                     {/* Summary */}
-                    <p className="career-luxury-summary">
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">
                       {job.summary}
                     </p>
 
-                    {/* Key Technical Skills */}
-                    <div className="career-card-skills-row">
-                      {job.keySkills.slice(0, 4).map((skill, sIdx) => (
-                        <span key={sIdx} className="career-luxury-skill-tag">
-                          {skill}
-                        </span>
-                      ))}
-                      {job.keySkills.length > 4 && (
-                        <span className="career-luxury-skill-more">
-                          +{job.keySkills.length - 4} more
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Card Footer: Immediate Joining + Action Buttons */}
-                    <div className="career-luxury-footer">
-                      <div className="career-posting-status">
-                        <CheckCircle2 size={13} className="text-brand-green flex-shrink-0" />
-                        <span>Immediate Joining · Visakhapatnam</span>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <a
-                          href={`https://wa.me/918247442084?text=Hello%20Certigo%20HR%2C%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(job.title)}%20role.`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="career-quick-wa-btn"
-                          title="Quick inquiry on WhatsApp"
-                          aria-label={`Inquire about ${job.title} on WhatsApp`}
-                        >
-                          <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-600" />
-                        </a>
-
-                        <Button asChild size="sm" className="career-apply-action-btn">
-                          <Link to={job.path}>
-                            <span>View Role &amp; Apply</span>
-                            <ArrowRight size={14} className="ml-1.5 transition-transform group-hover:translate-x-1" />
-                          </Link>
-                        </Button>
-                      </div>
+                    {/* Actions: Apply & WhatsApp */}
+                    <div className="flex items-center gap-2 pt-3 border-t border-slate-100 mt-auto">
+                      <Button asChild size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold text-xs h-9">
+                        <Link to={job.path}>
+                          <span>View Role &amp; Apply</span>
+                          <ArrowRight size={13} className="ml-1" />
+                        </Link>
+                      </Button>
+                      <a
+                        href={`https://wa.me/918247442084?text=Hello%20Certigo%20HR%2C%20I%20am%20inquiring%20about%20the%20${encodeURIComponent(job.title)}%20role.`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="h-9 w-9 rounded-md border border-emerald-300 bg-emerald-50 text-emerald-700 flex items-center justify-center hover:bg-emerald-100 transition-colors flex-shrink-0"
+                        title="Quick WhatsApp Inquiry"
+                        aria-label={`Inquire about ${job.title} on WhatsApp`}
+                      >
+                        <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
+                      </a>
                     </div>
                   </article>
                 ))}

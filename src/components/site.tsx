@@ -181,7 +181,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
   );
 }
 
-export function PageHero({ title, eyebrow, description, image, children }: { title: string; eyebrow: string; description: string; image?: string; children?: ReactNode }) {
+export function PageHero({ title, eyebrow, description, image, children }: { title: string; eyebrow?: string; description: string; image?: string; children?: ReactNode }) {
   const pathname = useRouterState({ select: s => s.location.pathname });
   return (
     <section className="page-hero" data-page={pathname}>
@@ -190,7 +190,7 @@ export function PageHero({ title, eyebrow, description, image, children }: { tit
       <div className="site-container page-hero-container">
         <div className="page-hero-content">
           <div className="page-hero-header-row">
-            <span className="eyebrow">{eyebrow}</span>
+            {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
             <h1>{title}</h1>
           </div>
           <p>{description}</p>
