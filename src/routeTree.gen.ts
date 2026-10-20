@@ -12,11 +12,19 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ApplyRouteImport } from './routes/apply'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProgrammesRouteImport } from './routes/programmes'
 import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as CareersIndexRouteImport } from './routes/careers.index'
+import { Route as CareersAnalyticalChemistSpectroscopyRouteImport } from './routes/careers.analytical-chemist-spectroscopy'
+import { Route as CareersEnvironmentalFieldAnalystRouteImport } from './routes/careers.environmental-field-analyst'
+import { Route as CareersFoodSafetyLabAnalystRouteImport } from './routes/careers.food-safety-lab-analyst'
+import { Route as CareersJuniorLabTechnicianWaterRouteImport } from './routes/careers.junior-lab-technician-water'
+import { Route as CareersQualityAssuranceNablOfficerRouteImport } from './routes/careers.quality-assurance-nabl-officer'
+import { Route as CareersSeniorFoodMicrobiologistRouteImport } from './routes/careers.senior-food-microbiologist'
 import { Route as ProgrammesIndexRouteImport } from './routes/programmes.index'
 import { Route as ProgrammesAcademicProjectsRouteImport } from './routes/programmes.academic-projects'
 import { Route as ProgrammesLongTermInternshipsRouteImport } from './routes/programmes.long-term-internships'
@@ -44,6 +52,11 @@ const ApplyRoute = ApplyRouteImport.update({
   path: '/apply',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -69,6 +82,47 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersIndexRoute = CareersIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CareersRoute,
+} as any)
+const CareersAnalyticalChemistSpectroscopyRoute =
+  CareersAnalyticalChemistSpectroscopyRouteImport.update({
+    id: '/analytical-chemist-spectroscopy',
+    path: '/analytical-chemist-spectroscopy',
+    getParentRoute: () => CareersRoute,
+  } as any)
+const CareersEnvironmentalFieldAnalystRoute =
+  CareersEnvironmentalFieldAnalystRouteImport.update({
+    id: '/environmental-field-analyst',
+    path: '/environmental-field-analyst',
+    getParentRoute: () => CareersRoute,
+  } as any)
+const CareersFoodSafetyLabAnalystRoute =
+  CareersFoodSafetyLabAnalystRouteImport.update({
+    id: '/food-safety-lab-analyst',
+    path: '/food-safety-lab-analyst',
+    getParentRoute: () => CareersRoute,
+  } as any)
+const CareersJuniorLabTechnicianWaterRoute =
+  CareersJuniorLabTechnicianWaterRouteImport.update({
+    id: '/junior-lab-technician-water',
+    path: '/junior-lab-technician-water',
+    getParentRoute: () => CareersRoute,
+  } as any)
+const CareersQualityAssuranceNablOfficerRoute =
+  CareersQualityAssuranceNablOfficerRouteImport.update({
+    id: '/quality-assurance-nabl-officer',
+    path: '/quality-assurance-nabl-officer',
+    getParentRoute: () => CareersRoute,
+  } as any)
+const CareersSeniorFoodMicrobiologistRoute =
+  CareersSeniorFoodMicrobiologistRouteImport.update({
+    id: '/senior-food-microbiologist',
+    path: '/senior-food-microbiologist',
+    getParentRoute: () => CareersRoute,
+  } as any)
 const ProgrammesIndexRoute = ProgrammesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -135,11 +189,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
+  '/careers': typeof CareersRouteWithChildren
   '/contact': typeof ContactRoute
   '/privacy': typeof PrivacyRoute
   '/programmes': typeof ProgrammesRouteWithChildren
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRouteWithChildren
+  '/careers/analytical-chemist-spectroscopy': typeof CareersAnalyticalChemistSpectroscopyRoute
+  '/careers/environmental-field-analyst': typeof CareersEnvironmentalFieldAnalystRoute
+  '/careers/food-safety-lab-analyst': typeof CareersFoodSafetyLabAnalystRoute
+  '/careers/junior-lab-technician-water': typeof CareersJuniorLabTechnicianWaterRoute
+  '/careers/quality-assurance-nabl-officer': typeof CareersQualityAssuranceNablOfficerRoute
+  '/careers/senior-food-microbiologist': typeof CareersSeniorFoodMicrobiologistRoute
   '/programmes/academic-projects': typeof ProgrammesAcademicProjectsRoute
   '/programmes/long-term-internships': typeof ProgrammesLongTermInternshipsRoute
   '/programmes/short-term-internships': typeof ProgrammesShortTermInternshipsRoute
@@ -149,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/services/food-testing': typeof ServicesFoodTestingRoute
   '/services/microbiological-testing': typeof ServicesMicrobiologicalTestingRoute
   '/services/water-testing': typeof ServicesWaterTestingRoute
+  '/careers/': typeof CareersIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -159,6 +221,12 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
+  '/careers/analytical-chemist-spectroscopy': typeof CareersAnalyticalChemistSpectroscopyRoute
+  '/careers/environmental-field-analyst': typeof CareersEnvironmentalFieldAnalystRoute
+  '/careers/food-safety-lab-analyst': typeof CareersFoodSafetyLabAnalystRoute
+  '/careers/junior-lab-technician-water': typeof CareersJuniorLabTechnicianWaterRoute
+  '/careers/quality-assurance-nabl-officer': typeof CareersQualityAssuranceNablOfficerRoute
+  '/careers/senior-food-microbiologist': typeof CareersSeniorFoodMicrobiologistRoute
   '/programmes/academic-projects': typeof ProgrammesAcademicProjectsRoute
   '/programmes/long-term-internships': typeof ProgrammesLongTermInternshipsRoute
   '/programmes/short-term-internships': typeof ProgrammesShortTermInternshipsRoute
@@ -168,6 +236,7 @@ export interface FileRoutesByTo {
   '/services/food-testing': typeof ServicesFoodTestingRoute
   '/services/microbiological-testing': typeof ServicesMicrobiologicalTestingRoute
   '/services/water-testing': typeof ServicesWaterTestingRoute
+  '/careers': typeof CareersIndexRoute
   '/programmes': typeof ProgrammesIndexRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -176,11 +245,18 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
+  '/careers': typeof CareersRouteWithChildren
   '/contact': typeof ContactRoute
   '/privacy': typeof PrivacyRoute
   '/programmes': typeof ProgrammesRouteWithChildren
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRouteWithChildren
+  '/careers/analytical-chemist-spectroscopy': typeof CareersAnalyticalChemistSpectroscopyRoute
+  '/careers/environmental-field-analyst': typeof CareersEnvironmentalFieldAnalystRoute
+  '/careers/food-safety-lab-analyst': typeof CareersFoodSafetyLabAnalystRoute
+  '/careers/junior-lab-technician-water': typeof CareersJuniorLabTechnicianWaterRoute
+  '/careers/quality-assurance-nabl-officer': typeof CareersQualityAssuranceNablOfficerRoute
+  '/careers/senior-food-microbiologist': typeof CareersSeniorFoodMicrobiologistRoute
   '/programmes/academic-projects': typeof ProgrammesAcademicProjectsRoute
   '/programmes/long-term-internships': typeof ProgrammesLongTermInternshipsRoute
   '/programmes/short-term-internships': typeof ProgrammesShortTermInternshipsRoute
@@ -190,6 +266,7 @@ export interface FileRoutesById {
   '/services/food-testing': typeof ServicesFoodTestingRoute
   '/services/microbiological-testing': typeof ServicesMicrobiologicalTestingRoute
   '/services/water-testing': typeof ServicesWaterTestingRoute
+  '/careers/': typeof CareersIndexRoute
   '/programmes/': typeof ProgrammesIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -199,11 +276,18 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/apply'
+    | '/careers'
     | '/contact'
     | '/privacy'
     | '/programmes'
     | '/quote'
     | '/services'
+    | '/careers/analytical-chemist-spectroscopy'
+    | '/careers/environmental-field-analyst'
+    | '/careers/food-safety-lab-analyst'
+    | '/careers/junior-lab-technician-water'
+    | '/careers/quality-assurance-nabl-officer'
+    | '/careers/senior-food-microbiologist'
     | '/programmes/academic-projects'
     | '/programmes/long-term-internships'
     | '/programmes/short-term-internships'
@@ -213,6 +297,7 @@ export interface FileRouteTypes {
     | '/services/food-testing'
     | '/services/microbiological-testing'
     | '/services/water-testing'
+    | '/careers/'
     | '/programmes/'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -223,6 +308,12 @@ export interface FileRouteTypes {
     | '/contact'
     | '/privacy'
     | '/quote'
+    | '/careers/analytical-chemist-spectroscopy'
+    | '/careers/environmental-field-analyst'
+    | '/careers/food-safety-lab-analyst'
+    | '/careers/junior-lab-technician-water'
+    | '/careers/quality-assurance-nabl-officer'
+    | '/careers/senior-food-microbiologist'
     | '/programmes/academic-projects'
     | '/programmes/long-term-internships'
     | '/programmes/short-term-internships'
@@ -232,6 +323,7 @@ export interface FileRouteTypes {
     | '/services/food-testing'
     | '/services/microbiological-testing'
     | '/services/water-testing'
+    | '/careers'
     | '/programmes'
     | '/services'
   id:
@@ -239,11 +331,18 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/apply'
+    | '/careers'
     | '/contact'
     | '/privacy'
     | '/programmes'
     | '/quote'
     | '/services'
+    | '/careers/analytical-chemist-spectroscopy'
+    | '/careers/environmental-field-analyst'
+    | '/careers/food-safety-lab-analyst'
+    | '/careers/junior-lab-technician-water'
+    | '/careers/quality-assurance-nabl-officer'
+    | '/careers/senior-food-microbiologist'
     | '/programmes/academic-projects'
     | '/programmes/long-term-internships'
     | '/programmes/short-term-internships'
@@ -253,6 +352,7 @@ export interface FileRouteTypes {
     | '/services/food-testing'
     | '/services/microbiological-testing'
     | '/services/water-testing'
+    | '/careers/'
     | '/programmes/'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -261,6 +361,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ApplyRoute: typeof ApplyRoute
+  CareersRoute: typeof CareersRouteWithChildren
   ContactRoute: typeof ContactRoute
   PrivacyRoute: typeof PrivacyRoute
   ProgrammesRoute: typeof ProgrammesRouteWithChildren
@@ -289,6 +390,13 @@ declare module '@tanstack/react-router' {
       path: '/apply'
       fullPath: '/apply'
       preLoaderRoute: typeof ApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -325,6 +433,55 @@ declare module '@tanstack/react-router' {
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/careers/': {
+      id: '/careers/'
+      path: '/'
+      fullPath: '/careers/'
+      preLoaderRoute: typeof CareersIndexRouteImport
+      parentRoute: typeof CareersRoute
+    }
+    '/careers/analytical-chemist-spectroscopy': {
+      id: '/careers/analytical-chemist-spectroscopy'
+      path: '/analytical-chemist-spectroscopy'
+      fullPath: '/careers/analytical-chemist-spectroscopy'
+      preLoaderRoute: typeof CareersAnalyticalChemistSpectroscopyRouteImport
+      parentRoute: typeof CareersRoute
+    }
+    '/careers/environmental-field-analyst': {
+      id: '/careers/environmental-field-analyst'
+      path: '/environmental-field-analyst'
+      fullPath: '/careers/environmental-field-analyst'
+      preLoaderRoute: typeof CareersEnvironmentalFieldAnalystRouteImport
+      parentRoute: typeof CareersRoute
+    }
+    '/careers/food-safety-lab-analyst': {
+      id: '/careers/food-safety-lab-analyst'
+      path: '/food-safety-lab-analyst'
+      fullPath: '/careers/food-safety-lab-analyst'
+      preLoaderRoute: typeof CareersFoodSafetyLabAnalystRouteImport
+      parentRoute: typeof CareersRoute
+    }
+    '/careers/junior-lab-technician-water': {
+      id: '/careers/junior-lab-technician-water'
+      path: '/junior-lab-technician-water'
+      fullPath: '/careers/junior-lab-technician-water'
+      preLoaderRoute: typeof CareersJuniorLabTechnicianWaterRouteImport
+      parentRoute: typeof CareersRoute
+    }
+    '/careers/quality-assurance-nabl-officer': {
+      id: '/careers/quality-assurance-nabl-officer'
+      path: '/quality-assurance-nabl-officer'
+      fullPath: '/careers/quality-assurance-nabl-officer'
+      preLoaderRoute: typeof CareersQualityAssuranceNablOfficerRouteImport
+      parentRoute: typeof CareersRoute
+    }
+    '/careers/senior-food-microbiologist': {
+      id: '/careers/senior-food-microbiologist'
+      path: '/senior-food-microbiologist'
+      fullPath: '/careers/senior-food-microbiologist'
+      preLoaderRoute: typeof CareersSeniorFoodMicrobiologistRouteImport
+      parentRoute: typeof CareersRoute
     }
     '/programmes/': {
       id: '/programmes/'
@@ -406,6 +563,31 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface CareersRouteChildren {
+  CareersAnalyticalChemistSpectroscopyRoute: typeof CareersAnalyticalChemistSpectroscopyRoute
+  CareersEnvironmentalFieldAnalystRoute: typeof CareersEnvironmentalFieldAnalystRoute
+  CareersFoodSafetyLabAnalystRoute: typeof CareersFoodSafetyLabAnalystRoute
+  CareersJuniorLabTechnicianWaterRoute: typeof CareersJuniorLabTechnicianWaterRoute
+  CareersQualityAssuranceNablOfficerRoute: typeof CareersQualityAssuranceNablOfficerRoute
+  CareersSeniorFoodMicrobiologistRoute: typeof CareersSeniorFoodMicrobiologistRoute
+  CareersIndexRoute: typeof CareersIndexRoute
+}
+
+const CareersRouteChildren: CareersRouteChildren = {
+  CareersAnalyticalChemistSpectroscopyRoute:
+    CareersAnalyticalChemistSpectroscopyRoute,
+  CareersEnvironmentalFieldAnalystRoute: CareersEnvironmentalFieldAnalystRoute,
+  CareersFoodSafetyLabAnalystRoute: CareersFoodSafetyLabAnalystRoute,
+  CareersJuniorLabTechnicianWaterRoute: CareersJuniorLabTechnicianWaterRoute,
+  CareersQualityAssuranceNablOfficerRoute:
+    CareersQualityAssuranceNablOfficerRoute,
+  CareersSeniorFoodMicrobiologistRoute: CareersSeniorFoodMicrobiologistRoute,
+  CareersIndexRoute: CareersIndexRoute,
+}
+
+const CareersRouteWithChildren =
+  CareersRoute._addFileChildren(CareersRouteChildren)
+
 interface ProgrammesRouteChildren {
   ProgrammesAcademicProjectsRoute: typeof ProgrammesAcademicProjectsRoute
   ProgrammesLongTermInternshipsRoute: typeof ProgrammesLongTermInternshipsRoute
@@ -452,6 +634,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ApplyRoute: ApplyRoute,
+  CareersRoute: CareersRouteWithChildren,
   ContactRoute: ContactRoute,
   PrivacyRoute: PrivacyRoute,
   ProgrammesRoute: ProgrammesRouteWithChildren,

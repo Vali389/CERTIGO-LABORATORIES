@@ -49,6 +49,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <SiteDropdown label="Services" active={pathname.startsWith("/services")} student={false} />
             <SiteDropdown label="Student Programmes" active={pathname.startsWith("/programmes")} student />
             <Link to="/about" className={pathname === "/about" ? "nav-active" : ""}>About Us</Link>
+            <Link to="/careers" className={pathname.startsWith("/careers") ? "nav-active" : ""}>Careers</Link>
             <Link to="/contact" className={pathname === "/contact" ? "nav-active" : ""}>Contact</Link>
           </nav>
           <div className="header-actions hidden md:flex">
@@ -85,6 +86,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 {p.title}
               </Link>
             ))}
+            <Link to="/careers" onClick={() => setOpen(false)}>Careers &amp; Jobs</Link>
             <Link to="/about" onClick={() => setOpen(false)}>About Us</Link>
             <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
             <div className="flex flex-col gap-2.5 pb-4 pt-2">
@@ -118,7 +120,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <Link to="/quote">Request a Quote</Link>
           </div>
           <div>
-            <h3>Student programmes</h3>
+            <h3>Programmes &amp; Careers</h3>
+            <Link to="/careers" className="text-teal font-semibold flex items-center gap-1.5">
+              <span>Careers &amp; Jobs</span>
+              <span className="text-[10px] bg-teal/15 text-teal px-1.5 py-0.2 rounded font-bold">Hiring</span>
+            </Link>
             {programmes.map(p => <Link key={p.slug} to={p.path}>{p.title}</Link>)}
             <Link to="/apply">Apply for a Programme</Link>
           </div>
@@ -141,6 +147,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <span>© {new Date().getFullYear()} Certigo Laboratories Pvt Ltd.</span>
           <div>
             <Link to="/about">About Us</Link>
+            <Link to="/careers">Careers</Link>
             <a href={contact.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
             <Link to="/privacy">Privacy Notice</Link>
           </div>
@@ -276,23 +283,27 @@ export function Steps({ student = false }: { student?: boolean }) {
     <div className="steps-luxury-wrap">
       <div className="steps-luxury-grid">
         {items.map((item, i) => (
-          <div className="step-luxury-card group" key={item.title}>
-            <div className="step-card-top-row">
-              <div className="step-luxury-num-badge">
-                <span>{item.num}</span>
-              </div>
-              <div className="step-luxury-icon-box">
-                <item.icon size={20} />
-              </div>
-              {i < items.length - 1 && (
-                <div className="step-luxury-arrow" aria-hidden="true">
-                  <ArrowRight size={14} />
+          <div className="step-luxury-card-wrapper" key={item.title}>
+            <div className="step-luxury-card group">
+              <div className="step-card-top-row">
+                <div className="step-luxury-num-badge">
+                  <span>{item.num}</span>
                 </div>
-              )}
+                <div className="step-luxury-icon-box">
+                  <item.icon size={20} />
+                </div>
+              </div>
+              <h3 className="step-luxury-title">{item.title}</h3>
+              <p className="step-luxury-text">{item.text}</p>
+              <div className="step-luxury-bottom-bar" />
             </div>
-            <h3 className="step-luxury-title">{item.title}</h3>
-            <p className="step-luxury-text">{item.text}</p>
-            <div className="step-luxury-bottom-bar" />
+            {i < items.length - 1 && (
+              <div className={`step-luxury-connector step-connector-${i + 1}`} aria-hidden="true">
+                <div className="step-connector-circle">
+                  <ArrowRight size={15} strokeWidth={2.5} />
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

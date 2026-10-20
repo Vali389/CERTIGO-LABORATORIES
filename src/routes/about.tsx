@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { 
   Eye, Compass, CheckCircle2, ShieldCheck, Target, Award, 
-  FlaskConical, ArrowUpRight, ArrowRight, Building2, MapPin, Phone, Mail, Lock, UserCheck
+  FlaskConical, ArrowUpRight, ArrowRight, Building2, MapPin, Phone, Mail, Lock, UserCheck,
+  Check, GraduationCap, Briefcase
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero, EnquiryBand, SectionHeading, WhatsAppIcon } from "@/components/site";
@@ -18,85 +19,139 @@ export const Route = createFileRoute("/about")({
 
 const teamMembers = [
   {
+    initials: "MS",
     name: "Ms. M. Sirisha",
     role: "Admin Manager",
-    qualification: "M.Sc. with Ph.D. · 3 Years Experience",
+    degree: "M.Sc. with Ph.D.",
+    experience: "3 Years Exp",
     tag: "Administration & Operations",
-    bio: "She holds an M.Sc. with Ph.D. and has 3 years of experience in administrative and operational management.",
-    training: "Completed ISO/IEC 17025 training related to administrative and documentation controls. Skilled in record maintenance, personnel coordination, procurement, and inventory support, and administrative process management.",
-    responsibilities: "Responsible for smooth laboratory operations, maintaining administrative records, coordinating staff activities, supporting procurement and inventory processes, and ensuring compliance with laboratory management system requirements."
+    bio: "Manages administrative governance, operational continuity, and compliance documentation for the laboratory.",
+    isoHighlight: "ISO/IEC 17025 Trained & Compliant",
+    keyResponsibilities: [
+      "Smooth laboratory operations & staff coordination",
+      "Administrative documentation & LMS record management",
+      "Procurement workflows & inventory traceability"
+    ]
   },
   {
+    initials: "TA",
     name: "Mrs. T. Anusha",
     role: "Quality Manager",
-    qualification: "M.Sc. in Microbiology · 6 Years Experience",
+    degree: "M.Sc. in Microbiology",
+    experience: "6 Years Exp",
     tag: "Quality Management & Compliance",
-    bio: "Holds an M.Sc. in Microbiology with 6 years of experience in quality control and microbiological testing.",
-    training: "Trained in ISO/IEC 17025 and oversees quality system implementation and compliance.",
-    responsibilities: "Preparation and control of quality documents, conducting internal audits, handling non-conformities and corrective actions, monitoring proficiency testing and inter-laboratory comparisons, training personnel on quality procedures, and ensuring ongoing compliance with NABL and regulatory guidelines."
+    bio: "Oversees the overall quality system, accreditation audits, and rigorous compliance with NABL benchmarks.",
+    isoHighlight: "ISO/IEC 17025 Lead Quality Oversight",
+    keyResponsibilities: [
+      "Quality system documentation, control & internal audits",
+      "Corrective actions, non-conformities & risk mitigation",
+      "Proficiency testing programs & regulatory guidelines"
+    ]
   },
   {
+    initials: "GG",
     name: "Mrs. G. Govindamma",
     role: "Technical Manager",
-    qualification: "M.Sc. in Biotechnology · 4 Years Experience",
+    degree: "M.Sc. in Biotechnology",
+    experience: "4 Years Exp",
     tag: "Technical Oversight & Validation",
-    bio: "Holds an M.Sc. in Biotechnology and 4 years of experience in laboratory testing and technical supervision.",
-    training: "Received internal training as per ISO/IEC 17025 and is responsible for technical oversight, validation of test methods, review of results, and ensuring technical competence within the laboratory.",
-    responsibilities: "Selection and validation of test methods, supervision of analytical work, authorization and review of test results, ensuring technical competence of analysts, monitoring equipment performance, and maintaining adherence to approved standard methods and technical procedures."
+    bio: "Leads technical validation of analytical methods, data authorization, and analyst competence evaluations.",
+    isoHighlight: "ISO/IEC 17025 Technical Authorization",
+    keyResponsibilities: [
+      "Selection and validation of approved test methods",
+      "Supervision of analytical testing & data authorization",
+      "Instrumentation monitoring & measurement competence"
+    ]
   },
   {
-    name: "Ms. S. RAMALAKSHMI",
+    initials: "SR",
+    name: "Ms. S. Ramalakshmi",
     role: "Microbiologist",
-    qualification: "M.Sc. in Microbiology · 2 Years Experience",
+    degree: "M.Sc. in Microbiology",
+    experience: "2 Years Exp",
     tag: "Microbiological Testing",
-    bio: "She holds an M.Sc. in Microbiology with 2 years’ experience in microbiological testing of food and water samples.",
-    training: "Completed ISO/IEC 17025 training, enabling accurate and reliable testing compliance with laboratory quality standards. Skilled in media preparation, sample processing, incubation, microbial enumeration, result calculation, and maintenance of test records.",
-    responsibilities: "Performing routine microbiological tests, preparing media and cultures, recording and interpreting results, and ensuring compliance with safety, quality, and ISO/IEC 17025 procedures."
+    bio: "Performs microbiological analysis of food and water matrices following validated standard operating procedures.",
+    isoHighlight: "ISO/IEC 17025 Analytical Testing",
+    keyResponsibilities: [
+      "Routine microbiological culture & pathogen enumeration",
+      "Culture media preparation, sterilization & incubation",
+      "Laboratory test record maintenance & safety protocols"
+    ]
   },
   {
+    initials: "BP",
     name: "Ms. B. Pavitra",
     role: "Quality Executive",
-    qualification: "M.Sc. in Microbiology · 2 Years Experience",
+    degree: "M.Sc. in Microbiology",
+    experience: "2 Years Exp",
     tag: "Quality Assurance Support",
-    bio: "She holds an M.Sc. in Microbiology with 2 years of experience in quality control and laboratory support.",
-    training: "Completed ISO/IEC 17025 training, equipping her to assist in maintaining the laboratory quality system. Skilled in quality monitoring, record keeping, audit support, calibration tracking, and assisting analytical work.",
-    responsibilities: "Supporting quality management activities, maintaining quality records, assisting in internal audits, monitoring calibration schedules, and ensuring compliance and accuracy in laboratory testing under supervision."
+    bio: "Assists the Quality Manager in system maintenance, audit documentation, and calibration verifications.",
+    isoHighlight: "ISO/IEC 17025 QMS Support",
+    keyResponsibilities: [
+      "Quality control records & internal audit documentation",
+      "Equipment calibration tracking & schedule monitoring",
+      "Supervised compliance checks across test procedures"
+    ]
   },
   {
-    name: "Ms. P. NAGA SRI",
+    initials: "NS",
+    name: "Ms. P. Naga Sri",
     role: "Trainee Microbiologist",
-    qualification: "M.Sc. · Trainee",
+    degree: "M.Sc. Microbiology",
+    experience: "Trainee",
     tag: "Microbiology Trainee",
-    bio: "She holds an M.Sc. degree and is undergoing rigorous laboratory training.",
-    training: "Completed ISO/IEC 17025 orientation training and is developing skills in basic microbiological techniques, media preparation, sterilization, sample handling, and laboratory hygiene.",
-    responsibilities: "Assisting senior staff under supervision in routine laboratory activities, including preparing media, sterilizing glassware, processing samples, and maintaining laboratory cleanliness, while gaining technical competence and understanding quality management system requirements."
+    bio: "Undergoing specialized laboratory training in aseptic techniques, sample handling, and microbiological workflows.",
+    isoHighlight: "ISO/IEC 17025 Foundation Trained",
+    keyResponsibilities: [
+      "Media preparation, sterilization & sample handling",
+      "Glassware maintenance & laboratory hygiene controls",
+      "Developing technical competence in standard methods"
+    ]
   },
   {
+    initials: "RK",
     name: "Mr. CH. Raveendra Kumar",
     role: "Customer Relation Executive / Sample Receiver",
-    qualification: "Diploma · 3 Years Experience",
-    tag: "Customer Coordination & Traceability",
-    bio: "He holds a Diploma qualification and has 3 years of experience in customer coordination and sample handling.",
-    training: "Undergone ISO/IEC 17025 training related to sample receipt, traceability, and documentation management, sample verification, labelling, registration, storage, and maintaining chain of custody.",
-    responsibilities: "Accurate receipt and documentation of samples, ensuring traceability, coordinating with clients regarding test requirements and timelines, and maintaining adherence to quality procedures during sample handling."
+    degree: "Diploma",
+    experience: "3 Years Exp",
+    tag: "Customer Care & Traceability",
+    bio: "Coordinates sample intake, chain of custody verification, and customer communications for testing scopes.",
+    isoHighlight: "ISO/IEC 17025 Traceability Trained",
+    keyResponsibilities: [
+      "Sample receipt, verification, labelling & registration",
+      "Documenting chain of custody & sample storage integrity",
+      "Client coordination on testing scope and turnaround"
+    ]
   },
   {
+    initials: "KL",
     name: "Ms. K. Lokeswari",
     role: "Trainee Analyst",
-    qualification: "B.Sc. Graduation · Trainee",
+    degree: "B.Sc. Graduation",
+    experience: "Trainee",
     tag: "Analytical Support Trainee",
-    bio: "Holds a graduation (B.Sc) qualification and is a trainee undergoing laboratory preparation.",
-    training: "Completed ISO/IEC 17025 orientation training and is developing skills in basic laboratory operations, sample handling, safety precautions, and housekeeping procedures.",
-    responsibilities: "Assisting senior staff under supervision in laboratory support activities, including cleaning of equipment and work areas, sample preparation, waste management, and maintaining laboratory safety and cleanliness in compliance with ISO/IEC 17025 requirements."
+    bio: "Undergoing structured analytical orientation in laboratory safety, sample preparation, and quality procedures.",
+    isoHighlight: "ISO/IEC 17025 Orientation Trained",
+    keyResponsibilities: [
+      "Sample preparation & laboratory housekeeping support",
+      "Cleaning and maintenance of equipment work areas",
+      "Chemical safety protocols & waste management"
+    ]
   },
   {
-    name: "B. Keerthi Kiran",
+    initials: "KK",
+    name: "Mr. B. Keerthi Kiran",
     role: "Customer Relation Executive / Sample Receiver",
-    qualification: "MBA · 17 Years Experience",
-    tag: "Customer Coordination & Traceability",
-    bio: "He holds an MBA qualification and has 17 years’ experience in customer coordination and sample handling.",
-    training: "Undergone ISO/IEC 17025 training related to sample receipt, traceability, and documentation management, sample verification, labelling, registration, storage, and maintaining chain of custody.",
-    responsibilities: "Accurate receipt and documentation of samples, ensuring traceability, coordinating with clients regarding test requirements and timelines, and maintaining adherence to quality procedures during sample handling."
+    degree: "MBA",
+    experience: "17 Years Exp",
+    tag: "Customer Care & Traceability",
+    bio: "Senior coordinator managing sample logistics, client communications, and end-to-end testing traceability.",
+    isoHighlight: "ISO/IEC 17025 Chain of Custody",
+    keyResponsibilities: [
+      "Accurate sample verification & chain of custody management",
+      "Client relationship management & testing requirement scoping",
+      "Adherence to sample receipt and traceability procedures"
+    ]
   }
 ];
 
@@ -107,17 +162,6 @@ const missionPoints = [
   "To support customers in meeting applicable regulatory and quality requirements.",
   "To continuously improve laboratory methods and quality systems.",
   "To develop long-term relationships with customers through trust and dependable service."
-];
-
-const qualityPractices = [
-  { title: "Standard Operating Procedures (SOPs)", desc: "Strict adherence to documented, validated SOPs for all testing activities." },
-  { title: "Validated Test Methods", desc: "Testing methods selected and verified for their intended use, following applicable ISO/IEC, BIS, and FSSAI methods and other relevant standards, as applicable to our testing scope." },
-  { title: "Equipment Calibration", desc: "Routine calibration and maintenance schedules for all analytical instruments." },
-  { title: "Quality Control of Results", desc: "Internal quality checks, duplicate samples, matrix spikes, and control charts." },
-  { title: "Measurement Traceability", desc: "Traceability of measurements to certified reference materials and standards." },
-  { title: "Proper Sample Handling", desc: "Documented chain-of-custody, sterile containers, and controlled temperature storage." },
-  { title: "Personnel Competency", desc: "Continuous training, evaluation, and qualification of laboratory scientists." },
-  { title: "Continuous Improvement", desc: "Regular internal audits, proficiency testing participation, and system reviews." }
 ];
 
 function About() {
@@ -349,18 +393,7 @@ function About() {
             </div>
           </div>
 
-          {/* Quality Practices 8-grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
-            {qualityPractices.map((qp) => (
-              <div key={qp.title} className="p-5 rounded-xl border border-border bg-card shadow-xs hover:border-teal transition-colors">
-                <div className="w-8 h-8 rounded-lg bg-teal/10 text-teal flex items-center justify-center mb-3">
-                  <Award size={18} />
-                </div>
-                <h4 className="font-bold text-primary text-sm mb-1.5">{qp.title}</h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">{qp.desc}</p>
-              </div>
-            ))}
-          </div>
+          {/* Removed quality practices 8-grid below NABL banner per request */}
         </div>
       </section>
 
@@ -406,27 +439,61 @@ function About() {
             </div>
           </div>
 
-          {/* Team Grid */}
-          <div className="team-grid">
+          {/* Executive Team Grid */}
+          <div className="team-exec-grid">
             {teamMembers.map((m) => (
-              <div key={m.name} className="team-card">
-                <div className="team-card-top">
-                  <div className="team-avatar-badge">
-                    <UserCheck size={20} />
+              <article key={m.name} className="team-exec-card">
+                <div className="team-exec-accent-bar" />
+                
+                {/* Header: Monogram Avatar + Department Badge */}
+                <div className="team-exec-header">
+                  <div className="team-exec-avatar">
+                    <span>{m.initials}</span>
+                    <span className="team-exec-verified-badge" title="ISO/IEC 17025 Competent">
+                      <CheckCircle2 size={11} strokeWidth={3} />
+                    </span>
                   </div>
-                  <span className="team-card-tag">{m.tag}</span>
+                  <span className="team-exec-dept-badge">{m.tag}</span>
                 </div>
-                <h4 className="team-card-name">{m.name}</h4>
-                <div className="team-card-role">{m.role}</div>
-                <div className="team-card-qual">{m.qualification}</div>
-                <p className="team-card-bio">{m.bio}</p>
-                <div className="team-card-training">
-                  <strong className="text-primary font-semibold">ISO/IEC 17025:</strong> {m.training}
+
+                {/* Identity */}
+                <div className="team-exec-identity">
+                  <h4 className="team-exec-name">{m.name}</h4>
+                  <div className="team-exec-role">{m.role}</div>
                 </div>
-                <div className="team-card-duties">
-                  <strong className="text-primary font-semibold">Responsibilities:</strong> {m.responsibilities}
+
+                {/* Qualification & Experience Pills */}
+                <div className="team-exec-meta-row">
+                  <span className="team-exec-meta-pill">
+                    <GraduationCap size={12} className="text-teal" /> {m.degree}
+                  </span>
+                  <span className="team-exec-meta-pill">
+                    <Briefcase size={12} className="text-brand-green" /> {m.experience}
+                  </span>
                 </div>
-              </div>
+
+                {/* Concise Bio */}
+                <p className="team-exec-bio">{m.bio}</p>
+
+                {/* ISO/IEC 17025 Competence Badge */}
+                <div className="team-exec-iso-box">
+                  <Award size={15} className="text-brand-green flex-shrink-0" />
+                  <span>{m.isoHighlight}</span>
+                </div>
+
+                {/* Core Responsibilities List */}
+                <div className="team-exec-duties-wrap">
+                  <div className="team-exec-duties-label">Core Laboratory Responsibilities</div>
+                  <ul className="team-exec-duties-list">
+                    {m.keyResponsibilities.map((duty, idx) => (
+                      <li key={idx}>
+                        <Check size={13} className="text-teal flex-shrink-0 mt-0.5" strokeWidth={2.5} />
+                        <span>{duty}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
             ))}
           </div>
         </div>
