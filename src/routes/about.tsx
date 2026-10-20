@@ -2,12 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { 
   Eye, Compass, CheckCircle2, ShieldCheck, Target, Award, 
   FlaskConical, ArrowUpRight, ArrowRight, Building2, MapPin, Phone, Mail, Lock, UserCheck,
-  Check, GraduationCap, Briefcase
+  Check, GraduationCap, Briefcase, Users
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero, EnquiryBand, SectionHeading, WhatsAppIcon } from "@/components/site";
 import { labImage, pageHead, contact, researchImage } from "@/lib/site-data";
 import managingDirectorImg from "@/assets/managing-director.jpeg";
+import teamGroupIcon from "@/assets/team-executive-group-icon.png";
 
 export const Route = createFileRoute("/about")({
   head: () => pageHead(
@@ -368,9 +369,26 @@ function About() {
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
               Trained in accordance with ISO/IEC 17025 to ensure technical competence, impartial testing operations, and dependable customer service.
             </p>
-            <p className="text-sm sm:text-base text-primary/85 font-medium leading-relaxed bg-white/80 dark:bg-card/80 border border-primary/10 rounded-2xl p-4 shadow-xs mt-4 max-w-2xl mx-auto">
-              Along with the management and department in-charges, an executive team comprising microbiologists, chemists, and trainee technicians is working diligently on standard sample analysis, making every effort to ensure reliable results and timely report generation.
-            </p>
+            {/* Executive Technical Team Statement Banner with Group Icon */}
+            <div className="team-statement-banner mt-6 max-w-3xl mx-auto">
+              <div className="team-statement-icon-wrap">
+                <img
+                  src={teamGroupIcon}
+                  alt="Certigo Executive Technical Team Icon"
+                  className="team-statement-icon-img"
+                  width={84}
+                  height={64}
+                />
+              </div>
+              <div className="team-statement-text-wrap text-left">
+                <div className="team-statement-badge">
+                  <Users size={13} className="text-brand-green" /> TECHNICAL &amp; SCIENTIFIC COMPETENCE
+                </div>
+                <p className="team-statement-p">
+                  Along with the management and department in-charges, an executive team comprising microbiologists, chemists, and trainee technicians is working diligently on standard sample analysis, making every effort to ensure reliable results and timely report generation.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Managing Director Featured Spotlight */}
