@@ -241,30 +241,141 @@ export interface IrregularLabItem {
   subtitle: string;
   image: string;
   tag: string;
-  gridClass: string;
+  cluster: "micro" | "molecular" | "cleanroom" | "center";
+  shapeClass: string;
 }
 
 const irregularLabItems: IrregularLabItem[] = [
-  // Row 1: Irregular Top Trio
-  { id: "mic", title: "Binocular Research Microscope", subtitle: "1000x oil-immersion optics for cellular morphology", image: microscopeImg, tag: "1000x Optical", gridClass: "item-top-left" },
-  { id: "laf", title: "Laminar Air Flow Clean Bench", subtitle: "ISO Class 5 vertical HEPA aseptic chamber", image: laminarImg, tag: "HEPA 99.99%", gridClass: "item-top-center" },
-  { id: "col", title: "Digital Colony Counter", subtitle: "Pressure-touch CFU enumeration with dark-field lens", image: colonyMeterImg, tag: "0–9999 CFU", gridClass: "item-top-right" },
-
-  // Row 2 & 3: Tall Left, Center Focal Facility, Tall Right
-  { id: "pcr", title: "Real-Time PCR (RT-PCR) System", subtitle: "Automated 96-well fluorescent molecular detection", image: rtPcrImg, tag: "Real-Time PCR", gridClass: "item-mid-tall-left" },
-  { id: "center-facility", title: "Certigo Advanced Testing Facility", subtitle: "NABL Accredited Testing Facility · ISO/IEC 17025", image: labCenterImg, tag: "Central Testing Facility", gridClass: "item-centerpiece" },
-  { id: "aut", title: "Vertical Steam Autoclave", subtitle: "121°C @ 15 PSI validated thermal sterilization", image: autoclaveImg, tag: "121°C Steam", gridClass: "item-mid-tall-right" },
-
-  // Row 4: Varied Organic Triad
-  { id: "pass", title: "Cleanroom Dynamic Pass Box", subtitle: "Interlocking cleanroom airlock with UV decontamination", image: passBoxImg, tag: "UV Interlock", gridClass: "item-lower-left" },
-  { id: "bal", title: "Analytical Micro-Balance", subtitle: "0.0001g electro-magnetic force cell with draft shield", image: balanceImg, tag: "0.0001g Precision", gridClass: "item-lower-center" },
-  { id: "ph", title: "Benchtop Digital pH Meter", subtitle: "Multi-point calibrated electrode for water testing", image: phMeterImg, tag: "±0.002 pH", gridClass: "item-lower-right" },
-
-  // Row 5: Asymmetric Bottom Cluster
-  { id: "stb", title: "Stomacher Laboratory Blender", subtitle: "Sterile paddle homogenization for sample preparation", image: stomacherImg, tag: "Homogenizer", gridClass: "item-bot-1" },
-  { id: "bio", title: "Class II Type A2 Biosafety Cabinet", subtitle: "HEPA filtered biological containment chamber", image: biosafetyCabinetImg, tag: "Class II A2", gridClass: "item-bot-2" },
-  { id: "inc", title: "Controlled Temperature BOD Incubator", subtitle: "Constant temperature chambers for microbial growth", image: incubatorImg, tag: "BOD Incubator", gridClass: "item-bot-3" },
-  { id: "chem", title: "Chemical Testing & Fume Bench", subtitle: "Analytical chemical preparation and assays", image: chemBenchImg, tag: "Chemical Bench", gridClass: "item-bot-4" }
+  // Centerpiece: Focal Facility Anchor
+  {
+    id: "center-facility",
+    title: "Certigo Advanced Testing Facility",
+    subtitle: "NABL Accredited Testing Facility · ISO/IEC 17025 Certified",
+    image: labCenterImg,
+    tag: "Central Testing Facility",
+    cluster: "center",
+    shapeClass: "organic-centerpiece-card"
+  },
+  // Pod 1: Microbiology & Biosafety (Left Satellite Pod)
+  {
+    id: "mic",
+    title: "Binocular Research Microscope",
+    subtitle: "1000x oil-immersion optics for cellular morphology",
+    image: microscopeImg,
+    tag: "1000x Optical",
+    cluster: "micro",
+    shapeClass: "shape-organic-1"
+  },
+  {
+    id: "laf",
+    title: "Laminar Air Flow Clean Bench",
+    subtitle: "ISO Class 5 vertical HEPA aseptic chamber",
+    image: laminarImg,
+    tag: "HEPA 99.99%",
+    cluster: "micro",
+    shapeClass: "shape-organic-2"
+  },
+  {
+    id: "bio",
+    title: "Class II Type A2 Biosafety Cabinet",
+    subtitle: "HEPA filtered biological containment chamber",
+    image: biosafetyCabinetImg,
+    tag: "Class II A2",
+    cluster: "micro",
+    shapeClass: "shape-organic-3"
+  },
+  {
+    id: "col",
+    title: "Digital Colony Counter",
+    subtitle: "Pressure-touch CFU enumeration with dark-field lens",
+    image: colonyMeterImg,
+    tag: "0–9999 CFU",
+    cluster: "micro",
+    shapeClass: "shape-organic-4"
+  },
+  // Pod 2: Molecular & Analytical (Right Satellite Pod)
+  {
+    id: "pcr",
+    title: "Real-Time PCR (RT-PCR) System",
+    subtitle: "Automated 96-well fluorescent molecular detection",
+    image: rtPcrImg,
+    tag: "Real-Time PCR",
+    cluster: "molecular",
+    shapeClass: "shape-organic-5"
+  },
+  {
+    id: "aut",
+    title: "Vertical Steam Autoclave",
+    subtitle: "121°C @ 15 PSI validated thermal sterilization",
+    image: autoclaveImg,
+    tag: "121°C Steam",
+    cluster: "molecular",
+    shapeClass: "shape-organic-6"
+  },
+  {
+    id: "chem",
+    title: "Chemical Testing & Fume Bench",
+    subtitle: "Analytical chemical preparation and assays",
+    image: chemBenchImg,
+    tag: "Chemical Bench",
+    cluster: "molecular",
+    shapeClass: "shape-organic-7"
+  },
+  {
+    id: "inc",
+    title: "Controlled Temperature BOD Incubator",
+    subtitle: "Constant temperature chambers for microbial growth",
+    image: incubatorImg,
+    tag: "BOD Incubator",
+    cluster: "molecular",
+    shapeClass: "shape-organic-8"
+  },
+  // Pod 3: Cleanroom, Weighing & Sample Prep (Bottom Satellite Pod)
+  {
+    id: "bal",
+    title: "Analytical Micro-Balance",
+    subtitle: "0.0001g electro-magnetic force cell with draft shield",
+    image: balanceImg,
+    tag: "0.0001g Precision",
+    cluster: "cleanroom",
+    shapeClass: "shape-bot-1"
+  },
+  {
+    id: "ph",
+    title: "Benchtop Digital pH Meter",
+    subtitle: "Multi-point calibrated electrode for water testing",
+    image: phMeterImg,
+    tag: "±0.002 pH",
+    cluster: "cleanroom",
+    shapeClass: "shape-bot-2"
+  },
+  {
+    id: "pass",
+    title: "Cleanroom Dynamic Pass Box",
+    subtitle: "Interlocking cleanroom airlock with UV decontamination",
+    image: passBoxImg,
+    tag: "UV Interlock",
+    cluster: "cleanroom",
+    shapeClass: "shape-bot-3"
+  },
+  {
+    id: "stb",
+    title: "Stomacher Laboratory Blender",
+    subtitle: "Sterile paddle homogenization for sample preparation",
+    image: stomacherImg,
+    tag: "Homogenizer",
+    cluster: "cleanroom",
+    shapeClass: "shape-bot-4"
+  },
+  {
+    id: "oven",
+    title: "Digital Forced-Air Hot Air Oven",
+    subtitle: "Up to 250°C dry heat sterilization for lab glassware",
+    image: hotAirOvenImg,
+    tag: "Dry Heat 250°C",
+    cluster: "cleanroom",
+    shapeClass: "shape-bot-5"
+  }
 ];
 
 const nablDisciplines = [
@@ -410,8 +521,9 @@ const refPosterTrust = [
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [activeItem, setActiveItem] = useState<IrregularLabItem>(irregularLabItems[4]);
+  const [activeItem, setActiveItem] = useState<IrregularLabItem>(irregularLabItems[0]);
   const [activeLightboxItem, setActiveLightboxItem] = useState<IrregularLabItem | null>(null);
+  const [activeCluster, setActiveCluster] = useState<"all" | "micro" | "molecular" | "cleanroom">("all");
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -1012,7 +1124,7 @@ function Home() {
         </div>
       </section>
 
-      {/* SECTION: AUTHENTIC TESTING INFRASTRUCTURE (IRREGULAR ASYMMETRIC SHAPE DISPLAY) */}
+      {/* SECTION: AUTHENTIC TESTING INFRASTRUCTURE (ORGANIC SATELLITE CLUSTER) */}
       <section className="section gradient-section-gallery fade-up-init" id="facility-gallery">
         <div className="site-container">
           <SectionHeading
@@ -1021,31 +1133,164 @@ function Home() {
             description="Authentic laboratory instrumentation and calibrated testing facilities operating under strict ISO/IEC 17025 standards."
           />
 
-          {/* Irregular Asymmetric Organic Mosaic (Zero Text Over Images) */}
-          <div className="irregular-gallery-wrapper mt-8 mb-6">
-            <div className="irregular-gallery-grid">
-              {irregularLabItems.map((item) => {
-                const isActive = activeItem.id === item.id;
-                return (
-                  <div
-                    key={item.id}
-                    className={`irregular-gallery-card ${item.gridClass} ${isActive ? "is-active" : ""}`}
-                    onMouseEnter={() => setActiveItem(item)}
-                    onClick={() => {
-                      setActiveItem(item);
-                      setActiveLightboxItem(item);
-                    }}
-                    title={item.title}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="irregular-gallery-img"
-                      loading="lazy"
-                    />
-                  </div>
-                );
-              })}
+          <div className="organic-cluster-showcase mt-8 mb-6">
+            {/* Cluster Category Filter Pills */}
+            <div className="cluster-filter-row">
+              <button
+                type="button"
+                className={`cluster-filter-btn ${activeCluster === "all" ? "is-active" : ""}`}
+                onClick={() => setActiveCluster("all")}
+              >
+                <Layers size={14} /> All Authentic Facilities ({irregularLabItems.length})
+              </button>
+              <button
+                type="button"
+                className={`cluster-filter-btn ${activeCluster === "micro" ? "is-active" : ""}`}
+                onClick={() => setActiveCluster("micro")}
+              >
+                <Microscope size={14} /> Microbiology &amp; Culture
+              </button>
+              <button
+                type="button"
+                className={`cluster-filter-btn ${activeCluster === "molecular" ? "is-active" : ""}`}
+                onClick={() => setActiveCluster("molecular")}
+              >
+                <FlaskConical size={14} /> Molecular &amp; Analytical
+              </button>
+              <button
+                type="button"
+                className={`cluster-filter-btn ${activeCluster === "cleanroom" ? "is-active" : ""}`}
+                onClick={() => setActiveCluster("cleanroom")}
+              >
+                <ShieldCheck size={14} /> Cleanroom &amp; Precision
+              </button>
+            </div>
+
+            {/* Organic Constellation Canvas */}
+            <div className="organic-constellation-canvas">
+              {/* Pod 1: Left Satellite (Microbiology) */}
+              <div className="organic-pod pod-left">
+                <div className="pod-badge-pill">
+                  <Microscope size={12} /> Microbiology Pod
+                </div>
+                <div className="pod-cards-group">
+                  {irregularLabItems.filter(item => item.cluster === "micro").map((item) => {
+                    const isActive = activeItem.id === item.id;
+                    const isDimmed = activeCluster !== "all" && activeCluster !== "micro";
+                    return (
+                      <div
+                        key={item.id}
+                        className={`organic-card ${item.shapeClass} ${isActive ? "is-active" : ""} ${isDimmed ? "is-dimmed" : ""}`}
+                        onMouseEnter={() => setActiveItem(item)}
+                        onClick={() => {
+                          setActiveItem(item);
+                          setActiveLightboxItem(item);
+                        }}
+                        title={item.title}
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="organic-card-img"
+                          loading="lazy"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Centerpiece: Anchored Focal Facility with Pulsing Aura */}
+              <div className="organic-pod pod-center">
+                {(() => {
+                  const centerItem = irregularLabItems[0];
+                  const isActive = activeItem.id === centerItem.id;
+                  const isDimmed = activeCluster !== "all";
+                  return (
+                    <div
+                      className={`organic-centerpiece-card ${isActive ? "is-active" : ""} ${isDimmed ? "is-dimmed" : ""}`}
+                      onMouseEnter={() => setActiveItem(centerItem)}
+                      onClick={() => {
+                        setActiveItem(centerItem);
+                        setActiveLightboxItem(centerItem);
+                      }}
+                      title={centerItem.title}
+                    >
+                      <div className="centerpiece-aura" />
+                      <img
+                        src={centerItem.image}
+                        alt={centerItem.title}
+                        className="organic-card-img"
+                        loading="lazy"
+                      />
+                    </div>
+                  );
+                })()}
+              </div>
+
+              {/* Pod 2: Right Satellite (Molecular & Analytical) */}
+              <div className="organic-pod pod-right">
+                <div className="pod-badge-pill">
+                  <FlaskConical size={12} /> Molecular &amp; Analytical Pod
+                </div>
+                <div className="pod-cards-group">
+                  {irregularLabItems.filter(item => item.cluster === "molecular").map((item) => {
+                    const isActive = activeItem.id === item.id;
+                    const isDimmed = activeCluster !== "all" && activeCluster !== "molecular";
+                    return (
+                      <div
+                        key={item.id}
+                        className={`organic-card ${item.shapeClass} ${isActive ? "is-active" : ""} ${isDimmed ? "is-dimmed" : ""}`}
+                        onMouseEnter={() => setActiveItem(item)}
+                        onClick={() => {
+                          setActiveItem(item);
+                          setActiveLightboxItem(item);
+                        }}
+                        title={item.title}
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="organic-card-img"
+                          loading="lazy"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Pod 3: Bottom Satellite (Cleanroom, Precision & Prep) */}
+              <div className="organic-pod pod-bottom">
+                <div className="pod-badge-pill">
+                  <ShieldCheck size={12} /> Cleanroom &amp; Precision Pod
+                </div>
+                <div className="pod-cards-group">
+                  {irregularLabItems.filter(item => item.cluster === "cleanroom").map((item) => {
+                    const isActive = activeItem.id === item.id;
+                    const isDimmed = activeCluster !== "all" && activeCluster !== "cleanroom";
+                    return (
+                      <div
+                        key={item.id}
+                        className={`organic-card ${item.shapeClass} ${isActive ? "is-active" : ""} ${isDimmed ? "is-dimmed" : ""}`}
+                        onMouseEnter={() => setActiveItem(item)}
+                        onClick={() => {
+                          setActiveItem(item);
+                          setActiveLightboxItem(item);
+                        }}
+                        title={item.title}
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="organic-card-img"
+                          loading="lazy"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
             {/* Active Equipment Name Display - Safely Positioned BELOW the gallery (Zero Text Over Images) */}
