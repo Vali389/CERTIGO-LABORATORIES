@@ -2014,16 +2014,21 @@
   }
 
   .page-hero {
-    min-height: 280px;
+    min-height: 520px !important;
+    height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    align-items: flex-start !important;
   }
 
   .page-hero h1 {
-    font-size: clamp(24px, 6.5vw, 32px) !important;
-    line-height: 1.2 !important;
+    font-size: clamp(21px, 5.8vw, 27px) !important;
+    line-height: 1.25 !important;
   }
 
   .page-hero-content {
-    padding-block: 36px 32px !important;
+    padding-top: clamp(88px, 24vw, 110px) !important;
+    padding-bottom: 36px !important;
   }
 
   .page-hero-content>p {
@@ -3138,15 +3143,20 @@ body {
   }
 
   .page-hero {
-    min-height: 280px;
+    min-height: 520px !important;
+    height: auto !important;
+    max-height: none !important;
+    align-items: flex-start !important;
   }
 
   .page-hero h1 {
-    font-size: clamp(24px, 6.5vw, 32px) !important;
+    font-size: clamp(21px, 5.8vw, 27px) !important;
+    line-height: 1.25 !important;
   }
 
   .page-hero-content {
-    padding-bottom: 32px;
+    padding-top: clamp(88px, 24vw, 110px) !important;
+    padding-bottom: 36px !important;
   }
 
   .page-hero-content>p {
@@ -8677,7 +8687,33 @@ h1, h2, h3, h4 {
   box-shadow: 0 10px 24px rgba(6, 75, 131, 0.08);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  /* Page Hero mobile spacing so text does not overlap top image branding */
+  .page-hero {
+    min-height: 520px !important;
+    height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    align-items: flex-start !important;
+  }
+
+  .page-hero-container {
+    width: 100% !important;
+    padding-inline: 18px !important;
+  }
+
+  .page-hero-content {
+    padding-top: clamp(88px, 24vw, 110px) !important;
+    padding-bottom: 36px !important;
+    max-width: 100% !important;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(21px, 5.8vw, 27px) !important;
+    line-height: 1.25 !important;
+    margin-bottom: 14px !important;
+  }
+
   .career-simple-card {
     padding: 16px;
     border-radius: 14px;
