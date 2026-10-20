@@ -7993,7 +7993,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   AUTHENTIC TESTING INFRASTRUCTURE - ROTATING CIRCULAR ORBIT SHOWCASE
+   AUTHENTIC TESTING INFRASTRUCTURE - ROTATING CIRCULAR ORBIT SHOWCASE (EXPANDED LARGE)
    ========================================================================== */
 .circular-stage-wrapper {
   display: flex;
@@ -8002,29 +8002,29 @@ h1, h2, h3, h4 {
   justify-content: center;
   overflow: hidden;
   position: relative;
-  padding-block: 10px 20px;
+  padding-block: 15px 30px;
 }
 
 .circular-orbit-stage {
   position: relative;
-  width: 740px;
-  height: 740px;
+  width: 860px;
+  height: 860px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px auto;
-  --orbit-radius: 295px;
-  --node-size: 96px;
+  margin: 15px auto;
+  --orbit-radius: 345px;
+  --node-size: 114px;
 }
 
 /* Ambient Radial Laboratory Glow */
 .circular-ambient-glow {
   position: absolute;
-  inset: 60px;
+  inset: 40px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(8, 175, 193, 0.14) 0%, rgba(57, 181, 74, 0.08) 50%, transparent 72%);
+  background: radial-gradient(circle, rgba(8, 175, 193, 0.16) 0%, rgba(57, 181, 74, 0.09) 45%, transparent 72%);
   pointer-events: none;
-  filter: blur(20px);
+  filter: blur(25px);
 }
 
 /* Outer & Inner Circular Dashed Orbit Tracks */
@@ -8033,8 +8033,8 @@ h1, h2, h3, h4 {
   width: calc(var(--orbit-radius) * 2);
   height: calc(var(--orbit-radius) * 2);
   border-radius: 50%;
-  border: 2px dashed rgba(8, 175, 193, 0.45);
-  box-shadow: 0 0 60px rgba(8, 175, 193, 0.12) inset, 0 0 35px rgba(8, 175, 193, 0.08);
+  border: 2.5px dashed rgba(8, 175, 193, 0.45);
+  box-shadow: 0 0 80px rgba(8, 175, 193, 0.15) inset, 0 0 45px rgba(8, 175, 193, 0.1);
   pointer-events: none;
 }
 
@@ -8043,20 +8043,20 @@ h1, h2, h3, h4 {
   width: calc(var(--orbit-radius) * 1.4);
   height: calc(var(--orbit-radius) * 1.4);
   border-radius: 50%;
-  border: 1.5px dotted rgba(6, 75, 131, 0.2);
+  border: 2px dotted rgba(6, 75, 131, 0.22);
   pointer-events: none;
 }
 
-/* Center Focal Image Hub (Larger & More Attractive) */
+/* Center Focal Image Hub - Large, Pure Photo (Zero Text Over Image) */
 .circular-orbit-center {
   position: relative;
-  width: 280px;
-  height: 280px;
+  width: 330px;
+  height: 330px;
   border-radius: 50%;
   overflow: hidden;
-  background: #064B83;
-  border: 4.5px solid #08AFC1;
-  box-shadow: 0 18px 50px rgba(6, 75, 131, 0.32), 0 0 0 12px rgba(8, 175, 193, 0.16);
+  background: #0f172a;
+  border: 5px solid #08AFC1;
+  box-shadow: 0 24px 60px rgba(6, 75, 131, 0.35), 0 0 0 14px rgba(8, 175, 193, 0.18);
   cursor: pointer;
   z-index: 10;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -8065,7 +8065,7 @@ h1, h2, h3, h4 {
 .circular-orbit-center:hover {
   transform: scale(1.05);
   border-color: #39B54A;
-  box-shadow: 0 24px 64px rgba(6, 75, 131, 0.4), 0 0 0 14px rgba(57, 181, 74, 0.28);
+  box-shadow: 0 28px 75px rgba(6, 75, 131, 0.42), 0 0 0 16px rgba(57, 181, 74, 0.28);
 }
 
 .circular-center-img {
@@ -8073,6 +8073,7 @@ h1, h2, h3, h4 {
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 50%;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -8080,61 +8081,18 @@ h1, h2, h3, h4 {
   transform: scale(1.08);
 }
 
+/* Hide any text overlay on images */
 .circular-center-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(6, 43, 80, 0.94) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  text-align: center;
-  padding: 22px 20px;
-  color: #ffffff;
+  display: none !important;
 }
 
-.circular-center-title {
-  font-size: 16px;
-  font-weight: 800;
-  color: #ffffff !important;
-  margin: 0 0 4px;
-  line-height: 1.25;
-  font-family: var(--font-sans);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
-}
-
-.circular-center-tag {
-  font-size: 11px;
-  font-weight: 800;
-  color: #38bdf8;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-bottom: 5px;
-}
-
-.circular-center-inspect-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.25);
-  padding: 3px 10px;
-  border-radius: 999px;
-  backdrop-filter: blur(6px);
-  margin-top: 2px;
-}
-
-/* ==========================================================================
-   CONTINUOUS ORBIT ROTATION (Images stay upright via counter-rotation)
-   ========================================================================== */
+/* Continuous Orbit Rotation (Images stay upright via counter-rotation) */
 .circular-orbit-ring {
   position: absolute;
   inset: 0;
   border-radius: 50%;
   pointer-events: auto;
-  animation: orbitRingRotate 48s linear infinite;
+  animation: orbitRingRotate 52s linear infinite;
 }
 
 .circular-orbit-ring:hover {
@@ -8170,7 +8128,7 @@ h1, h2, h3, h4 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  animation: counterRingRotate 48s linear infinite;
+  animation: counterRingRotate 52s linear infinite;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
@@ -8189,7 +8147,7 @@ h1, h2, h3, h4 {
 
 .circular-satellite-node:hover .circular-node-content,
 .circular-satellite-node.is-active .circular-node-content {
-  transform: scale(1.26);
+  transform: scale(1.24);
   z-index: 30;
 }
 
@@ -8200,63 +8158,29 @@ h1, h2, h3, h4 {
   object-fit: cover;
   display: block;
   background: #ffffff;
-  border: 3px solid rgba(255, 255, 255, 0.98);
-  box-shadow: 0 8px 24px rgba(6, 75, 131, 0.22);
+  border: 3.5px solid rgba(255, 255, 255, 0.98);
+  box-shadow: 0 10px 28px rgba(6, 75, 131, 0.22);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .circular-satellite-node:hover .circular-node-img,
 .circular-satellite-node.is-active .circular-node-img {
   border-color: #39B54A;
-  box-shadow: 0 0 0 3.5px #39B54A, 0 16px 36px rgba(6, 75, 131, 0.4);
+  box-shadow: 0 0 0 4px #39B54A, 0 18px 40px rgba(6, 75, 131, 0.42);
 }
 
-/* Mini Tag Pill on each Satellite */
-.circular-node-tag-pill {
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #064B83;
-  color: #ffffff;
-  font-size: 9.5px;
-  font-weight: 800;
-  padding: 1px 7px;
-  border-radius: 999px;
-  white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  pointer-events: none;
-  transition: all 0.2s ease;
-}
-
-.circular-satellite-node:hover .circular-node-tag-pill {
-  background: #39B54A;
-}
-
-/* Tooltip on Hover */
+/* Hide any overlay pills or tooltips over the images */
+.circular-node-tag-pill,
 .circular-node-tooltip {
-  position: absolute;
-  bottom: -34px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #064B83;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 999px;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-  z-index: 40;
+  display: none !important;
 }
 
-.circular-satellite-node:hover .circular-node-tooltip {
-  opacity: 1;
-  transform: translateX(-50%) translateY(4px);
+/* Active Caption Bar Safely Positioned BELOW the circle */
+.circular-active-caption-bar {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
 }
 
 /* Reduced Motion Override */
@@ -8267,13 +8191,13 @@ h1, h2, h3, h4 {
   }
 }
 
-/* Mobile & Tablet Responsiveness for Circular Shape */
-@media (max-width: 768px) {
+/* Mobile & Tablet Responsiveness for Expanded Circular Shape */
+@media (max-width: 900px) {
   .circular-orbit-stage {
-    width: 360px;
-    height: 360px;
-    --orbit-radius: 135px;
-    --node-size: 56px;
+    width: clamp(350px, 94vw, 440px);
+    height: clamp(350px, 94vw, 440px);
+    --orbit-radius: clamp(135px, 36vw, 168px);
+    --node-size: clamp(58px, 15vw, 70px);
   }
 
   .circular-ambient-glow {
@@ -8281,41 +8205,14 @@ h1, h2, h3, h4 {
   }
 
   .circular-orbit-center {
-    width: 145px;
-    height: 145px;
-    border-width: 3px;
-    box-shadow: 0 10px 30px rgba(6, 75, 131, 0.25);
-  }
-
-  .circular-center-overlay {
-    padding: 10px 8px;
-  }
-
-  .circular-center-title {
-    font-size: 11.5px;
-    line-height: 1.2;
-    margin-bottom: 2px;
-  }
-
-  .circular-center-tag {
-    font-size: 8.5px;
-    margin-bottom: 2px;
-  }
-
-  .circular-center-inspect-hint {
-    display: none;
+    width: clamp(145px, 38vw, 180px);
+    height: clamp(145px, 38vw, 180px);
+    border-width: 3.5px;
+    box-shadow: 0 12px 34px rgba(6, 75, 131, 0.26);
   }
 
   .circular-node-img {
-    border-width: 2px;
-  }
-
-  .circular-node-tag-pill {
-    display: none;
-  }
-
-  .circular-node-tooltip {
-    display: none;
+    border-width: 2.5px;
   }
 }
 

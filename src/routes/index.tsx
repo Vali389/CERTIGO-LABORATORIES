@@ -1030,7 +1030,7 @@ function Home() {
               <div className="circular-orbit-track" />
               <div className="circular-orbit-track-inner" />
 
-              {/* Center Focal Image Hub */}
+              {/* Center Focal Image Hub - 100% Pure Clean Photo (Zero Text Over Image) */}
               <div
                 className="circular-orbit-center"
                 onClick={() => setActiveLightboxItem(activeCircularItem)}
@@ -1041,16 +1041,9 @@ function Home() {
                   alt={activeCircularItem.title}
                   className="circular-center-img"
                 />
-                <div className="circular-center-overlay">
-                  <span className="circular-center-tag">{activeCircularItem.tag}</span>
-                  <h3 className="circular-center-title">{activeCircularItem.title}</h3>
-                  <span className="circular-center-inspect-hint">
-                    <Maximize2 size={13} /> Click to Enlarge
-                  </span>
-                </div>
               </div>
 
-              {/* Smoothly Rotating Orbital Ring with Upright Counter-Rotating Satellites */}
+              {/* Smoothly Rotating Orbital Ring with Upright Counter-Rotating Satellites (Zero Text Over Images) */}
               <div className="circular-orbit-ring" title="Hover to pause rotation">
                 {circularLabNodes.map((item, idx) => {
                   const total = circularLabNodes.length;
@@ -1078,10 +1071,6 @@ function Home() {
                           className="circular-node-img"
                           loading="lazy"
                         />
-                        <div className="circular-node-tag-pill">{item.tag}</div>
-                      </div>
-                      <div className="circular-node-tooltip">
-                        {item.title}
                       </div>
                     </div>
                   );
@@ -1089,12 +1078,28 @@ function Home() {
               </div>
             </div>
 
-            {/* Quick helper badge below circle */}
-            <div className="text-center mt-5">
-              <span className="inline-flex items-center gap-2 text-xs font-semibold text-primary/85 bg-white/90 backdrop-blur-sm border border-teal/20 px-5 py-2 rounded-full shadow-xs">
-                <Sparkles size={14} className="text-teal" />
-                Rotating Equipment Orbit · Hover to pause · Tap any instrument to focus in center
-              </span>
+            {/* Clean Equipment Caption Bar - Safely Positioned BELOW the circle (Zero Text Over Images) */}
+            <div className="circular-active-caption-bar mt-5 text-center">
+              <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-white border border-primary/15 px-6 py-2.5 rounded-full shadow-sm">
+                <span className="text-xs font-bold uppercase tracking-wider text-teal bg-teal/10 px-2.5 py-0.5 rounded-full">
+                  {activeCircularItem.tag}
+                </span>
+                <strong className="text-primary text-sm sm:text-base font-bold font-sans">
+                  {activeCircularItem.title}
+                </strong>
+                <span className="hidden sm:inline text-muted-foreground/40">|</span>
+                <span className="text-xs sm:text-sm text-muted-foreground">
+                  {activeCircularItem.subtitle}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setActiveLightboxItem(activeCircularItem)}
+                  className="ml-1 text-xs font-bold text-teal hover:text-brand-green transition-colors inline-flex items-center gap-1 cursor-pointer"
+                  title="View full-screen photograph"
+                >
+                  <Maximize2 size={12} /> Inspect Photo
+                </button>
+              </div>
             </div>
           </div>
 
