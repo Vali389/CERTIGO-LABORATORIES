@@ -9132,6 +9132,66 @@ h1, h2, h3, h4 {
   color: #cbd5e1;
 }
 
+/* Career HR Sidebar Card (High-Contrast on Navy) */
+.career-hr-sidebar-box {
+  background: linear-gradient(135deg, #064B83 0%, #042848 100%);
+  border: 1px solid rgba(8, 175, 193, 0.35);
+  border-radius: 16px;
+  padding: 24px;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(6, 75, 131, 0.16);
+}
+
+.career-hr-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.career-hr-title {
+  font-family: var(--font-serif);
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 0 0 8px !important;
+  letter-spacing: 0.2px;
+}
+
+.career-hr-desc {
+  font-size: 13px !important;
+  color: #E2E8F0 !important;
+  line-height: 1.6 !important;
+  margin: 0 0 16px !important;
+}
+
+.career-hr-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.career-hr-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #F8FAFC !important;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.career-hr-link:hover {
+  color: #38BDF8 !important;
+}
+
 /* ==========================================================================
    CAREER DETAIL PAGE & APPLICATION FORM
    ========================================================================== */

@@ -248,18 +248,22 @@ export function CareerDetail({ slug }: { slug: string }) {
               </div>
 
               {/* Recruitment Assistance */}
-              <div className="bg-gradient-to-br from-[#064B83] to-[#042848] text-white rounded-2xl p-6 shadow-md">
-                <Building2 size={24} className="text-teal mb-3" />
-                <h4 className="font-bold text-base mb-2">Certigo Human Resources</h4>
-                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+              <div className="career-hr-sidebar-box">
+                <div className="career-hr-icon-wrap">
+                  <Building2 size={22} className="text-white" />
+                </div>
+                <h4 className="career-hr-title">Certigo Human Resources</h4>
+                <p className="career-hr-desc">
                   Have questions about this role or working at our NABL accredited laboratory facility in Visakhapatnam?
                 </p>
-                <div className="flex flex-col gap-2.5 text-xs text-slate-200">
-                  <a href={contact.phoneHref} className="flex items-center gap-2 hover:text-white transition-colors">
-                    <Phone size={14} className="text-teal" /> {contact.phone}
+                <div className="career-hr-links">
+                  <a href={contact.phoneHref} className="career-hr-link">
+                    <Phone size={15} className="text-cyan-300 flex-shrink-0" />
+                    <span>{contact.phone}</span>
                   </a>
-                  <a href={`mailto:${contact.email}?subject=Career%20Query%3A%20${encodeURIComponent(job.title)}`} className="flex items-center gap-2 hover:text-white transition-colors">
-                    <Mail size={14} className="text-teal" /> {contact.email}
+                  <a href={`mailto:${contact.email}?subject=Career%20Query%3A%20${encodeURIComponent(job.title)}`} className="career-hr-link">
+                    <Mail size={15} className="text-cyan-300 flex-shrink-0" />
+                    <span>{contact.email}</span>
                   </a>
                 </div>
               </div>
