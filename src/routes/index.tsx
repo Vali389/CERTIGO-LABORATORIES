@@ -15,15 +15,15 @@ import {
   microImage, chemImage, envImage, airImage, cellsImage, learningImage,
   heroSlide1, heroSlide2, heroSlide3
 } from "@/lib/site-data";
-import realMicroscopeImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.36 PM.jpeg";
-import realLaminarImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.34 PM (1).jpeg";
-import realBalanceImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.34 PM.jpeg";
-import realAutoclaveImg from "@/assets/WhatsApp Image 2026-10-17 at 1.21.21 PM.jpeg";
-import realIncubatorImg from "@/assets/WhatsApp Image 2026-10-17 at 1.21.22 PM.jpeg";
-import realHotAirOvenImg from "@/assets/WhatsApp Image 2026-10-17 at 1.21.23 PM.jpeg";
-import realBiosafetyImg from "@/assets/WhatsApp Image 2026-10-17 at 1.21.24 PM.jpeg";
-import realHomogenizerImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.35 PM.jpeg";
-import realBinocularImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.37 PM.jpeg";
+import laminarImg from "@/assets/laminar-air-flow.jpeg";
+import microscopeImg from "@/assets/microscope.jpeg";
+import colonyMeterImg from "@/assets/colony-meter.jpeg";
+import autoclaveImg from "@/assets/autoclave.jpeg";
+import passBoxImg from "@/assets/pass-box.jpeg";
+import stomacherImg from "@/assets/Stomacher blender.jpeg";
+import rtPcrImg from "@/assets/RT-PCR.jpeg";
+import balanceImg from "@/assets/weight-balances.jpeg";
+import phMeterImg from "@/assets/ph-meter.jpeg";
 import petriDishImg from "@/assets/petri-dish-culture.jpg";
 export const Route = createFileRoute("/")({
   head: () => pageHead(
@@ -230,12 +230,33 @@ const luxuryStudentProgrammes = [
   }
 ];
 
-const facilityCategories = [
-  { id: "all", label: "All Infrastructure", count: 9 },
-  { id: "microbiology", label: "Microbiology Suite", count: 4 },
-  { id: "chemistry", label: "Analytical Chemistry", count: 2 },
-  { id: "water-env", label: "Water & Environmental", count: 1 },
-  { id: "prep-sterility", label: "Sterilization & Prep", count: 2 }
+export interface EquipmentItem {
+  id: string;
+  name: string;
+  room: string;
+  standard: string;
+  tag: string;
+  spec: string;
+  image: string;
+  features: string[];
+}
+
+export interface EquipmentSuite {
+  id: string;
+  title: string;
+  badge: string;
+  subtitle: string;
+  accent: string;
+  accentBg: string;
+  icon: typeof Microscope;
+  items: EquipmentItem[];
+}
+
+const suiteCategories = [
+  { id: "all", label: "All Suites", count: 9 },
+  { id: "microbiology", label: "Microbiology Suite", count: 3 },
+  { id: "sterilization", label: "Sterilization & Prep", count: 3 },
+  { id: "analytical", label: "Molecular & Analytical", count: 3 }
 ];
 
 const nablDisciplines = [
@@ -247,167 +268,173 @@ const nablDisciplines = [
   { icon: Wind, name: "Ambient & Stack Air", sub: "PM2.5, PM10, SOx, NOx & Noise", color: "#08AFC1", bg: "rgba(8, 175, 193, 0.12)" }
 ];
 
-const facilityGalleryItems = [
+const equipmentSuites: EquipmentSuite[] = [
   {
-    id: "EQ-BAL-01",
-    image: realBalanceImg,
-    title: "Analytical Micro-Balance (0.0001g)",
-    room: "Weighing & Reference Suite",
-    category: "Analytical Chemistry",
-    categoryKey: "chemistry",
-    spec: "Calibrated 0.0001g balance for high-precision analytical weighing.",
-    precision: "± 0.0001 g",
-    standard: "ISO/IEC 17025",
-    tags: ["0.0001g Precision", "CRM Traceable", "Anti-Draft Shield"],
-    features: [
-      "Electromagnetic force compensation weighing cell",
-      "Draft shield with anti-static coated glass panels",
-      "Traceable calibration against NPL reference standards",
-      "Automatic internal temperature-triggered recalibration"
+    id: "microbiology",
+    title: "Suite 01: Microbiology & Culture Suite",
+    badge: "ISO Class 5 · Inoculation & Microscopy",
+    subtitle: "Calibrated optical instruments, laminar clean bench chambers, and digital colony enumeration counters.",
+    accent: "#08AFC1",
+    accentBg: "rgba(8, 175, 193, 0.12)",
+    icon: Microscope,
+    items: [
+      {
+        id: "laf",
+        name: "Laminar Air Flow Clean Bench",
+        room: "Microbiology Inoculation Suite",
+        standard: "ISO 14644-1 Class 5",
+        tag: "HEPA 99.997%",
+        spec: "Vertical HEPA chamber with continuous air velocity monitoring for sterile pathogen inoculation.",
+        image: laminarImg,
+        features: [
+          "Ultra-low penetration air (HEPA) filtration matrix",
+          "Continuous airflow velocity monitor (0.45 m/s ± 20%)",
+          "Programmable UV decontamination cycle with interlock",
+          "Certified aseptic clean bench for culture inoculation"
+        ]
+      },
+      {
+        id: "mic",
+        name: "Binocular Research Microscope",
+        room: "Cellular & Morphology Station",
+        standard: "DIN / ISO 19012",
+        tag: "1000x Optical",
+        spec: "High-resolution plan-achromatic optics with 100x oil-immersion for bacterial identification.",
+        image: microscopeImg,
+        features: [
+          "Quadruple revolving nosepiece with plan-achromatic objectives",
+          "Coaxial coarse and fine focusing with 0.002mm graduation",
+          "Abbe condenser N.A. 1.25 with iris diaphragm & filter holder",
+          "Pure white LED Koehler illumination for maximum contrast"
+        ]
+      },
+      {
+        id: "col",
+        name: "Digital Colony Counter",
+        room: "Microbial Enumeration Suite",
+        standard: "BAM / ISO 7218",
+        tag: "0–9999 CFU Readout",
+        spec: "Pressure-touch electronic sensor with dark-field illumination for precise colony counting.",
+        image: colonyMeterImg,
+        features: [
+          "Glare-free ring illumination with dark-field contrast",
+          "Pressure-sensitive electronic pen sensor with audible beep",
+          "Wolfhugel grid counting mask with 1.7x distortion-free lens",
+          "Direct digital readout for standardized microbiological counts"
+        ]
+      }
     ]
   },
   {
-    id: "EQ-LAF-02",
-    image: realLaminarImg,
-    title: "Laminar Air Flow Clean Bench (Type A2)",
-    room: "Microbiology Inoculation Suite",
-    category: "Microbiology Suite",
-    categoryKey: "microbiology",
-    spec: "ISO Class 5 vertical HEPA chamber for sterile sample inoculation.",
-    precision: "99.997% @ 0.3μm",
-    standard: "ISO 14644-1 Class 5",
-    tags: ["HEPA 99.99%", "UV Germicidal Lamp", "Aseptic Handling"],
-    features: [
-      "Ultra-low penetration air (HEPA) filtration matrix",
-      "Continuous airflow velocity monitor (0.45 m/s ± 20%)",
-      "Programmable UV decontamination cycle with interlock",
-      "Certified aseptic bench for pathogen inoculation"
+    id: "sterilization",
+    title: "Suite 02: Sterilization & Cleanroom Transfer",
+    badge: "Thermal Sterilization & Aseptic Transfer",
+    subtitle: "High-pressure thermal sterilization, interlocked dynamic pass box, and sterile sample homogenization.",
+    accent: "#39B54A",
+    accentBg: "rgba(57, 181, 74, 0.12)",
+    icon: ShieldCheck,
+    items: [
+      {
+        id: "aut",
+        name: "Vertical High-Pressure Steam Autoclave",
+        room: "Media Prep & Sterilization Lab",
+        standard: "IS 3829 / ASME",
+        tag: "121°C Steam Cycle",
+        spec: "Validated 121°C @ 15 PSI saturated steam chamber for media, tools, and bio-waste decontamination.",
+        image: autoclaveImg,
+        features: [
+          "Heavy-gauge SS 304 deep-drawn sterilization chamber",
+          "Radial locking lid system with dual silicon gasket seal",
+          "Automatic purge valve for complete air evacuation",
+          "Validated weekly using Geobacillus stearothermophilus spore ampoules"
+        ]
+      },
+      {
+        id: "pb",
+        name: "Cleanroom Dynamic Pass Box",
+        room: "Aseptic Cleanroom Airlock",
+        standard: "ISO 14644 / GMP",
+        tag: "UV Interlocked",
+        spec: "Electromagnetic interlocking dual-door airlock with germicidal UV decontamination between zones.",
+        image: passBoxImg,
+        features: [
+          "Interlocking electronic door mechanism preventing cross-drafts",
+          "High-intensity germicidal UV tube with safety door interlocks",
+          "Seamless stainless steel 304 interior with curved coved corners",
+          "Maintains cleanroom differential pressure balance"
+        ]
+      },
+      {
+        id: "stb",
+        name: "Stomacher Laboratory Blender",
+        room: "Food & Sample Preparation Lab",
+        standard: "ISO 6887 / AOAC",
+        tag: "Aseptic Homogenizer",
+        spec: "Variable-speed oscillating paddle homogenizer for sterile food, dairy, and solid matrix extraction.",
+        image: stomacherImg,
+        features: [
+          "Oscillating paddle mechanism for rapid cellular dispersion",
+          "Aseptic sterile filter bag system preventing sample cross-contact",
+          "Adjustable paddle distance for diverse food matrix densities",
+          "Removable drip tray with smooth easy-clean curved interior"
+        ]
+      }
     ]
   },
   {
-    id: "EQ-DCC-03",
-    image: realMicroscopeImg,
-    title: "Digital Colony Counter & Inoculation Bench",
-    room: "Microbial Enumeration Lab",
-    category: "Microbiology Suite",
-    categoryKey: "microbiology",
-    spec: "Pressure-sensitive digital colony counter with optical magnification.",
-    precision: "0 - 9,999 CFU",
-    standard: "BAM / ISO 7218",
-    tags: ["CFU Enumeration", "Magnified Lens", "Pressure Touch Sensor"],
-    features: [
-      "Glare-free ring illumination with dark-field contrast",
-      "Pressure-sensitive electronic pen sensor with audible beep",
-      "Wolfhugel grid counting mask with 1.7x / 3x distortion-free lens",
-      "Direct digital readout for standardized microbiological counts"
-    ]
-  },
-  {
-    id: "EQ-MIC-04",
-    image: realBinocularImg,
-    title: "High-Power Binocular Research Microscope",
-    room: "Cellular & Morphology Station",
-    category: "Microbiology Suite",
-    categoryKey: "microbiology",
-    spec: "Achromatic 1000x oil-immersion optics for microbial morphology.",
-    precision: "1000x Optical",
-    standard: "DIN / ISO 19012",
-    tags: ["1000x Magnification", "LED Illumination", "Oil Immersion 100x"],
-    features: [
-      "Quadruple revolving nosepiece with plan-achromatic objectives",
-      "Coaxial coarse and fine focusing with 0.002mm graduation",
-      "Abbe condenser N.A. 1.25 with iris diaphragm & filter holder",
-      "Pure white LED Koehler illumination for high resolution"
-    ]
-  },
-  {
-    id: "EQ-INC-05",
-    image: realIncubatorImg,
-    title: "Standard & BOD Controlled-Temperature Incubators",
-    room: "Controlled Incubation Lab",
-    category: "Water & Environmental",
-    categoryKey: "water-env",
-    spec: "Controlled chambers for BOD assays and microbial incubation.",
-    precision: "± 0.1°C Stability",
-    standard: "IS 3025 (Part 44) / APHA",
-    tags: ["20°C / 37°C / 44°C", "Microprocessor Control", "5-Day BOD Testing"],
-    features: [
-      "Microprocessor PID temperature controller with dual sensors",
-      "Continuous air circulation for uniform thermal gradient",
-      "Hermetically sealed refrigeration unit for 20°C BOD incubation",
-      "Digital safety thermostat and high-temperature cutoff alarm"
-    ]
-  },
-  {
-    id: "EQ-AUT-06",
-    image: realAutoclaveImg,
-    title: "Vertical High-Pressure Sterilization Autoclave",
-    room: "Media Prep & Decontamination",
-    category: "Sterilization & Prep",
-    categoryKey: "prep-sterility",
-    spec: "High-pressure saturated steam sterilization (121°C / 15 psi).",
-    precision: "121°C / 15 psi",
-    standard: "IS 3829 / ASME",
-    tags: ["121°C Saturated Steam", "Stainless Steel 304", "Biological Indicator QC"],
-    features: [
-      "Heavy-gauge SS 304 deep-drawn sterilization chamber",
-      "Radial locking lid system with dual silicon gasket seal",
-      "Automatic purge valve for complete air evacuation",
-      "Validated weekly using Geobacillus stearothermophilus spore ampoules"
-    ]
-  },
-  {
-    id: "EQ-BSC-07",
-    image: realBiosafetyImg,
-    title: "Class II Type A2 Biosafety Cabinet",
-    room: "Microbiology Inoculation Suite",
-    category: "Microbiology Suite",
-    categoryKey: "microbiology",
-    spec: "Certified HEPA laminar airflow chamber for sterile operator protection.",
-    precision: "70% Recirc / 30% Exhaust",
-    standard: "EN 12469 / NSF 49",
-    tags: ["Class II Type A2", "HEPA Filtration", "Operator Safety"],
-    features: [
-      "Dual HEPA H14 filtration ensuring 99.995% efficiency",
-      "Dynamic negative pressure plenum preventing perimeter leaks",
-      "Acoustically dampened motor blower for quiet precision operation",
-      "Motorized tempered safety glass sash with aerodynamic airfoil"
-    ]
-  },
-  {
-    id: "EQ-OVEN-08",
-    image: realHotAirOvenImg,
-    title: "Digital Hot Air Sterilization Oven",
-    room: "Media Prep & Decontamination",
-    category: "Sterilization & Prep",
-    categoryKey: "prep-sterility",
-    spec: "Microprocessor dry heat sterilization for laboratory glassware.",
-    precision: "± 1.0°C Uniformity",
-    standard: "ISO 20857 / ASTM",
-    tags: ["Dry Heat Sterilization", "Microprocessor Control", "Glassware Prep"],
-    features: [
-      "Forced air convection system with whisper-quiet impeller",
-      "Double-walled insulation with high-density mineral wool",
-      "Digital countdown timer with auto-shutoff and soak period",
-      "Corrosion-resistant electropolished stainless steel interior"
-    ]
-  },
-  {
-    id: "EQ-HOM-09",
-    image: realHomogenizerImg,
-    title: "Stomacher Homogenizer & Vortex Station",
-    room: "Food Matrix Extraction Lab",
-    category: "Analytical Chemistry",
-    categoryKey: "chemistry",
-    spec: "Paddle-action sterile homogenizer for food microbial extraction.",
-    precision: "4 - 10 strokes/sec",
-    standard: "ISO 6887 / AOAC",
-    tags: ["Aseptic Stomaching", "Variable Speed Paddle", "Zero Cross-Contamination"],
-    features: [
-      "Oscillating paddle mechanism for rapid cellular dispersion",
-      "Aseptic sterile filter bag system preventing sample cross-contact",
-      "Adjustable paddle distance for diverse food matrix densities",
-      "Removable drip tray with smooth easy-clean curved interior"
+    id: "analytical",
+    title: "Suite 03: Molecular & Analytical Chemistry",
+    badge: "Genomic Amplification & Micro-Weighing",
+    subtitle: "Automated fluorescent thermal cyclers, 0.0001g electro-magnetic balances, and digital pH meters.",
+    accent: "#064B83",
+    accentBg: "rgba(6, 75, 131, 0.12)",
+    icon: FlaskConical,
+    items: [
+      {
+        id: "pcr",
+        name: "Real-Time PCR (RT-PCR) System",
+        room: "Molecular Biology Testing Lab",
+        standard: "MIQE / ISO 20838",
+        tag: "Real-Time PCR",
+        spec: "96-well automated fluorescent thermal cycler for pathogen gene detection and molecular diagnostics.",
+        image: rtPcrImg,
+        features: [
+          "Rapid Peltier thermal ramping for precise PCR cycles",
+          "Multi-channel fluorescent optical detection",
+          "High sensitivity for food-borne pathogen and GMO screening",
+          "Automated baseline and threshold cycle (Ct) calculation"
+        ]
+      },
+      {
+        id: "bal",
+        name: "Analytical Precision Micro-Balance",
+        room: "Weighing & Calibration Suite",
+        standard: "ISO/IEC 17025 Traceable",
+        tag: "0.0001g Precision",
+        spec: "0.0001g electromagnetic force compensation balance with draft shield for analytical gravimetric assays.",
+        image: balanceImg,
+        features: [
+          "Electromagnetic force compensation weighing cell",
+          "Draft shield with anti-static coated glass panels",
+          "Traceable calibration against NPL reference standards",
+          "Automatic internal temperature-triggered recalibration"
+        ]
+      },
+      {
+        id: "phm",
+        name: "Benchtop Digital pH / Ion Meter",
+        room: "Physico-Chemical Analysis Lab",
+        standard: "IS 3025 (Part 11) / APHA",
+        tag: "±0.002 pH Accuracy",
+        spec: "Multi-point calibrated benchtop pH meter with automatic temperature compensation for water & chemical testing.",
+        image: phMeterImg,
+        features: [
+          "Precision combination glass electrode with ATC probe",
+          "Multi-point calibration with automatic NIST buffer recognition",
+          "High impedance amplifier with ±0.002 pH stability",
+          "Direct compliance with drinking water and effluent test standards"
+        ]
+      }
     ]
   }
 ];
@@ -546,8 +573,8 @@ const refPosterTrust = [
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedFacilityCategory, setSelectedFacilityCategory] = useState("all");
-  const [hoveredEquipmentId, setHoveredEquipmentId] = useState<string | null>("EQ-LAF-02");
+  const [selectedSuiteId, setSelectedSuiteId] = useState("all");
+  const [activeEquipmentModal, setActiveEquipmentModal] = useState<EquipmentItem | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -1148,25 +1175,25 @@ function Home() {
         </div>
       </section>
 
-      {/* SECTION: AUTHENTIC TESTING INFRASTRUCTURE (CLEAN, SIMPLE & ATTRACTIVE UI) */}
+      {/* SECTION: AUTHENTIC TESTING INFRASTRUCTURE (GROUPED SUITES / CLUBS) */}
       <section className="section gradient-section-gallery fade-up-init" id="facility-gallery">
         <div className="site-container">
           <SectionHeading
             eyebrow="AUTHENTIC TESTING INFRASTRUCTURE"
             title="Inside Certigo: Calibrated Equipment & Testing Bench"
-            description="Calibrated laboratory testing instruments operating under ISO/IEC 17025 standards."
+            description="Calibrated laboratory testing instruments operating under ISO/IEC 17025 standards across specialized testing suites."
           />
 
-          {/* Simple, Clean & Attractive Category Filter Pills */}
+          {/* Simple, Clean Category Filter Pills */}
           <div className="facility-filter-tabs-wrapper mt-8 mb-10">
             <div className="facility-filter-tabs">
-              {facilityCategories.map((cat) => {
-                const isActive = selectedFacilityCategory === cat.id;
+              {suiteCategories.map((cat) => {
+                const isActive = selectedSuiteId === cat.id;
                 return (
                   <button
                     key={cat.id}
                     type="button"
-                    onClick={() => setSelectedFacilityCategory(cat.id)}
+                    onClick={() => setSelectedSuiteId(cat.id)}
                     className={`facility-filter-tab ${isActive ? "is-active" : ""}`}
                   >
                     <span>{cat.label}</span>
@@ -1177,88 +1204,189 @@ function Home() {
             </div>
           </div>
 
-          {/* Authentic Testing Infrastructure Cards (Matching User's Attached Reference Image) */}
-          <div className="equipment-showcase-grid">
-            {facilityGalleryItems
+          {/* Grouped Infrastructure: Small Groups / Clubbed Suites */}
+          <div className="equipment-suites-container">
+            {equipmentSuites
               .filter(
-                (item) =>
-                  selectedFacilityCategory === "all" ||
-                  item.categoryKey === selectedFacilityCategory
+                (suite) =>
+                  selectedSuiteId === "all" || suite.id === selectedSuiteId
               )
-              .map((item, idx) => {
-                const isActive = (hoveredEquipmentId === item.id) || (!hoveredEquipmentId && idx === 1);
+              .map((suite) => {
+                const SuiteIcon = suite.icon;
                 return (
-                  <article
-                    className={`equipment-feature-card ${isActive ? "is-active" : ""}`}
-                    key={item.id}
-                    onMouseEnter={() => setHoveredEquipmentId(item.id)}
-                    onClick={() => setHoveredEquipmentId(item.id)}
-                  >
-                    {/* Background Equipment Photograph */}
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="equipment-card-bg-img"
-                      loading="lazy"
-                      width={480}
-                      height={460}
-                    />
-
-                    {/* Gradient Overlay for Legibility */}
-                    <div className="equipment-card-vignette" />
-
-                    {/* Top-Right Accent Dot (Green/Brand color matching reference image) */}
-                    <span className="equipment-card-accent-dot" />
-
-                    {/* Default State: Bottom Title + Accent Underline Bar */}
-                    <div className="equipment-card-default-bottom">
-                      <span className="equipment-card-room-badge">{item.room}</span>
-                      <h3 className="equipment-card-bottom-title">{item.title}</h3>
-                      <span className="equipment-card-underline-bar" />
-                    </div>
-
-                    {/* Active/Hover State: Top Title + Floating White Features Box (Middle Card in Reference Image) */}
-                    <div className="equipment-card-active-overlay">
-                      <div className="equipment-overlay-top">
-                        <span className="equipment-card-room-badge">{item.room}</span>
-                        <h3 className="equipment-overlay-title">{item.title}</h3>
-                        <span className="equipment-card-underline-bar" />
-                      </div>
-
-                      {/* Floating White Features Card */}
-                      <div className="equipment-features-box">
-                        <div className="equipment-features-heading">
-                          <span className="equipment-features-vertical-bar" />
-                          <span>KEY FEATURES</span>
+                  <div className="equipment-suite-panel" key={suite.id}>
+                    {/* Suite Header Bar */}
+                    <div className="equipment-suite-header">
+                      <div className="equipment-suite-header-left">
+                        <div
+                          className="equipment-suite-icon-ring"
+                          style={{
+                            background: suite.accentBg,
+                            color: suite.accent
+                          }}
+                        >
+                          <SuiteIcon size={22} />
                         </div>
-
-                        <ul className="equipment-features-list">
-                          {item.features.slice(0, 4).map((feat, fIdx) => (
-                            <li key={fIdx}>
-                              <span className="equipment-check-badge">✓</span>
-                              <span>{feat}</span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        <div className="equipment-features-bottom-row">
-                          <Link
-                            to={`/quote?equipment=${encodeURIComponent(item.title)}`}
-                            className="equipment-view-more-btn"
-                          >
-                            <span>View More</span>
-                            <ChevronRight size={15} />
-                          </Link>
-                          <span className="equipment-standard-chip">
-                            {item.standard}
-                          </span>
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2 mb-1">
+                            <h3 className="equipment-suite-title">{suite.title}</h3>
+                            <span
+                              className="equipment-suite-badge"
+                              style={{
+                                color: suite.accent,
+                                borderColor: `${suite.accent}33`,
+                                background: suite.accentBg
+                              }}
+                            >
+                              {suite.badge}
+                            </span>
+                          </div>
+                          <p className="equipment-suite-subtitle">{suite.subtitle}</p>
                         </div>
                       </div>
+                      <div className="equipment-suite-header-right">
+                        <span className="equipment-suite-count-tag">
+                          {suite.items.length} Instruments
+                        </span>
+                      </div>
                     </div>
-                  </article>
+
+                    {/* Suite 3-Card Grid */}
+                    <div className="equipment-suite-grid">
+                      {suite.items.map((item) => (
+                        <article
+                          className="equipment-club-card"
+                          key={item.id}
+                          onClick={() => setActiveEquipmentModal(item)}
+                        >
+                          <div className="equipment-club-image-wrap">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="equipment-club-img"
+                              loading="lazy"
+                              width={480}
+                              height={340}
+                            />
+                            <div className="equipment-club-tag">
+                              {item.tag}
+                            </div>
+                            <div className="equipment-club-inspect-btn">
+                              <Maximize2 size={13} />
+                              <span>Inspect Details</span>
+                            </div>
+                          </div>
+
+                          <div className="equipment-club-body">
+                            <div className="equipment-club-room">
+                              <span>{item.room}</span>
+                              <span className="equipment-standard-inline">
+                                {item.standard}
+                              </span>
+                            </div>
+
+                            <h4 className="equipment-club-name">{item.name}</h4>
+                            <p className="equipment-club-spec">{item.spec}</p>
+
+                            <div className="equipment-club-footer">
+                              <span className="equipment-certified-label">
+                                <CheckCircle2 size={13} className="text-brand-green" />
+                                <span>ISO/IEC 17025 Calibrated</span>
+                              </span>
+                              <span className="equipment-view-action">
+                                <span>Preview</span>
+                                <ChevronRight size={14} />
+                              </span>
+                            </div>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
                 );
               })}
           </div>
+
+          {/* Modal / Lightbox for viewing equipment details */}
+          {activeEquipmentModal && (
+            <div
+              className="equipment-modal-backdrop"
+              onClick={() => setActiveEquipmentModal(null)}
+            >
+              <div
+                className="equipment-modal-dialog"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  className="equipment-modal-close"
+                  onClick={() => setActiveEquipmentModal(null)}
+                  aria-label="Close modal"
+                >
+                  <X size={20} />
+                </button>
+
+                <div className="equipment-modal-grid">
+                  <div className="equipment-modal-media">
+                    <img
+                      src={activeEquipmentModal.image}
+                      alt={activeEquipmentModal.name}
+                      className="equipment-modal-img"
+                    />
+                    <div className="equipment-modal-badge">
+                      {activeEquipmentModal.tag}
+                    </div>
+                  </div>
+
+                  <div className="equipment-modal-content">
+                    <span className="equipment-modal-room">
+                      {activeEquipmentModal.room}
+                    </span>
+                    <h3 className="equipment-modal-title">
+                      {activeEquipmentModal.name}
+                    </h3>
+                    <div className="equipment-modal-standard">
+                      Compliance Standard: <strong>{activeEquipmentModal.standard}</strong>
+                    </div>
+                    <p className="equipment-modal-desc">
+                      {activeEquipmentModal.spec}
+                    </p>
+
+                    <div className="equipment-modal-features">
+                      <span className="equipment-modal-features-title">
+                        Calibration &amp; Technical Highlights
+                      </span>
+                      <ul>
+                        {activeEquipmentModal.features.map((feat, fIdx) => (
+                          <li key={fIdx}>
+                            <Check size={14} className="text-brand-green flex-shrink-0" />
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="equipment-modal-actions">
+                      <Button asChild size="lg" className="hero-btn-primary">
+                        <Link
+                          to={`/quote?equipment=${encodeURIComponent(activeEquipmentModal.name)}`}
+                        >
+                          Enquire for Testing <ArrowUpRight />
+                        </Link>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        onClick={() => setActiveEquipmentModal(null)}
+                      >
+                        Close Preview
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
