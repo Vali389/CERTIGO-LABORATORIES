@@ -6,9 +6,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero, EnquiryBand, SectionHeading, WhatsAppIcon } from "@/components/site";
-import { labImage, pageHead, contact, researchImage, aboutImage } from "@/lib/site-data";
+import { labImage, pageHead, contact, researchImage } from "@/lib/site-data";
 import managingDirectorImg from "@/assets/managing-director.jpeg";
-import divyaKeerthanaImg from "@/assets/r-divya-keerthana-chemist.png";
 
 export const Route = createFileRoute("/about")({
   head: () => pageHead(
@@ -62,29 +61,6 @@ const teamMembers = [
       "Selection and validation of approved test methods",
       "Supervision of analytical testing & data authorization",
       "Instrumentation monitoring & measurement competence"
-    ]
-  },
-  {
-    initials: "DK",
-    name: "Ms. R. Divya Keerthana",
-    role: "Chemist",
-    degree: "B.Sc. in Chemistry",
-    experience: "2 Years Exp",
-    tag: "Chemical & Analytical Testing",
-    photo: divyaKeerthanaImg,
-    bio: "Holds a B.Sc. in Chemistry with 2 years of professional laboratory experience. Performs chemical analysis of raw materials, finished products, environmental samples, and other customer samples using appropriate laboratory methods.",
-    isoHighlight: "ISO/IEC 17025 Chemical Analysis & GLP",
-    keyResponsibilities: [
-      "Chemical analysis of raw materials, finished products, environmental samples & customer samples using appropriate laboratory methods",
-      "Accurate preparation of samples, reagents, standards, and solutions for testing",
-      "Operation, calibration, and maintenance of laboratory instruments and equipment",
-      "Recording test observations, calculations, and analytical results clearly and accurately",
-      "Reviewing data to ensure compliance with approved specifications and testing procedures",
-      "Preparation and verification of laboratory reports and supporting documentation",
-      "Adherence to Good Laboratory Practices (GLP), safety procedures, and quality management system requirements",
-      "Investigating abnormal or out-of-specification results and reporting findings to the supervisor",
-      "Maintaining proper documentation, sample traceability, and laboratory records",
-      "Coordinating with laboratory managers, department in-charges, and technical executives for timely completion of testing and reporting"
     ]
   },
   {
@@ -176,6 +152,28 @@ const teamMembers = [
       "Client relationship management & testing requirement scoping",
       "Adherence to sample receipt and traceability procedures"
     ]
+  },
+  {
+    initials: "DK",
+    name: "Ms. R. Divya Keerthana",
+    role: "Chemist",
+    degree: "B.Sc. in Chemistry",
+    experience: "2 Years Exp",
+    tag: "Chemical & Analytical Testing",
+    bio: "Holds a B.Sc. in Chemistry with 2 years of professional laboratory experience. Performs chemical analysis of raw materials, finished products, environmental samples, and other customer samples using appropriate laboratory methods.",
+    isoHighlight: "ISO/IEC 17025 Chemical Analysis & GLP",
+    keyResponsibilities: [
+      "Chemical analysis of raw materials, finished products, environmental samples & customer samples using appropriate laboratory methods",
+      "Accurate preparation of samples, reagents, standards, and solutions for testing",
+      "Operation, calibration, and maintenance of laboratory instruments and equipment",
+      "Recording test observations, calculations, and analytical results clearly and accurately",
+      "Reviewing data to ensure compliance with approved specifications and testing procedures",
+      "Preparation and verification of laboratory reports and supporting documentation",
+      "Adherence to Good Laboratory Practices (GLP), safety procedures, and quality management system requirements",
+      "Investigating abnormal or out-of-specification results and reporting findings to the supervisor",
+      "Maintaining proper documentation, sample traceability, and laboratory records",
+      "Coordinating with laboratory managers, department in-charges, and technical executives for timely completion of testing and reporting"
+    ]
   }
 ];
 
@@ -226,24 +224,44 @@ function About() {
             </div>
           </div>
 
-          <figure className="editorial-photo shadow-lg">
-            <img 
-              src={aboutImage} 
-              width={1200} 
-              height={900} 
-              loading="lazy" 
-              alt="Certigo Laboratories modern testing analytical facility" 
-            />
-            <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-2 bg-primary/85 backdrop-blur-sm border border-teal/40 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-md">
-              <ShieldCheck size={14} className="text-teal" /> NABL ACCREDITED FACILITY
-            </div>
-            <figcaption>
-              <div>
-                <span>VISAKHAPATNAM, ANDHRA PRADESH</span>
-                <strong>State-of-the-Art Analytical Facility</strong>
+          {/* Right Column: Clean Standards & Scope Plaque (No Illustrative Chemical Image) */}
+          <div className="bg-card border border-border/80 rounded-2xl p-6 sm:p-8 shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-teal/10 text-teal px-3.5 py-1.5 rounded-full text-xs font-semibold mb-5">
+                <ShieldCheck size={15} /> NABL ACCREDITATION · NO. {contact.nablNumber}
               </div>
-            </figcaption>
-          </figure>
+              <h3 className="text-xl sm:text-2xl font-serif text-primary font-bold mb-3">
+                Committed to Technical Excellence &amp; Impartiality
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                Operating strictly in accordance with ISO/IEC 17025:2017 international standards, providing legally valid, audit-ready test reports for industries, commercial establishments, and public health authorities.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-card border border-border/50 text-xs font-semibold text-primary">
+                  <CheckCircle2 size={16} className="text-brand-green flex-shrink-0" />
+                  Food &amp; Agriculture Testing
+                </div>
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-card border border-border/50 text-xs font-semibold text-primary">
+                  <CheckCircle2 size={16} className="text-brand-green flex-shrink-0" />
+                  IS 10500 Drinking Water
+                </div>
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-card border border-border/50 text-xs font-semibold text-primary">
+                  <CheckCircle2 size={16} className="text-brand-green flex-shrink-0" />
+                  Microbiological Sterility
+                </div>
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-card border border-border/50 text-xs font-semibold text-primary">
+                  <CheckCircle2 size={16} className="text-brand-green flex-shrink-0" />
+                  Environmental &amp; Air Quality
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground">
+              <span>Standard Validated Test Methods</span>
+              <span className="font-semibold text-primary">BIS · FSSAI · APHA · ISO</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -350,6 +368,9 @@ function About() {
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
               Trained in accordance with ISO/IEC 17025 to ensure technical competence, impartial testing operations, and dependable customer service.
             </p>
+            <p className="text-sm sm:text-base text-primary/85 font-medium leading-relaxed bg-white/80 dark:bg-card/80 border border-primary/10 rounded-2xl p-4 shadow-xs mt-4 max-w-2xl mx-auto">
+              Along with the management and department in-charges, an executive team comprising microbiologists, chemists, and trainee technicians is working diligently on standard sample analysis, making every effort to ensure reliable results and timely report generation.
+            </p>
           </div>
 
           {/* Managing Director Featured Spotlight */}
@@ -384,27 +405,13 @@ function About() {
           {/* Executive Team Grid */}
           <div className="team-exec-grid">
             {teamMembers.map((m) => (
-              <article key={m.name} className={`team-exec-card ${m.photo ? "has-photo" : ""}`}>
+              <article key={m.name} className="team-exec-card">
                 <div className="team-exec-accent-bar" />
                 
-                {/* Photo banner if real photograph is available */}
-                {m.photo && (
-                  <div className="team-exec-photo-banner">
-                    <img src={m.photo} alt={`${m.name} - ${m.role}`} className="team-exec-banner-img" loading="lazy" />
-                    <div className="team-exec-photo-tag">
-                      <FlaskConical size={12} className="text-teal" /> Chemist · Laboratory Testing
-                    </div>
-                  </div>
-                )}
-
                 {/* Header: Monogram Avatar + Department Badge */}
                 <div className="team-exec-header">
                   <div className="team-exec-avatar">
-                    {m.photo ? (
-                      <img src={m.photo} alt={m.name} className="team-exec-avatar-img" />
-                    ) : (
-                      <span>{m.initials}</span>
-                    )}
+                    <span>{m.initials}</span>
                     <span className="team-exec-verified-badge" title="ISO/IEC 17025 Competent">
                       <CheckCircle2 size={11} strokeWidth={3} />
                     </span>

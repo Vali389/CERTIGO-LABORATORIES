@@ -28,7 +28,6 @@ import incubatorImg from "@/assets/WhatsApp Image 2026-10-17 at 1.21.22 PM.jpeg"
 import hotAirOvenImg from "@/assets/WhatsApp Image 2026-10-17 at 1.21.23 PM.jpeg";
 import biosafetyCabinetImg from "@/assets/WhatsApp Image 2026-10-17 at 1.21.24 PM.jpeg";
 import petriDishImg from "@/assets/petri-dish-culture.jpg";
-import divyaChemistImg from "@/assets/r-divya-keerthana-chemist.png";
 import chemBenchImg from "@/assets/WhatsApp Image 2026-10-15 at 1.04.34 PM (2).jpeg";
 export const Route = createFileRoute("/")({
   head: () => pageHead(
@@ -246,16 +245,6 @@ export interface IrregularLabItem {
 }
 
 const irregularLabItems: IrregularLabItem[] = [
-  // Centerpiece: Focal Facility Anchor (Authentic Laboratory Chemist & Instrumentation)
-  {
-    id: "center-facility",
-    title: "Certigo Analytical Chemistry & Testing Laboratory",
-    subtitle: "Ms. R. Divya Keerthana (Chemist, B.Sc. Chemistry) operating Real-Time PCR & analytical instrumentation",
-    image: divyaChemistImg,
-    tag: "Analytical Chemist",
-    cluster: "center",
-    shapeClass: "organic-centerpiece-card"
-  },
   // Pod 1: Microbiology & Biosafety (Left Satellite Pod)
   {
     id: "mic",
@@ -1198,34 +1187,6 @@ function Home() {
                     );
                   })}
                 </div>
-              </div>
-
-              {/* Centerpiece: Anchored Focal Facility with Pulsing Aura */}
-              <div className="organic-pod pod-center">
-                {(() => {
-                  const centerItem = irregularLabItems[0];
-                  const isActive = activeItem.id === centerItem.id;
-                  const isDimmed = activeCluster !== "all";
-                  return (
-                    <div
-                      className={`organic-centerpiece-card ${isActive ? "is-active" : ""} ${isDimmed ? "is-dimmed" : ""}`}
-                      onMouseEnter={() => setActiveItem(centerItem)}
-                      onClick={() => {
-                        setActiveItem(centerItem);
-                        setActiveLightboxItem(centerItem);
-                      }}
-                      title={centerItem.title}
-                    >
-                      <div className="centerpiece-aura" />
-                      <img
-                        src={centerItem.image}
-                        alt={centerItem.title}
-                        className="organic-card-img"
-                        loading="lazy"
-                      />
-                    </div>
-                  );
-                })()}
               </div>
 
               {/* Pod 2: Right Satellite (Molecular & Analytical) */}
