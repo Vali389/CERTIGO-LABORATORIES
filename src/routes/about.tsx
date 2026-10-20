@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { PageHero, EnquiryBand, SectionHeading, WhatsAppIcon } from "@/components/site";
 import { labImage, pageHead, contact, researchImage, aboutImage } from "@/lib/site-data";
 import managingDirectorImg from "@/assets/managing-director.jpeg";
+import divyaKeerthanaImg from "@/assets/r-divya-keerthana-chemist.png";
 
 export const Route = createFileRoute("/about")({
   head: () => pageHead(
@@ -61,6 +62,29 @@ const teamMembers = [
       "Selection and validation of approved test methods",
       "Supervision of analytical testing & data authorization",
       "Instrumentation monitoring & measurement competence"
+    ]
+  },
+  {
+    initials: "DK",
+    name: "Ms. R. Divya Keerthana",
+    role: "Chemist",
+    degree: "B.Sc. in Chemistry",
+    experience: "2 Years Exp",
+    tag: "Chemical & Analytical Testing",
+    photo: divyaKeerthanaImg,
+    bio: "Holds a B.Sc. in Chemistry with 2 years of professional laboratory experience. Performs chemical analysis of raw materials, finished products, environmental samples, and other customer samples using appropriate laboratory methods.",
+    isoHighlight: "ISO/IEC 17025 Chemical Analysis & GLP",
+    keyResponsibilities: [
+      "Chemical analysis of raw materials, finished products, environmental samples & customer samples using appropriate laboratory methods",
+      "Accurate preparation of samples, reagents, standards, and solutions for testing",
+      "Operation, calibration, and maintenance of laboratory instruments and equipment",
+      "Recording test observations, calculations, and analytical results clearly and accurately",
+      "Reviewing data to ensure compliance with approved specifications and testing procedures",
+      "Preparation and verification of laboratory reports and supporting documentation",
+      "Adherence to Good Laboratory Practices (GLP), safety procedures, and quality management system requirements",
+      "Investigating abnormal or out-of-specification results and reporting findings to the supervisor",
+      "Maintaining proper documentation, sample traceability, and laboratory records",
+      "Coordinating with laboratory managers, department in-charges, and technical executives for timely completion of testing and reporting"
     ]
   },
   {
@@ -360,13 +384,27 @@ function About() {
           {/* Executive Team Grid */}
           <div className="team-exec-grid">
             {teamMembers.map((m) => (
-              <article key={m.name} className="team-exec-card">
+              <article key={m.name} className={`team-exec-card ${m.photo ? "has-photo" : ""}`}>
                 <div className="team-exec-accent-bar" />
                 
+                {/* Photo banner if real photograph is available */}
+                {m.photo && (
+                  <div className="team-exec-photo-banner">
+                    <img src={m.photo} alt={`${m.name} - ${m.role}`} className="team-exec-banner-img" loading="lazy" />
+                    <div className="team-exec-photo-tag">
+                      <FlaskConical size={12} className="text-teal" /> Chemist · Laboratory Testing
+                    </div>
+                  </div>
+                )}
+
                 {/* Header: Monogram Avatar + Department Badge */}
                 <div className="team-exec-header">
                   <div className="team-exec-avatar">
-                    <span>{m.initials}</span>
+                    {m.photo ? (
+                      <img src={m.photo} alt={m.name} className="team-exec-avatar-img" />
+                    ) : (
+                      <span>{m.initials}</span>
+                    )}
                     <span className="team-exec-verified-badge" title="ISO/IEC 17025 Competent">
                       <CheckCircle2 size={11} strokeWidth={3} />
                     </span>
