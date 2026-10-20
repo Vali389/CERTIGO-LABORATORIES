@@ -235,35 +235,36 @@ const luxuryStudentProgrammes = [
   }
 ];
 
-export interface CircularLabItem {
+export interface IrregularLabItem {
   id: string;
   title: string;
   subtitle: string;
   image: string;
   tag: string;
+  gridClass: string;
 }
 
-const centerDefaultItem: CircularLabItem = {
-  id: "center-facility",
-  title: "Certigo Advanced Testing Suite",
-  subtitle: "NABL Accredited Testing Facility · ISO/IEC 17025",
-  image: labCenterImg,
-  tag: "ISO/IEC 17025"
-};
+const irregularLabItems: IrregularLabItem[] = [
+  // Row 1: Irregular Top Trio
+  { id: "mic", title: "Binocular Research Microscope", subtitle: "1000x oil-immersion optics for cellular morphology", image: microscopeImg, tag: "1000x Optical", gridClass: "item-top-left" },
+  { id: "laf", title: "Laminar Air Flow Clean Bench", subtitle: "ISO Class 5 vertical HEPA aseptic chamber", image: laminarImg, tag: "HEPA 99.99%", gridClass: "item-top-center" },
+  { id: "col", title: "Digital Colony Counter", subtitle: "Pressure-touch CFU enumeration with dark-field lens", image: colonyMeterImg, tag: "0–9999 CFU", gridClass: "item-top-right" },
 
-const circularLabNodes: CircularLabItem[] = [
-  { id: "pcr", title: "Real-Time PCR (RT-PCR) System", subtitle: "Automated 96-well fluorescent molecular detection", image: rtPcrImg, tag: "RT-PCR" },
-  { id: "mic", title: "Binocular Research Microscope", subtitle: "1000x oil-immersion optics for cellular morphology", image: microscopeImg, tag: "1000x Optical" },
-  { id: "aut", title: "Vertical Steam Autoclave", subtitle: "121°C @ 15 PSI validated thermal sterilization", image: autoclaveImg, tag: "121°C Steam" },
-  { id: "col", title: "Digital Colony Counter", subtitle: "Pressure-touch CFU enumeration with dark-field lens", image: colonyMeterImg, tag: "0–9999 CFU" },
-  { id: "bal", title: "Analytical Micro-Balance", subtitle: "0.0001g electro-magnetic force cell with draft shield", image: balanceImg, tag: "0.0001g" },
-  { id: "pass", title: "Cleanroom Dynamic Pass Box", subtitle: "Interlocking cleanroom airlock with UV decontamination", image: passBoxImg, tag: "UV Interlock" },
-  { id: "ph", title: "Benchtop Digital pH Meter", subtitle: "Multi-point calibrated electrode for water testing", image: phMeterImg, tag: "±0.002 pH" },
-  { id: "stb", title: "Stomacher Laboratory Blender", subtitle: "Sterile paddle homogenization for sample preparation", image: stomacherImg, tag: "Homogenizer" },
-  { id: "laf", title: "Laminar Air Flow Clean Bench", subtitle: "ISO Class 5 vertical HEPA aseptic chamber", image: laminarImg, tag: "HEPA 99.99%" },
-  { id: "inc", title: "Controlled Temperature BOD Incubator", subtitle: "Constant temperature chambers for microbial growth", image: incubatorImg, tag: "BOD Incubator" },
-  { id: "oven", title: "Digital Hot Air Sterilization Oven", subtitle: "Microprocessor dry heat laboratory glassware prep", image: hotAirOvenImg, tag: "Hot Air Oven" },
-  { id: "bio", title: "Class II Type A2 Biosafety Cabinet", subtitle: "HEPA filtered biological containment chamber", image: biosafetyCabinetImg, tag: "Class II A2" }
+  // Row 2 & 3: Tall Left, Center Focal Facility, Tall Right
+  { id: "pcr", title: "Real-Time PCR (RT-PCR) System", subtitle: "Automated 96-well fluorescent molecular detection", image: rtPcrImg, tag: "Real-Time PCR", gridClass: "item-mid-tall-left" },
+  { id: "center-facility", title: "Certigo Advanced Testing Facility", subtitle: "NABL Accredited Testing Facility · ISO/IEC 17025", image: labCenterImg, tag: "Central Testing Facility", gridClass: "item-centerpiece" },
+  { id: "aut", title: "Vertical Steam Autoclave", subtitle: "121°C @ 15 PSI validated thermal sterilization", image: autoclaveImg, tag: "121°C Steam", gridClass: "item-mid-tall-right" },
+
+  // Row 4: Varied Organic Triad
+  { id: "pass", title: "Cleanroom Dynamic Pass Box", subtitle: "Interlocking cleanroom airlock with UV decontamination", image: passBoxImg, tag: "UV Interlock", gridClass: "item-lower-left" },
+  { id: "bal", title: "Analytical Micro-Balance", subtitle: "0.0001g electro-magnetic force cell with draft shield", image: balanceImg, tag: "0.0001g Precision", gridClass: "item-lower-center" },
+  { id: "ph", title: "Benchtop Digital pH Meter", subtitle: "Multi-point calibrated electrode for water testing", image: phMeterImg, tag: "±0.002 pH", gridClass: "item-lower-right" },
+
+  // Row 5: Asymmetric Bottom Cluster
+  { id: "stb", title: "Stomacher Laboratory Blender", subtitle: "Sterile paddle homogenization for sample preparation", image: stomacherImg, tag: "Homogenizer", gridClass: "item-bot-1" },
+  { id: "bio", title: "Class II Type A2 Biosafety Cabinet", subtitle: "HEPA filtered biological containment chamber", image: biosafetyCabinetImg, tag: "Class II A2", gridClass: "item-bot-2" },
+  { id: "inc", title: "Controlled Temperature BOD Incubator", subtitle: "Constant temperature chambers for microbial growth", image: incubatorImg, tag: "BOD Incubator", gridClass: "item-bot-3" },
+  { id: "chem", title: "Chemical Testing & Fume Bench", subtitle: "Analytical chemical preparation and assays", image: chemBenchImg, tag: "Chemical Bench", gridClass: "item-bot-4" }
 ];
 
 const nablDisciplines = [
@@ -409,8 +410,8 @@ const refPosterTrust = [
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [activeCircularItem, setActiveCircularItem] = useState<CircularLabItem>(centerDefaultItem);
-  const [activeLightboxItem, setActiveLightboxItem] = useState<CircularLabItem | null>(null);
+  const [activeItem, setActiveItem] = useState<IrregularLabItem>(irregularLabItems[4]);
+  const [activeLightboxItem, setActiveLightboxItem] = useState<IrregularLabItem | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -1011,7 +1012,7 @@ function Home() {
         </div>
       </section>
 
-      {/* SECTION: AUTHENTIC TESTING INFRASTRUCTURE (CIRCULAR SHAPE DISPLAY) */}
+      {/* SECTION: AUTHENTIC TESTING INFRASTRUCTURE (IRREGULAR ASYMMETRIC SHAPE DISPLAY) */}
       <section className="section gradient-section-gallery fade-up-init" id="facility-gallery">
         <div className="site-container">
           <SectionHeading
@@ -1020,80 +1021,49 @@ function Home() {
             description="Authentic laboratory instrumentation and calibrated testing facilities operating under strict ISO/IEC 17025 standards."
           />
 
-          {/* Circular Orbit Display with Continuous Rotation & Larger High-Res Images */}
-          <div className="circular-stage-wrapper mt-8 mb-6">
-            <div className="circular-orbit-stage">
-              {/* Soft Ambient Laboratory Glow */}
-              <div className="circular-ambient-glow" />
-
-              {/* Orbit Tracks */}
-              <div className="circular-orbit-track" />
-              <div className="circular-orbit-track-inner" />
-
-              {/* Center Focal Image Hub - 100% Pure Clean Photo (Zero Text Over Image) */}
-              <div
-                className="circular-orbit-center"
-                onClick={() => setActiveLightboxItem(activeCircularItem)}
-                title="Click to view full-screen photograph"
-              >
-                <img
-                  src={activeCircularItem.image}
-                  alt={activeCircularItem.title}
-                  className="circular-center-img"
-                />
-              </div>
-
-              {/* Smoothly Rotating Orbital Ring with Upright Counter-Rotating Satellites (Zero Text Over Images) */}
-              <div className="circular-orbit-ring" title="Hover to pause rotation">
-                {circularLabNodes.map((item, idx) => {
-                  const total = circularLabNodes.length;
-                  const angle = (idx / total) * 360;
-                  const isActive = activeCircularItem.id === item.id;
-
-                  return (
-                    <div
-                      key={item.id}
-                      className={`circular-satellite-node ${isActive ? "is-active" : ""}`}
-                      style={{
-                        "--node-angle": `${angle}deg`,
-                      } as React.CSSProperties}
-                      onMouseEnter={() => setActiveCircularItem(item)}
-                      onClick={() => {
-                        setActiveCircularItem(item);
-                        setActiveLightboxItem(item);
-                      }}
-                      title={item.title}
-                    >
-                      <div className="circular-node-content">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="circular-node-img"
-                          loading="lazy"
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+          {/* Irregular Asymmetric Organic Mosaic (Zero Text Over Images) */}
+          <div className="irregular-gallery-wrapper mt-8 mb-6">
+            <div className="irregular-gallery-grid">
+              {irregularLabItems.map((item) => {
+                const isActive = activeItem.id === item.id;
+                return (
+                  <div
+                    key={item.id}
+                    className={`irregular-gallery-card ${item.gridClass} ${isActive ? "is-active" : ""}`}
+                    onMouseEnter={() => setActiveItem(item)}
+                    onClick={() => {
+                      setActiveItem(item);
+                      setActiveLightboxItem(item);
+                    }}
+                    title={item.title}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="irregular-gallery-img"
+                      loading="lazy"
+                    />
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Clean Equipment Caption Bar - Safely Positioned BELOW the circle (Zero Text Over Images) */}
-            <div className="circular-active-caption-bar mt-5 text-center">
+            {/* Active Equipment Name Display - Safely Positioned BELOW the gallery (Zero Text Over Images) */}
+            <div className="irregular-caption-bar mt-6 text-center">
               <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-white border border-primary/15 px-6 py-2.5 rounded-full shadow-sm">
                 <span className="text-xs font-bold uppercase tracking-wider text-teal bg-teal/10 px-2.5 py-0.5 rounded-full">
-                  {activeCircularItem.tag}
+                  {activeItem.tag}
                 </span>
                 <strong className="text-primary text-sm sm:text-base font-bold font-sans">
-                  {activeCircularItem.title}
+                  {activeItem.title}
                 </strong>
                 <span className="hidden sm:inline text-muted-foreground/40">|</span>
                 <span className="text-xs sm:text-sm text-muted-foreground">
-                  {activeCircularItem.subtitle}
+                  {activeItem.subtitle}
                 </span>
                 <button
                   type="button"
-                  onClick={() => setActiveLightboxItem(activeCircularItem)}
+                  onClick={() => setActiveLightboxItem(activeItem)}
                   className="ml-1 text-xs font-bold text-teal hover:text-brand-green transition-colors inline-flex items-center gap-1 cursor-pointer"
                   title="View full-screen photograph"
                 >
